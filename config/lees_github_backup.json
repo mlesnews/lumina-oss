@@ -1,0 +1,64 @@
+{
+  "version": "1.0.0",
+  "name": "Lee's GitHub Backup Configuration",
+  "description": "Automated backup to Lee's GitHub repository",
+  "last_updated": "2026-01-06",
+  "backup": {
+    "enabled": true,
+    "repository": {
+      "name": "lumina-backup",
+      "owner": "lees-github",
+      "url": "https://github.com/lees-github/lumina-backup",
+      "type": "private",
+      "description": "Automated backup repository for Lumina ecosystem"
+    },
+    "schedule": {
+      "frequency": "daily",
+      "time": "02:00",
+      "timezone": "UTC",
+      "retention_days": 30
+    },
+    "content": {
+      "include": [
+        "config/",
+        "scripts/",
+        "docs/",
+        "data/",
+        "*.json",
+        "*.md",
+        "*.py"
+      ],
+      "exclude": [
+        "node_modules/",
+        "__pycache__/",
+        "*.pyc",
+        ".git/",
+        "*.log",
+        "*.tmp",
+        "credentials/",
+        "*.key",
+        "*.secret"
+      ]
+    },
+    "authentication": {
+      "method": "token",
+      "token_secret": "lees_github_token",
+      "secret_storage": "azure_key_vault"
+    },
+    "sync_strategy": {
+      "mode": "incremental",
+      "compress": true,
+      "encrypt": false,
+      "verify": true
+    }
+  },
+  "notifications": {
+    "enabled": true,
+    "on_success": true,
+    "on_failure": true,
+    "channels": [
+      "log",
+      "file"
+    ]
+  }
+}

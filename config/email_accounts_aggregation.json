@@ -1,0 +1,236 @@
+{
+  "google": {
+    "provider": "Gmail",
+    "type": "oauth2",
+    "imap": {
+      "server": "imap.gmail.com",
+      "port": 993,
+      "ssl": true,
+      "auth": "oauth2"
+    },
+    "smtp": {
+      "server": "smtp.gmail.com",
+      "port": 587,
+      "ssl": true,
+      "auth": "oauth2"
+    },
+    "notes": "Requires OAuth2 setup in Google Cloud Console"
+  },
+  "proton": {
+    "provider": "ProtonMail",
+    "type": "bridge",
+    "accounts": {
+      "mlesn": {
+        "protonmail_email": "mlesn@protonmail.com",
+        "bridge_username": "mlesn",
+        "imap": {
+          "server": "127.0.0.1",
+          "port": 1143,
+          "ssl": false,
+          "auth": "password",
+          "note": "Proton Bridge must be running on host PC"
+        },
+        "smtp": {
+          "server": "127.0.0.1",
+          "port": 1025,
+          "ssl": false,
+          "auth": "password",
+          "note": "Proton Bridge must be running on host PC"
+        },
+        "enabled": true,
+        "description": "Primary ProtonMail account - has emails"
+      },
+      "glesn": {
+        "protonmail_email": "glesn@protonmail.com",
+        "bridge_username": "glesn",
+        "imap": {
+          "server": "127.0.0.1",
+          "port": 1143,
+          "ssl": false,
+          "auth": "password",
+          "note": "Proton Bridge must be running on host PC (may need separate Bridge instance or different port)"
+        },
+        "smtp": {
+          "server": "127.0.0.1",
+          "port": 1025,
+          "ssl": false,
+          "auth": "password",
+          "note": "Proton Bridge must be running on host PC"
+        },
+        "enabled": true,
+        "description": "Glenda's ProtonMail account - newly created, no emails yet",
+        "note": "Account exists but is empty - will sync when emails arrive"
+      }
+    },
+    "bridge": {
+      "host": "localhost",
+      "imap_port": 1143,
+      "smtp_port": 1025,
+      "running_on": "host_pc",
+      "note": "If using multiple accounts, may need separate Bridge instances or Proton Family with shared Bridge"
+    }
+  },
+  "xfinity": {
+    "provider": "Xfinity",
+    "type": "imap",
+    "imap": {
+      "server": "imap.comcast.net",
+      "port": 993,
+      "ssl": true,
+      "auth": "password"
+    },
+    "smtp": {
+      "server": "smtp.comcast.net",
+      "port": 587,
+      "ssl": true,
+      "auth": "password"
+    }
+  },
+  "apple": {
+    "provider": "Apple/iCloud",
+    "type": "imap",
+    "imap": {
+      "server": "imap.mail.me.com",
+      "port": 993,
+      "ssl": true,
+      "auth": "app_specific_password",
+      "note": "Requires App-Specific Password from Apple ID"
+    },
+    "smtp": {
+      "server": "smtp.mail.me.com",
+      "port": 587,
+      "ssl": true,
+      "auth": "app_specific_password"
+    }
+  },
+  "yahoo": {
+    "provider": "Yahoo Mail",
+    "type": "oauth2",
+    "imap": {
+      "server": "imap.mail.yahoo.com",
+      "port": 993,
+      "ssl": true,
+      "auth": "oauth2"
+    },
+    "smtp": {
+      "server": "smtp.mail.yahoo.com",
+      "port": 587,
+      "ssl": true,
+      "auth": "oauth2"
+    },
+    "notes": "OAuth2 preferred, or App Password"
+  },
+  "outlook": {
+    "provider": "Outlook/Microsoft 365",
+    "type": "oauth2",
+    "imap": {
+      "server": "outlook.office365.com",
+      "port": 993,
+      "ssl": true,
+      "auth": "oauth2"
+    },
+    "smtp": {
+      "server": "smtp.office365.com",
+      "port": 587,
+      "ssl": true,
+      "auth": "oauth2"
+    },
+    "notes": "OAuth2 preferred, or App Password"
+  },
+  "company": {
+    "domain": "<LOCAL_HOSTNAME>",
+    "accounts": [
+      {
+        "email": "mlesn@<LOCAL_HOSTNAME>",
+        "username": "mlesn",
+        "type": "company"
+      },
+      {
+        "email": "glesn@<LOCAL_HOSTNAME>",
+        "username": "glesn",
+        "type": "company"
+      }
+    ],
+    "mailplus": {
+      "domain": "<LOCAL_HOSTNAME>",
+      "server": "<NAS_PRIMARY_IP>",
+      "webmail": "https://<NAS_PRIMARY_IP>:5001/mailplus",
+      "imap": {
+        "server": "<NAS_PRIMARY_IP>",
+        "port": 993,
+        "ssl": true
+      },
+      "smtp": {
+        "server": "<NAS_PRIMARY_IP>",
+        "port": 587,
+        "ssl": true
+      }
+    },
+    "mailstation": {
+      "package": "MailStation",
+      "status": "installed_and_running",
+      "server": "<NAS_PRIMARY_IP>",
+      "webmail": "https://<NAS_PRIMARY_IP>:5001",
+      "imap": {
+        "server": "<NAS_PRIMARY_IP>",
+        "port": 993,
+        "encryption": "SSL/TLS",
+        "secure": true,
+        "note": "Default - verify actual port"
+      },
+      "smtp": {
+        "server": "<NAS_PRIMARY_IP>",
+        "port": 25,
+        "encryption": "STARTTLS",
+        "secure": false
+      },
+      "domain": "<LOCAL_HOSTNAME>",
+      "accounts": [
+        {
+          "email": "mlesn@<LOCAL_HOSTNAME>",
+          "username": "mlesn",
+          "type": "company"
+        },
+        {
+          "email": "glesn@<LOCAL_HOSTNAME>",
+          "username": "glesn",
+          "type": "company"
+        }
+      ],
+      "note": "MailStation is the active mail server (not MailPlus)"
+    }
+  },
+  "mailstation": {
+    "package": "MailStation",
+    "status": "installed_and_running",
+    "server": "<NAS_PRIMARY_IP>",
+    "webmail": "https://<NAS_PRIMARY_IP>:5001",
+    "imap": {
+      "server": "<NAS_PRIMARY_IP>",
+      "port": 993,
+      "encryption": "SSL/TLS",
+      "secure": true,
+      "note": "Default - verify actual port"
+    },
+    "smtp": {
+      "server": "<NAS_PRIMARY_IP>",
+      "port": 25,
+      "encryption": "STARTTLS",
+      "secure": false
+    },
+    "domain": "<LOCAL_HOSTNAME>",
+    "accounts": [
+      {
+        "email": "mlesn@<LOCAL_HOSTNAME>",
+        "username": "mlesn",
+        "type": "company"
+      },
+      {
+        "email": "glesn@<LOCAL_HOSTNAME>",
+        "username": "glesn",
+        "type": "company"
+      }
+    ],
+    "note": "MailStation is the active mail server (not MailPlus)"
+  }
+}

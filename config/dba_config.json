@@ -1,0 +1,8 @@
+{
+  "backup_enabled": true,
+  "backup_interval_hours": 24,
+  "backup_retention_days": 30,
+  "nas_integration": true,
+  "monitoring_enabled": true,
+  "health_checks_enabled": true
+}

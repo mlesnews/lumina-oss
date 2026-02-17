@@ -1,0 +1,15 @@
+{
+  "trusted_email_sources": [
+    "<LOCAL_HOSTNAME>",
+    "protonmail.com",
+    "gmail.com",
+    "outlook.com",
+    "office365.com",
+    "icloud.com",
+    "mail.me.com",
+    "yahoo.com",
+    "comcast.net"
+  ],
+  "description": "Trusted email sources - these domains are considered legitimate",
+  "note": "Emails from these sources are more likely to be classified as 'wheat' (legitimate)"
+}

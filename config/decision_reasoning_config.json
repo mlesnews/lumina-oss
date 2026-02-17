@@ -1,0 +1,23 @@
+{
+  "reasoning_log_levels": {
+    "debug": "Detailed internal state and calculations",
+    "info": "High-level decision reasoning",
+    "warning": "Decisions that might need attention",
+    "error": "Failed decisions with full context"
+  },
+  "decision_types": {
+    "confidence_threshold": "Whether to proceed based on confidence score",
+    "validation_check": "Whether input data passes validation",
+    "safety_assessment": "Whether operation is safe to execute",
+    "completion_verification": "Whether workflow completion criteria are met"
+  },
+  "required_reasoning_elements": [
+    "decision_type",
+    "inputs_considered",
+    "decision_logic",
+    "outcome",
+    "confidence_level",
+    "alternative_options",
+    "rationale"
+  ]
+}

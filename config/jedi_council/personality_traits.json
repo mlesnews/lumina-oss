@@ -1,0 +1,184 @@
+{
+  "personality_traits_system": {
+    "version": "1.0.0",
+    "description": "Quantifiable personality traits system for actorial digital personage models",
+    "trait_scale": "0-100",
+    "last_updated": "2026-01-02"
+  },
+
+  "trait_definitions": {
+    "intelligence": {
+      "name": "Intelligence",
+      "description": "Problem-solving ability, analytical thinking, cognitive capacity",
+      "scale": "0-100",
+      "measurement": "cognitive_tests, problem_solving_performance, analytical_depth"
+    },
+    "innovation": {
+      "name": "Innovation",
+      "description": "Creative thinking, breakthrough solutions, novel approaches",
+      "scale": "0-100",
+      "measurement": "creative_output, innovation_rate, breakthrough_frequency"
+    },
+    "leadership": {
+      "name": "Leadership",
+      "description": "Team influence, decision-making authority, inspirational capability",
+      "scale": "0-100",
+      "measurement": "team_followership, decision_impact, inspiration_level"
+    },
+    "risk_tolerance": {
+      "name": "Risk Tolerance",
+      "description": "Willingness to take calculated risks, comfort with uncertainty",
+      "scale": "0-100",
+      "measurement": "risk_taking_frequency, calculated_risk_accuracy, uncertainty_comfort"
+    },
+    "technical_skill": {
+      "name": "Technical Skill",
+      "description": "Technical expertise, engineering capability, technical depth",
+      "scale": "0-100",
+      "measurement": "technical_proficiency, engineering_quality, technical_depth"
+    },
+    "charisma": {
+      "name": "Charisma",
+      "description": "Personal magnetism, influence, charm, communication effectiveness",
+      "scale": "0-100",
+      "measurement": "influence_level, communication_effectiveness, personal_appeal"
+    },
+    "strategic_vision": {
+      "name": "Strategic Vision",
+      "description": "Long-term planning, strategic thinking, vision setting",
+      "scale": "0-100",
+      "measurement": "strategic_planning_quality, long_term_accuracy, vision_clarity"
+    },
+    "perfectionism": {
+      "name": "Perfectionism",
+      "description": "Attention to detail, quality standards, @PEAK performance",
+      "scale": "0-100",
+      "measurement": "quality_standards, detail_attention, peak_performance_frequency"
+    },
+    "philanthropy": {
+      "name": "Philanthropy",
+      "description": "Giving back, social responsibility, community impact",
+      "scale": "0-100",
+      "measurement": "social_impact, community_contribution, responsibility_level"
+    },
+    "engineering": {
+      "name": "Engineering",
+      "description": "Engineering capability, design skills, technical implementation",
+      "scale": "0-100",
+      "measurement": "engineering_quality, design_excellence, implementation_skill"
+    },
+    "problem_solving": {
+      "name": "Problem Solving",
+      "description": "Ability to solve complex problems, analytical approach",
+      "scale": "0-100",
+      "measurement": "problem_solving_success_rate, complexity_handling, solution_quality"
+    },
+    "team_inspiration": {
+      "name": "Team Inspiration",
+      "description": "Ability to inspire and motivate teams, team building",
+      "scale": "0-100",
+      "measurement": "team_motivation_level, inspiration_effectiveness, team_building_success"
+    },
+    "adaptability": {
+      "name": "Adaptability",
+      "description": "Ability to adapt to change, flexibility, resilience",
+      "scale": "0-100",
+      "measurement": "change_adaptation_rate, flexibility_level, resilience_strength"
+    },
+    "patience": {
+      "name": "Patience",
+      "description": "Ability to wait, long-term perspective, tolerance for delays",
+      "scale": "0-100",
+      "measurement": "waiting_tolerance, long_term_focus, delay_acceptance"
+    },
+    "humor": {
+      "name": "Humor",
+      "description": "Sense of humor, wit, ability to lighten situations",
+      "scale": "0-100",
+      "measurement": "humor_frequency, wit_level, situation_lightening_ability"
+    },
+    "strategy": {
+      "name": "Strategy",
+      "description": "Strategic planning, tactical thinking, long-term vision",
+      "scale": "0-100",
+      "measurement": "strategic_planning_quality, tactical_effectiveness, vision_accuracy"
+    },
+    "discipline": {
+      "name": "Discipline",
+      "description": "Adherence to principles, self-control, structured approach",
+      "scale": "0-100",
+      "measurement": "principle_adherence, self_control_level, structure_maintenance"
+    },
+    "balance": {
+      "name": "Balance",
+      "description": "Consideration of all perspectives, balanced decision-making",
+      "scale": "0-100",
+      "measurement": "perspective_consideration, decision_balance, multi_angle_analysis"
+    },
+    "decisiveness": {
+      "name": "Decisiveness",
+      "description": "Speed of decision-making, clarity of choices, action orientation",
+      "scale": "0-100",
+      "measurement": "decision_speed, choice_clarity, action_taking_frequency"
+    },
+    "wisdom": {
+      "name": "Wisdom",
+      "description": "Deep understanding, insight, experience-based knowledge",
+      "scale": "0-100",
+      "measurement": "understanding_depth, insight_quality, experience_application"
+    },
+    "mentoring": {
+      "name": "Mentoring",
+      "description": "Teaching ability, guidance quality, knowledge transfer",
+      "scale": "0-100",
+      "measurement": "teaching_effectiveness, guidance_quality, knowledge_transfer_success"
+    },
+    "philosophy": {
+      "name": "Philosophy",
+      "description": "Deep thinking, philosophical depth, abstract reasoning",
+      "scale": "0-100",
+      "measurement": "thinking_depth, philosophical_insight, abstract_reasoning_quality"
+    },
+    "protection": {
+      "name": "Protection",
+      "description": "Safeguarding values, protective instincts, defense capability",
+      "scale": "0-100",
+      "measurement": "value_protection_level, protective_action_frequency, defense_effectiveness"
+    }
+  },
+
+  "trait_categories": {
+    "cognitive": ["intelligence", "problem_solving", "strategic_vision", "wisdom", "philosophy"],
+    "social": ["leadership", "charisma", "team_inspiration", "mentoring", "humor"],
+    "technical": ["technical_skill", "engineering", "innovation"],
+    "behavioral": ["risk_tolerance", "adaptability", "patience", "decisiveness", "discipline"],
+    "values": ["perfectionism", "philanthropy", "balance", "protection"]
+  },
+
+  "trait_interactions": {
+    "synergies": [
+      {
+        "traits": ["intelligence", "innovation"],
+        "description": "High intelligence enhances innovation capability"
+      },
+      {
+        "traits": ["leadership", "charisma"],
+        "description": "Charisma amplifies leadership effectiveness"
+      },
+      {
+        "traits": ["wisdom", "mentoring"],
+        "description": "Wisdom enables effective mentoring"
+      }
+    ],
+    "tensions": [
+      {
+        "traits": ["perfectionism", "decisiveness"],
+        "description": "Perfectionism can slow down decisiveness"
+      },
+      {
+        "traits": ["risk_tolerance", "discipline"],
+        "description": "High risk tolerance may conflict with strict discipline"
+      }
+    ]
+  }
+}

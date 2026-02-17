@@ -1,0 +1,72 @@
+{
+  "email_accounts": {
+    "version": "1.0.0",
+    "description": "Email accounts configuration for SYPHON → Holocron → YouTube Library",
+    "accounts": [
+      {
+        "account_id": "gmail_primary",
+        "account_name": "Gmail Primary",
+        "email_address": "your-email@gmail.com",
+        "account_type": "oauth2_gmail",
+        "secure": true,
+        "enabled": false,
+        "oauth2_credentials": null,
+        "metadata": {
+          "notes": "Configure OAuth2 credentials for Gmail API access"
+        }
+      },
+      {
+        "account_id": "outlook_primary",
+        "account_name": "Outlook Primary",
+        "email_address": "your-email@outlook.com",
+        "account_type": "imap",
+        "server": "outlook.office365.com",
+        "port": 993,
+        "username": "your-email@outlook.com",
+        "password": null,
+        "use_ssl": true,
+        "use_tls": false,
+        "secure": true,
+        "enabled": false,
+        "metadata": {
+          "notes": "Use app password for 2FA accounts"
+        }
+      },
+      {
+        "account_id": "legacy_pop3",
+        "account_name": "Legacy POP3 Account",
+        "email_address": "legacy@example.com",
+        "account_type": "pop3",
+        "server": "mail.example.com",
+        "port": 995,
+        "username": "legacy@example.com",
+        "password": null,
+        "use_ssl": true,
+        "use_tls": false,
+        "secure": false,
+        "enabled": false,
+        "metadata": {
+          "notes": "Unsecure legacy account"
+        }
+      }
+    ]
+  },
+  "instructions": {
+    "secure_accounts": [
+      "Use OAuth2 for Gmail (recommended)",
+      "Use app passwords for 2FA accounts",
+      "Store credentials securely (not in this file)"
+    ],
+    "unsecure_accounts": [
+      "Legacy POP3 accounts",
+      "Accounts without encryption",
+      "Use with caution"
+    ],
+    "configuration": [
+      "Set 'enabled': true for accounts to SYPHON",
+      "Set 'password': null and use environment variables or secure storage",
+      "Configure OAuth2 credentials for Gmail/Outlook"
+    ]
+  }
+}
+

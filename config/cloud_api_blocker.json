@@ -1,0 +1,32 @@
+{
+  "version": "1.0.0",
+  "name": "Cloud API Blocker - Emergency Cost Control",
+  "enabled": true,
+  "blocked_providers": [
+    "openai",
+    "anthropic",
+    "google_ai",
+    "cohere"
+  ],
+  "allowed_providers": [
+    "local_ollama",
+    "llama3.2:3b",
+    "kaiju_iron_legion",
+    "grok",
+    "azure_openai"
+  ],
+  "emergency_mode": false,
+  "reason": "Local AI first, Azure OpenAI allowed for all OpenAI requests (enforced routing through Azure), GROK allowed via decision tree",
+  "grok_access": {
+    "enabled": true,
+    "not_gate_gated": true,
+    "decision_tree_controlled": true,
+    "cost_per_1m_tokens": 5.0,
+    "conditions": [
+      "Local AI quality < 0.7",
+      "Complexity == 'high' AND Urgency == 'high'",
+      "Decision tree determines GROK needed"
+    ]
+  },
+  "timestamp": "2025-01-27"
+}

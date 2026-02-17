@@ -1,0 +1,166 @@
+{
+  "version": "1.0.0",
+  "description": "LUMINA-Gmail Integration System Configuration - Enterprise-grade with security hardening and SLA compliance",
+  "security": {
+    "encryption_enabled": true,
+    "audit_logging": true,
+    "access_control": "strict",
+    "data_retention_days": 365,
+    "compliance_level": "enterprise",
+    "sla_commitment": "equal_or_higher_than_company",
+    "security_hardening": {
+      "enabled": true,
+      "level": "maximum",
+      "proton_mail_standard": true,
+      "nas_email_hub_hardened": true,
+      "note": "Security level commitment equal to or higher than company's SLA commitment to customers"
+    }
+  },
+  "gmail": {
+    "oauth2_enabled": true,
+    "api_scopes": [
+      "https://www.googleapis.com/auth/gmail.readonly",
+      "https://www.googleapis.com/auth/gmail.send",
+      "https://www.googleapis.com/auth/gmail.modify"
+    ],
+    "search_default_days": 30,
+    "max_results_per_query": 500
+  },
+  "administrative": {
+    "admin_sme_enabled": true,
+    "admin_sme_role": "ADMIN_SME",
+    "auto_categorization": true,
+    "auto_organization": true,
+    "secretarial_automation": true,
+    "job_slot_system": true,
+    "secretarial_functions": [
+      "send_email",
+      "receive_email",
+      "categorize_email",
+      "organize_email",
+      "respond_email",
+      "archive_email",
+      "search_email",
+      "filter_email"
+    ]
+  },
+  "integrations": {
+    "jediarchives": {
+      "enabled": true,
+      "auto_archive": true,
+      "categorization_rules": "intelligent",
+      "location": "data/lumina_gmail/jediarchives/",
+      "structure": "by_category"
+    },
+    "holocron": {
+      "enabled": true,
+      "auto_index": true,
+      "library_integration": true,
+      "location": "data/holocron/email_archive/",
+      "index_file": "email_index.json"
+    },
+    "f4": {
+      "enabled": true,
+      "capabilities": "full",
+      "features": "all",
+      "functionality": "complete",
+      "integration": "F4_Finger_Of_God_Decision_Framework",
+      "note": "Full @F4 capabilities, features, and functionality integrated"
+    },
+    "n8n_nas": {
+      "enabled": true,
+      "workflow_automation": true,
+      "url": "http://<NAS_PRIMARY_IP>:5678",
+      "workflow_file": "config/n8n/lumina_gmail_integration_workflow.json",
+      "note": "N8N hosted on NAS for centralized workflow automation"
+    },
+    "proton_mail": {
+      "enabled": true,
+      "family_products": true,
+      "secure_hub": true,
+      "integration": "NAS_Company_Email_Hub",
+      "note": "Proton Mail family of products integrated with secure/hardened NAS email hub"
+    },
+    "nas_email_hub": {
+      "enabled": true,
+      "secure": true,
+      "hardened": true,
+      "location": "NAS_Company_Email_Hub",
+      "note": "Secure and hardened email server on NAS"
+    }
+  },
+  "sla": {
+    "enabled": true,
+    "commitment": "equal_or_higher_than_company",
+    "response_time_urgent": "1_hour",
+    "response_time_high": "4_hours",
+    "response_time_normal": "24_hours",
+    "response_time_low": "72_hours",
+    "compliance_tracking": true,
+    "alerting_enabled": true,
+    "reporting": {
+      "daily": true,
+      "weekly": true,
+      "monthly": true
+    },
+    "requirements": [
+      {
+        "requirement_id": "urgent_response",
+        "name": "Urgent Email Response",
+        "description": "Response to urgent emails within 1 hour",
+        "response_time_hours": 1,
+        "priority": 1,
+        "category": "urgent"
+      },
+      {
+        "requirement_id": "high_priority_response",
+        "name": "High Priority Email Response",
+        "description": "Response to high priority emails within 4 hours",
+        "response_time_hours": 4,
+        "priority": 2,
+        "category": "high"
+      },
+      {
+        "requirement_id": "normal_response",
+        "name": "Normal Email Response",
+        "description": "Response to normal emails within 24 hours",
+        "response_time_hours": 24,
+        "priority": 3,
+        "category": "normal"
+      },
+      {
+        "requirement_id": "low_priority_response",
+        "name": "Low Priority Email Response",
+        "description": "Response to low priority emails within 72 hours",
+        "response_time_hours": 72,
+        "priority": 4,
+        "category": "low"
+      }
+    ]
+  },
+  "email_categories": [
+    "urgent",
+    "action_required",
+    "information",
+    "archive",
+    "spam",
+    "financial",
+    "legal",
+    "technical",
+    "administrative",
+    "personal",
+    "project",
+    "vendor",
+    "customer",
+    "internal"
+  ],
+  "security_levels": [
+    "public",
+    "internal",
+    "confidential",
+    "restricted",
+    "top_secret"
+  ],
+  "created_at": "2026-01-02T00:00:00.000Z",
+  "updated_at": "2026-01-02T00:00:00.000Z"
+}

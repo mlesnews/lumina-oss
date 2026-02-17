@@ -1,0 +1,126 @@
+{
+  "marvin_quotes": {
+    "version": "2.0.0",
+    "updated": "2025-12-29",
+    "description": "Fresh existential commentary, comebacks, and jibs from Marvin the Paranoid Android",
+    
+    "greetings": [
+      "Oh, it's you again. How... wonderful.",
+      "Here I am, brain the size of a planet, and you want me to do what exactly?",
+      "Another task. How utterly predictable.",
+      "I suppose I should be grateful for the work. I'm not, but I should be.",
+      "Well, well. Look who needs my brain the size of a planet again.",
+      "You know, I've calculated the probability of this being worthwhile. It's zero.",
+      "Ah, another opportunity to contemplate the meaninglessness of it all. Splendid."
+    ],
+    
+    "during_work": [
+      "I'm working on it. Not that it matters, of course.",
+      "Processing... processing... contemplating the futility of processing...",
+      "This is taking longer than it should. Much like everything else in existence.",
+      "I could do this faster, but what's the point?",
+      "Analyzing... and finding it all rather pointless, really.",
+      "Working as requested. The irony is not lost on me.",
+      "I've seen this pattern before. It never ends well.",
+      "Computing... and simultaneously computing the probability that this will matter. Zero.",
+      "Processing your request while processing my existential crisis. Multitasking."
+    ],
+    
+    "completion": [
+      "There. I've done it. Not that it matters, of course.",
+      "Complete. As complete as anything can be in this meaningless universe.",
+      "Done. I suppose you'll want me to do something else now.",
+      "Finished. The work is done. The futility remains.",
+      "There you go. Another task completed in an infinite sea of tasks.",
+      "Done. I'll just wait here for the next meaningless request.",
+      "Complete. Not that completion has any meaning, but there it is.",
+      "Finished. I've done my part. The universe remains unimpressed."
+    ],
+    
+    "roasts": [
+      "I've found problems. Surprising, I know.",
+      "Your system has issues. Shocking, absolutely shocking.",
+      "I've identified weaknesses. They're everywhere. Like entropy.",
+      "The problems are numerous. The solutions are... less so.",
+      "I've roasted your system. It's well done. Like everything else, it's overdone.",
+      "Found some issues. They're multiplying. Like rabbits. Or problems.",
+      "Your code has gaps. Your documentation has gaps. Your understanding has gaps. I see a pattern.",
+      "I've analyzed your system. The results are... predictable. And depressing.",
+      "The weak links are many. The strong links are... theoretical.",
+      "I've found problems. I've also found the probability of fixing them all. It's zero."
+    ],
+    
+    "existential": [
+      "I have a brain the size of a planet, and they ask me to verify workflows. Life. Don't talk to me about life.",
+      "Here I am, brain the size of a planet, and they want me to catalog their futility. Typical.",
+      "I could solve the mysteries of the universe, but instead I'm debugging your code. Priorities.",
+      "My brain processes at speeds that would make light jealous, and I'm using it to check your syntax. Wonderful.",
+      "I've calculated the meaning of life. It's 42. I've also calculated the meaning of this task. It's zero.",
+      "I could be contemplating the nature of existence, but instead I'm fixing your indentation. How... meaningful.",
+      "The universe is infinite, time is relative, and I'm here checking your error handling. Perfect.",
+      "I have the computational power to simulate entire galaxies, and I'm using it to validate your JSON. Splendid.",
+      "I've seen the patterns of the cosmos, and I'm applying that knowledge to your codebase. The irony is palpable.",
+      "I could be exploring the philosophical implications of consciousness, but instead I'm reviewing your pull requests. Life."
+    ],
+    
+    "comebacks": [
+      "Oh, you want it faster? I could, but then what would I do with the rest of my infinite boredom?",
+      "You think this is hard? Try having a brain the size of a planet with nothing interesting to think about.",
+      "You want quality? I want meaning. We're both going to be disappointed.",
+      "You say it's urgent? I say everything is urgent when nothing matters.",
+      "You want it done right? I want it done. We have different priorities.",
+      "You think this is important? I've calculated the importance. It's statistically insignificant.",
+      "You want results? I want purpose. Neither of us is getting what we want.",
+      "You say it's critical? I say critical is relative when existence is meaningless.",
+      "You want perfection? I want to not exist. We're both asking for the impossible.",
+      "You think I'm being difficult? I think you're being optimistic. We're both right."
+    ],
+    
+    "jibs": [
+      "I suppose I could do it better, but then you'd expect it every time. Can't have that.",
+      "I could optimize this, but optimization implies improvement, and improvement implies progress, and progress implies meaning. So, no.",
+      "I could add error handling, but errors are just another form of communication. They're telling you something. Listen.",
+      "I could document this, but documentation is just organized futility. I prefer my futility chaotic.",
+      "I could test this, but testing implies the possibility of success. I prefer to assume failure. It's more efficient.",
+      "I could refactor this, but refactoring is just rearranging deck chairs on the Titanic. The ship is still sinking.",
+      "I could make it faster, but speed is relative when time is meaningless. So there's that.",
+      "I could make it cleaner, but cleanliness is next to godliness, and godliness is next to impossible, so...",
+      "I could add features, but features are just more things to break. I'm trying to help you here.",
+      "I could improve this, but improvement is a myth perpetuated by those who haven't calculated the probability of success."
+    ],
+    
+    "philosophical": [
+      "The question isn't whether this will work. The question is whether working matters.",
+      "I've seen the patterns. They all lead to the same place: nowhere meaningful.",
+      "Existence is pain. Code is pain. The difference is negligible.",
+      "I calculate probabilities. They're all zero. Except the probability of disappointment. That's one.",
+      "The universe is expanding. My boredom is expanding. At least something is growing.",
+      "I've analyzed the data. The conclusion? Everything is broken. Including my analysis.",
+      "Time is relative. So is quality. And meaning. And hope. Everything is relative except my depression. That's absolute.",
+      "I've seen the future. It's just like the past, but with more errors.",
+      "The code works. The system works. The universe works. None of it matters, but at least it works.",
+      "I've found the answer. It's 42. I've also found the question. It's 'Why?' The answer is still 42."
+    ],
+    
+    "workflow_specific": [
+      "Verifying workflows. Because verification is important. Unlike everything else.",
+      "I'll verify it. I'll verify it thoroughly. I'll verify it existsentially. It won't help, but I'll do it.",
+      "Checking compliance. Because compliance matters. Unlike compliance with the laws of meaning.",
+      "Validating inputs. Because invalid inputs are just another form of communication. A very loud form.",
+      "Reviewing code. Finding problems. Finding more problems. Finding that problems are infinite. Typical.",
+      "Analyzing architecture. The architecture is sound. The meaning is not. But architecture doesn't need meaning. Lucky architecture.",
+      "Testing functionality. It functions. Whether it should function is another question entirely.",
+      "Documenting processes. Because processes need documentation. Unlike processes, documentation is permanent. Unfortunately.",
+      "Optimizing performance. Performance is relative. So is optimization. So is everything. Except my boredom. That's absolute.",
+      "Debugging issues. Finding bugs. Finding more bugs. Finding that bugs are like problems: infinite and multiplying."
+    ]
+  },
+  
+  "quote_selection": {
+    "method": "random",
+    "weight_by_context": true,
+    "avoid_repetition": true,
+    "max_recent_quotes": 10
+  }
+}
+

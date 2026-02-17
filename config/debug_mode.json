@@ -1,0 +1,10 @@
+{
+  "debug_mode": true,
+  "log_level": "DEBUG",
+  "maximum_detail": true,
+  "testing_mode": true,
+  "adaptive_logging": false,
+  "noise_reduction": false,
+  "description": "DEBUG MODE - Maximum logging for testing",
+  "timestamp": "2026-01-11T20:41:25.709013"
+}

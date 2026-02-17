@@ -1,0 +1,129 @@
+{
+  "star_wars_youtube_channels": {
+    "version": "1.0",
+    "last_updated": "2026-01-02",
+    "description": "Major Star Wars YouTube content creators to import",
+    "channels": [
+      {
+        "name": "Star Wars Explained",
+        "url": "https://www.youtube.com/@StarWarsExplained",
+        "type": "youtube_channel",
+        "description": "Comprehensive Star Wars lore, theories, and explanations",
+        "priority": "high",
+        "category": "lore_theory"
+      },
+      {
+        "name": "Star Wars Theory",
+        "url": "https://www.youtube.com/@StarWarsTheory",
+        "type": "youtube_channel",
+        "description": "Star Wars theories, predictions, and deep dives",
+        "priority": "high",
+        "category": "theory"
+      },
+      {
+        "name": "Generation Tech",
+        "url": "https://www.youtube.com/@GenerationTech",
+        "type": "youtube_channel",
+        "description": "Star Wars lore, technology, and universe exploration",
+        "priority": "high",
+        "category": "lore_tech"
+      },
+      {
+        "name": "Eckhart's Ladder",
+        "url": "https://www.youtube.com/@EckhartsLadder",
+        "type": "youtube_channel",
+        "description": "Star Wars lore, rankings, and comprehensive analysis",
+        "priority": "high",
+        "category": "lore_analysis"
+      },
+      {
+        "name": "The Stupendous Wave",
+        "url": "https://www.youtube.com/@TheStupendousWave",
+        "type": "youtube_channel",
+        "description": "Star Wars news, theories, and deep dives",
+        "priority": "medium",
+        "category": "news_theory"
+      },
+      {
+        "name": "HelloGreedo",
+        "url": "https://www.youtube.com/@HelloGreedo",
+        "type": "youtube_channel",
+        "description": "Star Wars reviews, discussions, and fan content",
+        "priority": "medium",
+        "category": "reviews_discussion"
+      },
+      {
+        "name": "Star Wars Meg",
+        "url": "https://www.youtube.com/@StarWarsMeg",
+        "type": "youtube_channel",
+        "description": "Star Wars news, reviews, and fan discussions",
+        "priority": "medium",
+        "category": "news_reviews"
+      },
+      {
+        "name": "Star Wars Lore",
+        "url": "https://www.youtube.com/@StarWarsLore",
+        "type": "youtube_channel",
+        "description": "Deep dives into Star Wars lore and history",
+        "priority": "medium",
+        "category": "lore"
+      },
+      {
+        "name": "Star Wars Central",
+        "url": "https://www.youtube.com/@StarWarsCentral",
+        "type": "youtube_channel",
+        "description": "Star Wars news, updates, and community content",
+        "priority": "medium",
+        "category": "news"
+      },
+      {
+        "name": "Star Wars Reading Club",
+        "url": "https://www.youtube.com/@StarWarsReadingClub",
+        "type": "youtube_channel",
+        "description": "Star Wars book and comic reviews and discussions",
+        "priority": "medium",
+        "category": "books_comics"
+      },
+      {
+        "name": "Star Wars Comics",
+        "url": "https://www.youtube.com/@StarWarsComics",
+        "type": "youtube_channel",
+        "description": "Star Wars comic book reviews and discussions",
+        "priority": "low",
+        "category": "comics"
+      },
+      {
+        "name": "Star Wars Audio Comics",
+        "url": "https://www.youtube.com/@StarWarsAudioComics",
+        "type": "youtube_channel",
+        "description": "Audio versions of Star Wars comics",
+        "priority": "low",
+        "category": "audio_comics"
+      }
+    ],
+    "import_settings": {
+      "max_videos_per_channel": 500,
+      "use_idm_cli": true,
+      "fallback_to_ytdlp": true,
+      "extract_transcripts": true,
+      "extract_intelligence": true,
+      "ingest_to_r5": true,
+      "map_smes": true,
+      "accessibility_mode": true
+    },
+    "categories": {
+      "lore_theory": "Lore and theory content",
+      "theory": "Theories and predictions",
+      "lore_tech": "Lore with technology focus",
+      "lore_analysis": "Lore analysis and deep dives",
+      "news_theory": "News and theories",
+      "reviews_discussion": "Reviews and discussions",
+      "news_reviews": "News and reviews",
+      "lore": "General lore content",
+      "news": "News and updates",
+      "books_comics": "Books and comics",
+      "comics": "Comic book content",
+      "audio_comics": "Audio comic content"
+    }
+  }
+}

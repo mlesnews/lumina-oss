@@ -1,0 +1,102 @@
+{
+  "version": "1.0.0",
+  "name": "Local-First AI Enforcement",
+  "description": "Enforce local-first AI routing (ULTRON, KAIJU, R5) over cloud providers with Jedi Council/AIQ approval",
+  "last_updated": "2026-01-06",
+  "enforcement": {
+    "enabled": true,
+    "strict": true,
+    "cloud_requires_approval": true,
+    "jedi_council_approval_required": true,
+    "aiq_approval_required": true,
+    "r5_routing_enabled": true
+  },
+  "local_first_priority": {
+    "1": {
+      "provider": "ULTRON",
+      "endpoint": "http://localhost:11434",
+      "models": ["qwen2.5:72b", "llama3.2:11b"],
+      "description": "Primary local Docker/WSL Ollama instance"
+    },
+    "2": {
+      "provider": "KAIJU",
+      "endpoint": "http://<NAS_PRIMARY_IP>:11434",
+      "models": ["llama3.2:3b"],
+      "description": "NAS Docker/WSL cluster (Iron Legion)"
+    },
+    "3": {
+      "provider": "R5",
+      "endpoint": "local",
+      "models": ["r5_matrix"],
+      "description": "R5 Living Context Matrix - Knowledge aggregation and routing"
+    }
+  },
+  "cloud_providers": {
+    "blocked_by_default": true,
+    "requires_approval": true,
+    "approval_systems": [
+      "jedi_council",
+      "jedi_high_council",
+      "aiq",
+      "approval_board_of_judges",
+      "decision_trees"
+    ],
+    "providers": {
+      "openai": {
+        "blocked": true,
+        "approval_required": true,
+        "patterns": ["gpt-", "openai", "o1-"]
+      },
+      "anthropic": {
+        "blocked": true,
+        "approval_required": true,
+        "patterns": ["claude", "anthropic"]
+      },
+      "other": {
+        "blocked": true,
+        "approval_required": true,
+        "patterns": ["api.openai.com", "api.anthropic.com"]
+      }
+    }
+  },
+  "routing": {
+    "default_route": "ULTRON",
+    "fallback_route": "KAIJU",
+    "r5_context_aware": true,
+    "decision_tree_enabled": true,
+    "jedi_council_enabled": true,
+    "aiq_enabled": true
+  },
+  "integration": {
+    "r5_living_context_matrix": {
+      "enabled": true,
+      "use_for_routing": true,
+      "context_aware": true
+    },
+    "jedi_council": {
+      "enabled": true,
+      "approval_required": true,
+      "high_council_enabled": true
+    },
+    "aiq": {
+      "enabled": true,
+      "consensus_required": true,
+      "quorum_threshold": 0.75
+    },
+    "approval_board_of_judges": {
+      "enabled": true,
+      "approval_required": true
+    },
+    "decision_trees": {
+      "enabled": true,
+      "tree_name": "ai_routing",
+      "local_first_priority": true
+    }
+  },
+  "statistics": {
+    "track_routing": true,
+    "log_cloud_blocks": true,
+    "log_approvals": true,
+    "report_interval": 3600
+  }
+}

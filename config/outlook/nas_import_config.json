@@ -1,0 +1,62 @@
+{
+  "nas_mail_hub": {
+    "server": "<NAS_PRIMARY_IP>",
+    "domain": "<LOCAL_HOSTNAME>",
+    "imap": {
+      "server": "<NAS_PRIMARY_IP>",
+      "port": 993,
+      "ssl": true
+    },
+    "smtp": {
+      "server": "<NAS_PRIMARY_IP>",
+      "port": 587,
+      "ssl": true
+    },
+    "webmail": "https://<NAS_PRIMARY_IP>:5001/mailplus",
+    "api": {
+      "base_url": "https://<NAS_PRIMARY_IP>:5001/webapi",
+      "endpoint": "/entry.cgi"
+    }
+  },
+  "import_sources": {
+    "gmail": {
+      "enabled": true,
+      "imap_server": "imap.gmail.com",
+      "imap_port": 993,
+      "folder": "INBOX",
+      "import_all_folders": false
+    },
+    "protonmail": {
+      "enabled": true,
+      "imap_server": "127.0.0.1",
+      "imap_port": 1143,
+      "folder": "INBOX",
+      "requires_bridge": true,
+      "import_all_folders": false
+    },
+    "outlook_local": {
+      "enabled": true,
+      "type": "pst_import",
+      "pst_paths": [],
+      "note": "Import from Outlook PST files or via IMAP"
+    }
+  },
+  "import_settings": {
+    "schedule": {
+      "enabled": true,
+      "interval_minutes": 15,
+      "run_at_startup": true
+    },
+    "filtering": {
+      "skip_duplicates": true,
+      "max_age_days": 365,
+      "skip_attachments_over_mb": 50
+    },
+    "storage": {
+      "archive_path": "/volume1/backups/MATT_Backups/company_email_hub",
+      "organize_by_date": true,
+      "organize_by_account": true
+    }
+  },
+  "generated_at": "2026-01-05T22:22:33.193344"
+}

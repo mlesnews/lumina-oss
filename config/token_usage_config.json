@@ -1,0 +1,90 @@
+{
+  "_meta": {
+    "description": "Token Usage Monitor Configuration - Digital Gauge System",
+    "version": "1.0.0",
+    "created": "2026-01-13"
+  },
+  
+  "subscription": {
+    "max_asks": 0,
+    "_comment": "0 = unlimited or not configured. Set to your subscription limit.",
+    "reset_period": "monthly",
+    "_comment_reset": "monthly, daily, or custom days",
+    "current_period_start": null,
+    "_comment_start": "Auto-set on first usage",
+    "subscription_fee": 0.0,
+    "_comment_fee": "Monthly subscription fee in USD (e.g., 20.0 for $20/month). Used for fuel tank 1."
+  },
+  
+  "costs": {
+    "local_cost_per_1k_tokens": 0.0,
+    "_comment_local": "Local models are FREE (0.0)",
+    "cloud_cost_per_1k_tokens": 0.002,
+    "_comment_cloud": "Example: $0.002 per 1K tokens (adjust based on your provider)",
+    "providers": {
+      "openai": {
+        "gpt-4": 0.03,
+        "gpt-4-turbo": 0.01,
+        "gpt-3.5-turbo": 0.0015
+      },
+      "anthropic": {
+        "claude-3-opus": 0.015,
+        "claude-3-sonnet": 0.003,
+        "claude-3-haiku": 0.00025
+      },
+      "ollama": {
+        "_comment": "Local Ollama models are free",
+        "default": 0.0
+      }
+    }
+  },
+  
+  "exponential_tracking": {
+    "base": 1.1,
+    "_comment": "Exponential base for increment calculation (1.1 = 10% growth per unit)",
+    "window_minutes": 60,
+    "_comment_window": "Time window for exponential calculation"
+  },
+  
+  "gauge_settings": {
+    "update_interval_seconds": 1.0,
+    "_comment": "How often to update gauge display",
+    "windows": {
+      "1min": "Last 1 minute",
+      "5min": "Last 5 minutes",
+      "60min": "Last 60 minutes"
+    },
+    "display_format": "digital_gauge",
+    "_comment_format": "digital_gauge, text, json"
+  },
+  
+  "integrations": {
+    "cursor": {
+      "enabled": true,
+      "metrics_path": null,
+      "_comment": "null = auto-detect Cursor metrics",
+      "track_requests": true,
+      "track_tokens": true,
+      "track_cost": true
+    },
+    
+    "wakatime": {
+      "enabled": false,
+      "api_key": null,
+      "_comment": "Set your WakaTime API key to enable",
+      "api_url": "https://wakatime.com/api/v1",
+      "track_coding_time": true,
+      "correlate_with_tokens": true,
+      "_comment_correlate": "Match coding activity with token usage"
+    }
+  },
+  
+  "alerts": {
+    "subscription_warning_threshold": 0.8,
+    "_comment": "Alert when 80% of subscription used",
+    "cost_daily_limit": null,
+    "_comment_cost": "null = no limit, or set daily cost limit in USD",
+    "high_usage_alert": true,
+    "high_usage_threshold_tokens_per_min": 10000
+  }
+}

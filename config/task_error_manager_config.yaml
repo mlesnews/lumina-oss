@@ -1,0 +1,134 @@
+# Task Error Manager Configuration
+# Controls notification suppression and error management behavior
+
+# Notification Settings
+notification:
+  cooldown_minutes: 5  # Minimum time between similar notifications
+  max_simultaneous: 3   # Maximum notifications shown at once
+  aggregation_window_seconds: 60  # Window for aggregating similar errors
+
+# Error Severity Levels
+severity_levels:
+  - name: "low"
+    description: "Minor issues that don't affect core functionality"
+    notify_always: false
+
+  - name: "medium"
+    description: "Issues that may affect some functionality"
+    notify_always: false
+
+  - name: "high"
+    description: "Significant issues affecting functionality"
+    notify_always: true
+
+  - name: "critical"
+    description: "System-breaking errors"
+    notify_always: true
+
+# Error Pattern Recognition
+error_patterns:
+  # Module Import Errors
+  module_not_found:
+    pattern: "ModuleNotFoundError|No module named"
+    severity: "high"
+    auto_fix: true
+    suggested_commands:
+      - "pip install {module_name}"
+      - "python -m pip install --user {module_name}"
+
+  # File System Errors
+  file_not_found:
+    pattern: "FileNotFoundError|No such file"
+    severity: "medium"
+    auto_fix: false
+    suggested_commands:
+      - "Check file path and permissions"
+      - "Create missing directories"
+
+  # Permission Errors
+  permission_denied:
+    pattern: "PermissionError|Access denied"
+    severity: "high"
+    auto_fix: false
+    suggested_commands:
+      - "Check file/directory permissions"
+      - "Run as administrator/sudo"
+
+  # Connection Errors
+  connection_failed:
+    pattern: "ConnectionError|Failed to connect|timeout"
+    severity: "medium"
+    auto_fix: false
+    suggested_commands:
+      - "Check network connectivity"
+      - "Verify server is running"
+
+  # Port Conflicts
+  port_in_use:
+    pattern: "port.*already in use|address.*in use"
+    severity: "high"
+    auto_fix: false
+    suggested_commands:
+      - "Find process using port: netstat -ano | findstr :{port}"
+      - "Kill process or use different port"
+
+  # Command Not Found
+  command_not_found:
+    pattern: "command not found|is not recognized"
+    severity: "medium"
+    auto_fix: true
+    suggested_commands:
+      - "Install missing tool"
+      - "Add to PATH environment variable"
+
+  # Syntax Errors
+  syntax_error:
+    pattern: "SyntaxError|invalid syntax"
+    severity: "high"
+    auto_fix: false
+    suggested_commands:
+      - "Check code syntax"
+      - "Run linter for detailed errors"
+
+# Task-Specific Settings
+task_specific:
+  # Tasks that should always show notifications
+  always_notify:
+    - "Security Audit"
+    - "Deploy to Production"
+    - "Database Migration"
+
+  # Tasks that should never show notifications (background tasks)
+  never_notify:
+    - "Monitor Iron Legion"
+    - "Background Sync"
+    - "Log Rotation"
+
+  # Tasks with custom cooldown periods (minutes)
+  custom_cooldowns:
+    "SYPHON: Process Agent History": 10
+    "GitLens Auto Follow-Ups": 2
+    "Iron Legion Status": 30
+
+# Reporting Settings
+reporting:
+  summary_hours: 24  # Default hours for summary reports
+  max_history_entries: 1000  # Maximum error history to keep
+  export_format: "markdown"  # Format for exported reports
+
+# Auto-Fix Settings
+auto_fix:
+  enabled: true
+  safe_commands_only: true  # Only run safe, non-destructive commands
+  require_confirmation: true  # Require user confirmation for fixes
+  max_fix_attempts: 3  # Maximum attempts to fix same error
+
+# Logging Settings
+logging:
+  level: "INFO"
+  file: "data/task_errors/error_manager.log"
+  max_file_size: "10MB"
+  retention_days: 30
+
+
+

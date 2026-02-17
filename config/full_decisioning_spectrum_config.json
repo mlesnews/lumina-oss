@@ -1,0 +1,214 @@
+{
+  "version": "2.0.0",
+  "name": "Full Decisioning Spectrum",
+  "description": "Complete spectrum from self-approval to 9-member Jedi High Council",
+  "spectrum": [
+    {
+      "level": 0,
+      "name": "Self-Approval",
+      "approval_required": 1,
+      "entity_types": [
+        "ai",
+        "human"
+      ],
+      "risk_threshold": 0.0,
+      "description": "Autonomous decision, no approval needed",
+      "force_multiplier": 1.0,
+      "use_for": [
+        "routine",
+        "low_risk",
+        "automated"
+      ]
+    },
+    {
+      "level": 1,
+      "name": "Peer Review",
+      "approval_required": 1,
+      "entity_types": [
+        "ai",
+        "human"
+      ],
+      "risk_threshold": 0.1,
+      "description": "Single peer review",
+      "force_multiplier": 1.2,
+      "use_for": [
+        "standard",
+        "moderate_risk"
+      ]
+    },
+    {
+      "level": 2,
+      "name": "Team Consensus",
+      "approval_required": 3,
+      "entity_types": [
+        "ai",
+        "human"
+      ],
+      "risk_threshold": 0.2,
+      "description": "Small team consensus (3 members)",
+      "force_multiplier": 1.5,
+      "use_for": [
+        "team_decisions",
+        "moderate_complexity"
+      ]
+    },
+    {
+      "level": 3,
+      "name": "AIQ Quorum (Jedi Council)",
+      "approval_required": 3,
+      "entity_types": [
+        "ai",
+        "human",
+        "alien",
+        "octopus"
+      ],
+      "risk_threshold": 0.4,
+      "description": "Jedi Council AIQ consensus (3 providers)",
+      "force_multiplier": 2.0,
+      "abbreviation": "JC",
+      "use_for": [
+        "aiq_consensus",
+        "multi_provider",
+        "moderate_complexity"
+      ]
+    },
+    {
+      "level": 4,
+      "name": "Extended Council",
+      "approval_required": 5,
+      "entity_types": [
+        "ai",
+        "human",
+        "alien",
+        "octopus"
+      ],
+      "risk_threshold": 0.6,
+      "description": "Extended council (5 members)",
+      "force_multiplier": 2.5,
+      "use_for": [
+        "high_complexity",
+        "strategic_decisions"
+      ]
+    },
+    {
+      "level": 5,
+      "name": "Jedi High Council",
+      "approval_required": 9,
+      "entity_types": [
+        "ai",
+        "human",
+        "alien",
+        "octopus"
+      ],
+      "risk_threshold": 0.8,
+      "description": "Jedi High Council (9 members) - Final authority for risky decisions",
+      "force_multiplier": 5.0,
+      "abbreviation": "JHC",
+      "use_for": [
+        "critical",
+        "high_risk",
+        "final_authority",
+        "cloud_ai_approval"
+      ],
+      "members": [
+        {
+          "name": "JARVIS",
+          "type": "ai",
+          "role": "primary_orchestrator"
+        },
+        {
+          "name": "MARVIN",
+          "type": "ai",
+          "role": "reality_checker"
+        },
+        {
+          "name": "Deep Thought",
+          "type": "ai",
+          "role": "philosopher"
+        },
+        {
+          "name": "Member_4",
+          "type": "human",
+          "role": "strategist"
+        },
+        {
+          "name": "Member_5",
+          "type": "ai",
+          "role": "analyst"
+        },
+        {
+          "name": "Member_6",
+          "type": "alien",
+          "role": "creative"
+        },
+        {
+          "name": "Member_7",
+          "type": "octopus",
+          "role": "multi_perspective"
+        },
+        {
+          "name": "Member_8",
+          "type": "ai",
+          "role": "optimizer"
+        },
+        {
+          "name": "Member_9",
+          "type": "human",
+          "role": "final_authority"
+        }
+      ],
+      "voting": {
+        "method": "majority",
+        "required": 5,
+        "parallel": true,
+        "timeout": 300
+      }
+    }
+  ],
+  "force_multipliers": {
+    "enabled": true,
+    "implementations": [
+      {
+        "name": "9-Member Parallel JHC Consensus",
+        "enabled": true,
+        "force_multiplier": 9.0,
+        "description": "All 9 JHC members vote simultaneously",
+        "implementation": "async_parallel_voting"
+      },
+      {
+        "name": "R5 Lattice Predictive Escalation",
+        "enabled": true,
+        "force_multiplier": 3.0,
+        "description": "Jump directly to predicted level",
+        "implementation": "r5_complexity_prediction"
+      },
+      {
+        "name": "Entity Type Specialization",
+        "enabled": true,
+        "force_multiplier": 2.5,
+        "description": "Route to specialized entity types",
+        "implementation": "entity_type_routing"
+      }
+    ],
+    "total_potential": 14.5
+  },
+  "escalation": {
+    "primary": "local_ai",
+    "escalation": "r5_lattice",
+    "aiq_quorum": "jedi_council",
+    "extended": "extended_council",
+    "high_escalation": "jedi_high_council",
+    "fallback": "cloud_ai"
+  },
+  "r5_integration": {
+    "enabled": true,
+    "predictive_escalation": true,
+    "complexity_analysis": true
+  },
+  "monitoring": {
+    "track_all_levels": true,
+    "track_force_multipliers": true,
+    "track_entity_types": true,
+    "log_full_spectrum": true
+  }
+}

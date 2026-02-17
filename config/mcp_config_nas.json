@@ -1,0 +1,87 @@
+{
+  "device": "nas",
+  "type": "nas",
+  "ip": "<NAS_PRIMARY_IP>",
+  "mcpServers": {
+    "MANUS": {
+      "command": "docker",
+      "args": [
+        "exec",
+        "-i",
+        "manus",
+        "python3",
+        "-m",
+        "manus"
+      ],
+      "env": {
+        "NAS_HOST": "<NAS_PRIMARY_IP>",
+        "AZURE_KEY_VAULT_URL": "https://jarvis-lumina.vault.azure.net/"
+      }
+    },
+    "ElevenLabs": {
+      "command": "docker",
+      "args": [
+        "exec",
+        "-i",
+        "elevenlabs",
+        "python3",
+        "-m",
+        "elevenlabs"
+      ],
+      "env": {
+        "ELEVENLABS_API_KEY": "${ELEVENLABS_API_KEY}",
+        "NAS_HOST": "<NAS_PRIMARY_IP>",
+        "AZURE_KEY_VAULT_URL": "https://jarvis-lumina.vault.azure.net/"
+      }
+    },
+    "n8n": {
+      "command": "docker",
+      "args": [
+        "exec",
+        "-i",
+        "n8n",
+        "python3",
+        "-m",
+        "n8n"
+      ],
+      "env": {
+        "NAS_HOST": "<NAS_PRIMARY_IP>",
+        "N8N_HOST": "<NAS_PRIMARY_IP>",
+        "N8N_PORT": "5678"
+      }
+    },
+    "Filesystem": {
+      "command": "docker",
+      "args": [
+        "exec",
+        "-i",
+        "filesystem",
+        "python3",
+        "-m",
+        "filesystem"
+      ],
+      "env": {
+        "NAS_HOST": "<NAS_PRIMARY_IP>"
+      }
+    },
+    "Git": {
+      "command": "docker",
+      "args": [
+        "exec",
+        "-i",
+        "git",
+        "python3",
+        "-m",
+        "git"
+      ],
+      "env": {
+        "NAS_HOST": "<NAS_PRIMARY_IP>"
+      }
+    }
+  },
+  "routing": {
+    "strategy": "hybrid_failover",
+    "primary": "nas",
+    "fallback": "localhost"
+  }
+}

@@ -1,0 +1,56 @@
+{
+  "name": "SMS → SYPHON → Holocron",
+  "description": "Process SMS messages through SYPHON intelligence extraction",
+  "trigger": {
+    "type": "webhook",
+    "url": "http://<NAS_PRIMARY_IP>:5678/webhook/syphon/sms",
+    "method": "POST"
+  },
+  "nodes": [
+    {
+      "name": "Webhook",
+      "type": "n8n-nodes-base.webhook",
+      "parameters": {
+        "path": "syphon/sms",
+        "httpMethod": "POST"
+      }
+    },
+    {
+      "name": "Parse SMS",
+      "type": "n8n-nodes-base.function",
+      "parameters": {
+        "functionCode": "// Parse incoming SMS data\nconst smsData = $input.item.json;\nreturn [{\n  json: {\n    phone_number: smsData.from || smsData.phone_number,\n    message: smsData.body || smsData.message,\n    timestamp: smsData.timestamp || new Date().toISOString(),\n    source: smsData.source || 'unknown'\n  }\n}];"
+      }
+    },
+    {
+      "name": "SYPHON Process",
+      "type": "n8n-nodes-base.httpRequest",
+      "parameters": {
+        "url": "http://localhost:8000/api/syphon/process",
+        "method": "POST",
+        "bodyParameters": {
+          "content": "={{ $json.message }}",
+          "source_type": "sms",
+          "metadata": "={{ JSON.stringify($json) }}"
+        }
+      }
+    },
+    {
+      "name": "Store in Holocron",
+      "type": "n8n-nodes-base.httpRequest",
+      "parameters": {
+        "url": "http://localhost:8000/api/holocron/store",
+        "method": "POST",
+        "bodyParameters": {
+          "intelligence": "={{ $json.intelligence }}",
+          "source": "sms",
+          "metadata": "={{ JSON.stringify($json) }}"
+        }
+      }
+    }
+  ],
+  "credentials": {
+    "syphon_api": "stored_in_azure_vault",
+    "holocron_api": "stored_in_azure_vault"
+  }
+}

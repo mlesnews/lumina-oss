@@ -1,0 +1,20 @@
+{
+  "version": "1.0.0",
+  "description": "Dragon NaturallySpeaking Configuration",
+  "enabled": true,
+  "api_key": "",
+  "api_endpoint": "https://api.nuance.com/dragon/v1",
+  "language": "en-US",
+  "model": "dragon_medical_one",
+  "features": {
+    "speech_to_text": true,
+    "voice_commands": true,
+    "dictation": true,
+    "custom_vocabulary": true
+  },
+  "encryption": {
+    "enabled": true,
+    "ssh_level": true,
+    "ai_enhanced": true
+  }
+}

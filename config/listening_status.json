@@ -1,0 +1,9 @@
+{
+  "status": "listening",
+  "color": "green",
+  "icon": "circle-filled",
+  "text": "Listening: On",
+  "isRunning": true,
+  "isMuted": false,
+  "timestamp": "2025-11-23 22:11:41"
+}

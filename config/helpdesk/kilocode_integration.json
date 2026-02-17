@@ -1,0 +1,108 @@
+{
+  "kilocode": {
+    "system_id": "kilocode_performance_optimization",
+    "name": "Kilo Code @peak @max Workflows",
+    "location": "@helpdesk",
+    "classification": "Performance Optimization System",
+    "description": "Intelligent performance management with PowerShell integration and adaptive thresholds",
+    "primary_droid": "@r5",
+    "technical_lead": "@r2d2",
+    "helpdesk_manager": "@c3po",
+    "droid_roles": {
+      "@r5": {
+        "role": "#contractor - Independent Consultant",
+        "specialty": "Knowledge & Context Matrix - Performance Analysis",
+        "status": "independent_contractor",
+        "consultation_scope": "Expert analysis and optimization recommendations"
+      },
+      "@r2d2": {
+        "role": "@droid @agent - Technical Lead Engineer",
+        "specialty": "Technical Implementation and System Engineering",
+        "status": "technical_lead",
+        "implementation_scope": "System-level execution and monitoring"
+      },
+      "@c3po": {
+        "role": "#manager @droids - Helpdesk Coordinator",
+        "specialty": "Protocol Management and Droid Coordination",
+        "status": "helpdesk_manager",
+        "coordination_scope": "Safety validation and escalation management"
+      }
+    },
+    "engagement_protocol": {
+      "step_1": "Consult @r5 #contractor for expert analysis",
+      "step_2": "@r2d2 technical lead implements recommendations",
+      "step_3": "@c3po #manager validates safety protocols",
+      "escalation": "@c3po → JARVIS for critical issues"
+    },
+    "capabilities": [
+      "performance_monitoring",
+      "resource_optimization",
+      "powershell_integration",
+      "adaptive_thresholds",
+      "process_management",
+      "system_analysis"
+    ],
+    "triggers": [
+      "@peak",
+      "@max",
+      "@peak @max",
+      "/peak",
+      "/max",
+      "/combined",
+      "/adaptive"
+    ],
+    "holocron_entries": [
+      "data/holocron/performance_optimization/kilocode_peak_max_workflows.md"
+    ],
+    "integration_points": {
+      "powershell": {
+        "enabled": true,
+        "scripts_path": "scripts/powershell",
+        "execution_policy": "RemoteSigned"
+      },
+      "abacusai_limiter": {
+        "enabled": true,
+        "reference_script": "C:/Users/mlesn/AppData/Roaming/Microsoft/Windows/Start Menu/Programs/Startup/abacus-process-limiter.ps1"
+      },
+      "performance_counters": {
+        "enabled": true,
+        "monitoring_interval": 60,
+        "thresholds": {
+          "low_load": 30,
+          "medium_load": 70,
+          "high_load": 90,
+          "critical_limit": 95
+        }
+      }
+    },
+    "safety_protocols": {
+      "max_cpu_usage": 95,
+      "min_memory_reserve": "500MB",
+      "temperature_monitoring": true,
+      "graceful_degradation": true,
+      "emergency_rollback": true
+    },
+    "workflow_files": [
+      ".kilocode/workflows/peak-workflow.md",
+      ".kilocode/workflows/max-workflow.md",
+      ".kilocode/workflows/combined-peak-max-workflow.md",
+      ".kilocode/workflows/r5-combined-workflow.md"
+    ],
+    "documentation": {
+      "primary": ".kilocode/workflows/r5-combined-workflow.md",
+      "holocron": "data/holocron/performance_optimization/kilocode_peak_max_workflows.md",
+      "rtfm_reference": "#rtfm #performance #optimization #workflows"
+    },
+    "status": "operational",
+    "last_updated": "2025-01-23",
+    "tags": [
+      "#rtfm",
+      "#performance",
+      "#optimization",
+      "#workflows",
+      "#kilocode",
+      "#peak",
+      "#max"
+    ]
+  }
+}

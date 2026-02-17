@@ -1,0 +1,51 @@
+{
+  "account_name": "MailStation Hub",
+  "email_address": "mlesn@<LOCAL_HOSTNAME>",
+  "server_settings": {
+    "imap": {
+      "server": "<NAS_PRIMARY_IP>",
+      "port": 993,
+      "security": "SSL/TLS",
+      "username": "mlesn@<LOCAL_HOSTNAME>",
+      "password": "stored_in_secure_location"
+    },
+    "smtp": {
+      "server": "<NAS_PRIMARY_IP>",
+      "port": 25,
+      "security": "STARTTLS",
+      "username": "mlesn@<LOCAL_HOSTNAME>",
+      "password": "stored_in_secure_location"
+    }
+  },
+  "sync_settings": {
+    "sync_frequency": "Push",
+    "days_to_sync": 30,
+    "sync_folders": [
+      "Inbox",
+      "Sent",
+      "Drafts",
+      "Archive"
+    ]
+  },
+  "setup_instructions": {
+    "ios": [
+      "1. Open Settings → Mail → Accounts → Add Account",
+      "2. Select 'Other' → 'Add Mail Account'",
+      "3. Enter name, email, password",
+      "4. Select 'IMAP'",
+      "5. Enter IMAP settings (<NAS_PRIMARY_IP>:993 SSL)",
+      "6. Enter SMTP settings (<NAS_PRIMARY_IP>:25 STARTTLS)",
+      "7. Save and verify connection"
+    ],
+    "android": [
+      "1. Open Outlook app → Settings → Add Account",
+      "2. Select 'Advanced setup' → 'IMAP'",
+      "3. Enter email: mlesn@<LOCAL_HOSTNAME>",
+      "4. Enter password",
+      "5. IMAP server: <NAS_PRIMARY_IP>, Port: 993, SSL",
+      "6. SMTP server: <NAS_PRIMARY_IP>, Port: 25, STARTTLS",
+      "7. Save and test connection"
+    ]
+  },
+  "note": "IMAP port 993 must be enabled on MailStation for this to work"
+}

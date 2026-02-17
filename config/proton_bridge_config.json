@@ -1,0 +1,82 @@
+{
+  "bridge": {
+    "name": "Proton Bridge on Host PC",
+    "host": "localhost",
+    "imap": {
+      "port": 1143,
+      "ssl": false,
+      "note": "Proton Bridge IMAP port"
+    },
+    "smtp": {
+      "port": 1025,
+      "ssl": false,
+      "note": "Proton Bridge SMTP port"
+    },
+    "api": {
+      "port": 8080,
+      "endpoint": "http://localhost:8080/api/v1",
+      "note": "Proton Bridge API (if available)"
+    },
+    "installation": {
+      "platform": "windows",
+      "download_url": "https://proton.me/mail/bridge",
+      "note": "Install Proton Bridge on host PC"
+    },
+    "setup": {
+      "steps": [
+        "1. Download and install Proton Bridge from proton.me/mail/bridge",
+        "2. Sign in with Proton Family account",
+        "3. Enable IMAP/SMTP in Bridge settings",
+        "4. Note IMAP port (default: 1143) and SMTP port (default: 1025)",
+        "5. Configure n8n to connect to localhost:1143 (IMAP) and localhost:1025 (SMTP)"
+      ]
+    }
+  },
+  "n8n_integration": {
+    "note": "n8n must run on host PC or have network access to host PC",
+    "connection": {
+      "type": "local",
+      "host": "127.0.0.1",
+      "imap_port": 1143,
+      "smtp_port": 1025
+    }
+  },
+  "credentials": {
+    "storage": [
+      "protonpasscli",
+      "azure_key_vault"
+    ],
+    "priority": "protonpasscli_first",
+    "protonpasscli": {
+      "entry_names": [
+        "proton-bridge-mlesn-password",
+        "proton-bridge-glesn-password",
+        "proton-bridge-password",
+        "protonmail-bridge-password",
+        "proton-bridge",
+        "protonmail-bridge",
+        "proton-bridge-mlesn",
+        "proton-bridge-glesn"
+      ],
+      "note": "Primary source - Retrieve via ProtonPassCli. Based on actual config: proton_bridge_accounts.json"
+    },
+    "azure_key_vault": {
+      "secrets": [
+        "proton-bridge-mlesn-password",
+        "proton-bridge-glesn-password",
+        "protonmail-bridge-password",
+        "protonmail-username",
+        "protonmail-password",
+        "proton-bridge-username",
+        "proton-bridge-password",
+        "proton-bridge-mlesn-username",
+        "proton-bridge-glesn-username",
+        "proton-family-accounts"
+      ],
+      "vault_url": "https://jarvis-lumina.vault.azure.net/",
+      "note": "Fallback/redundancy - Store in Azure Key Vault"
+    },
+    "retrieval_script": "scripts/python/get_proton_bridge_credentials.py",
+    "note": "Credentials stored in both ProtonPassCli (primary) and Azure Key Vault (redundancy)"
+  }
+}

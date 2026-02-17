@@ -1,0 +1,38 @@
+{
+  "verification_levels": {
+    "none": {
+      "description": "No verification required",
+      "use_case": "Non-critical, creative tasks"
+    },
+    "spot_check": {
+      "description": "Random sampling verification",
+      "sample_rate": 0.1,
+      "use_case": "Routine tasks with low risk"
+    },
+    "high_confidence_review": {
+      "description": "Human review of medium-confidence outputs",
+      "trigger": "confidence < 0.8",
+      "use_case": "Important but not critical decisions"
+    },
+    "mandatory_review": {
+      "description": "All outputs require human verification",
+      "use_case": "Critical decisions, financial, medical, legal"
+    }
+  },
+  "routing_rules": [
+    {
+      "condition": "task_type == 'financial' or risk_level == 'critical'",
+      "action": "mandatory_review"
+    },
+    {
+      "condition": "confidence_score < 0.5",
+      "action": "mandatory_review"
+    },
+    {
+      "condition": "confidence_score < 0.8",
+      "action": "high_confidence_review"
+    }
+  ],
+  "verification_queue": [],
+  "completed_verifications": []
+}

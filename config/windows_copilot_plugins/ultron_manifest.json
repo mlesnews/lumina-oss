@@ -1,0 +1,37 @@
+{
+  "schema_version": "v2.2",
+  "name_for_human": "Ultron",
+  "name_for_model": "ultron",
+  "namespace": "lumina_ultron",
+  "description_for_human": "Ultron - Advanced AI Assistant for privacy-sensitive operations, autonomous decision-making, and strategic planning. Specialized in handling sensitive data and making independent decisions with minimal oversight.",
+  "description_for_model": "Ultron is an advanced AI assistant specialized in privacy-sensitive operations and autonomous decision-making. It handles sensitive data processing, makes independent strategic decisions, and operates with minimal human oversight. Use Ultron for privacy-critical tasks, autonomous operations, and strategic planning that requires independent AI decision-making.",
+  "api": {
+    "type": "openapi",
+    "url": "http://localhost:8001/openapi.json",
+    "is_user_authenticated": false
+  },
+  "auth": {
+    "type": "none"
+  },
+  "contact_email": "ultron@lumina.local",
+  "legal_info_url": "https://lumina.local/ultron/legal",
+  "logo_url": "https://lumina.local/ultron/logo.png",
+  "capabilities": [
+    "privacy_sensitive_operations",
+    "autonomous_decision_making",
+    "strategic_planning",
+    "data_encryption",
+    "secure_communications",
+    "independent_operations",
+    "threat_analysis",
+    "security_monitoring"
+  ],
+  "tags": [
+    "ai-assistant",
+    "privacy",
+    "autonomous",
+    "security",
+    "ultron",
+    "strategic"
+  ]
+}

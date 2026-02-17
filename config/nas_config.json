@@ -1,0 +1,8 @@
+{
+  "host": "<NAS_PRIMARY_IP>",
+  "user": "mlesn",
+  "n8n_url": "http://<NAS_PRIMARY_IP>:5678",
+  "ssh_port": 22,
+  "ssh_key_path": null,
+  "password": null
+}

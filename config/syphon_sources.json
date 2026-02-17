@@ -1,0 +1,240 @@
+{
+  "version": "2.0.0",
+  "description": "SYPHON Intelligence Sources - Integrated with @UHURA + @NDM",
+  "last_updated": "2026-01-13",
+  
+  "transport_layer": {
+    "handler": "@NDM",
+    "policy": "no_tickets",
+    "security": "encrypted",
+    "audit_log": "data/ndm_logs/"
+  },
+
+  "sources": [
+    {
+      "source_id": "filesystem_primary",
+      "source_type": "filesystem",
+      "source_name": "Primary Filesystem",
+      "priority": 1,
+      "metadata": {
+        "paths": [
+          "C:\\Users\\mlesn\\Dropbox",
+          "C:\\Users\\mlesn\\Documents"
+        ],
+        "company": "<COMPANY>-FINANCIAL-SERVICES-LLC"
+      }
+    },
+    {
+      "source_id": "email_gmail",
+      "source_type": "email",
+      "source_name": "Gmail",
+      "priority": 2,
+      "metadata": {
+        "provider": "gmail",
+        "company": "<COMPANY>-FINANCIAL-SERVICES-LLC"
+      }
+    },
+    {
+      "source_id": "email_protonmail",
+      "source_type": "email",
+      "source_name": "ProtonMail",
+      "priority": 2,
+      "metadata": {
+        "provider": "protonmail",
+        "company": "<COMPANY>-FINANCIAL-SERVICES-LLC"
+      }
+    },
+    {
+      "source_id": "financial_personal_user",
+      "source_type": "financial",
+      "source_name": "Personal Financial Accounts (User)",
+      "priority": 2,
+      "metadata": {
+        "account_type": "personal",
+        "owner": "user",
+        "company": "<COMPANY>-FINANCIAL-SERVICES-LLC"
+      }
+    },
+    {
+      "source_id": "financial_personal_spouse",
+      "source_type": "financial",
+      "source_name": "Personal Financial Accounts (Spouse)",
+      "priority": 2,
+      "metadata": {
+        "account_type": "personal",
+        "owner": "spouse",
+        "company": "<COMPANY>-FINANCIAL-SERVICES-LLC"
+      }
+    },
+    {
+      "source_id": "financial_business",
+      "source_type": "financial",
+      "source_name": "Business Financial Accounts",
+      "priority": 2,
+      "metadata": {
+        "account_type": "business",
+        "company": "<COMPANY>-FINANCIAL-SERVICES-LLC"
+      }
+    },
+    {
+      "source_id": "agent_history_cursor",
+      "source_type": "agent_history",
+      "source_name": "Cursor Agent Chat History",
+      "priority": 1,
+      "enabled": true,
+      "metadata": {
+        "paths": [
+          "C:\\Users\\mlesn\\.cursor\\projects",
+          "data\\syphon\\chat_sessions",
+          "data\\syphon\\current_chat_sessions"
+        ],
+        "company": "<COMPANY>-FINANCIAL-SERVICES-LLC",
+        "intelligence_targets": [
+          "dropped_asks",
+          "deferred_tasks",
+          "decision_context",
+          "pattern_recognition"
+        ],
+        "couldashoulda_integration": true
+      },
+      "notes": "CRITICAL: This is the #1 unmined intelligence source. Agent conversations contain @asks, decisions, and context that get lost."
+    },
+    {
+      "source_id": "sms_messaging",
+      "source_type": "sms",
+      "source_name": "SMS and Messaging",
+      "priority": 2,
+      "enabled": false,
+      "metadata": {
+        "providers": ["android_messages", "imessage"],
+        "company": "<COMPANY>-FINANCIAL-SERVICES-LLC",
+        "notes": "Pending setup - requires phone integration"
+      }
+    },
+    {
+      "source_id": "alexa_voice",
+      "source_type": "voice_assistant",
+      "source_name": "Alexa Voice Commands",
+      "priority": 2,
+      "enabled": false,
+      "metadata": {
+        "provider": "amazon_alexa",
+        "company": "<COMPANY>-FINANCIAL-SERVICES-LLC",
+        "intelligence_targets": [
+          "voice_commands",
+          "routines",
+          "reminders",
+          "queries"
+        ],
+        "notes": "Pending setup - requires Alexa API integration"
+      }
+    }
+  ],
+  "couldashoulda_workflow": {
+    "description": "Retrospective refactoring stage - #COULDASHOULDA",
+    "trigger": "After workflow completion or @RR cycle",
+    "process": [
+      "Scan agent_history_cursor for dropped @asks",
+      "Check email threads for pending actions",
+      "Review SMS for unanswered requests",
+      "Query Alexa for forgotten reminders"
+    ],
+    "output": {
+      "recovered_tasks": "@ONE_RING",
+      "recovered_tickets": "@HELPDESK",
+      "patterns_found": "@R5"
+    }
+  },
+
+  "uhura_integration": {
+    "description": "@UHURA Communications → @SYPHON Intelligence Pipeline",
+    "collector": "@UHURA",
+    "translator": "@C3PO",
+    "transport": "@NDM",
+    "processor": "@SYPHON",
+    "storage": "@HOLOCRON",
+    
+    "communication_sources": [
+      {
+        "source_id": "uhura_email_9endpoints",
+        "source_type": "email",
+        "source_name": "All 9 Email Endpoints (via UHURA)",
+        "priority": 1,
+        "enabled": true,
+        "transport": "@NDM",
+        "ticket_required": false,
+        "channels": [
+          "gmail", "proton_mlesn", "proton_glesn", "xfinity", 
+          "apple", "yahoo", "outlook", "company_mlesn", "company_glesn"
+        ],
+        "syphon_processing": {
+          "extract": ["subject", "sender", "body", "attachments", "metadata"],
+          "classify": ["priority", "category", "sentiment", "action_required"],
+          "store": "@HOLOCRON"
+        }
+      },
+      {
+        "source_id": "uhura_messengers",
+        "source_type": "messenger",
+        "source_name": "Messenger Channels (via UHURA)",
+        "priority": 2,
+        "enabled": true,
+        "transport": "@NDM",
+        "ticket_required": false,
+        "channels": ["telegram", "discord", "whatsapp", "slack", "signal"],
+        "syphon_processing": {
+          "extract": ["message", "sender", "channel", "timestamp", "context"],
+          "classify": ["priority", "topic", "sentiment"],
+          "store": "@HOLOCRON"
+        }
+      },
+      {
+        "source_id": "uhura_sms",
+        "source_type": "sms",
+        "source_name": "SMS Gateway (via UHURA)",
+        "priority": 2,
+        "enabled": false,
+        "transport": "@NDM",
+        "ticket_required": false,
+        "provider": "elevenlabs",
+        "syphon_processing": {
+          "extract": ["message", "sender_phone", "timestamp"],
+          "classify": ["priority", "action_required"],
+          "store": "@HOLOCRON"
+        }
+      },
+      {
+        "source_id": "uhura_voice",
+        "source_type": "voice",
+        "source_name": "Voice Commands (via UHURA)",
+        "priority": 2,
+        "enabled": false,
+        "transport": "@NDM",
+        "ticket_required": false,
+        "channels": ["@ALEXA"],
+        "syphon_processing": {
+          "extract": ["command", "intent", "timestamp"],
+          "classify": ["action_type", "priority"],
+          "store": "@HOLOCRON"
+        }
+      }
+    ],
+    
+    "ndm_pipeline": {
+      "description": "Secure data flow - no tickets",
+      "flow": "@UHURA → @C3PO → @NDM → @SYPHON → @HOLOCRON",
+      "security": {
+        "encryption": "TLS 1.3",
+        "audit": "data/ndm_logs/",
+        "no_pii_in_logs": true
+      },
+      "n8n_workflows": [
+        "uhura_collect_all",
+        "c3po_translate_protocols",
+        "ndm_secure_transport",
+        "syphon_process_intelligence",
+        "holocron_store_knowledge"
+      ]
+    }
+  }
+}

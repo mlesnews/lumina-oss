@@ -1,0 +1,160 @@
+{
+  "name": "HVAC @SYPHON Monitor - Other Contractors",
+  "description": "Continuous monitoring for HVAC bid emails from Carl-King| Griffet Energy Services and third contractor (excluding Brian Fletcher)",
+  "nodes": [
+    {
+      "parameters": {
+        "rule": {
+          "interval": [
+            {
+              "field": "minutes",
+              "minutesInterval": 15
+            }
+          ]
+        }
+      },
+      "id": "schedule-15min",
+      "name": "Schedule - Every 15 Minutes",
+      "type": "n8n-nodes-base.schedule",
+      "typeVersion": 1,
+      "position": [250, 300]
+    },
+    {
+      "parameters": {
+        "authentication": "oAuth2",
+        "resource": "message",
+        "operation": "search",
+        "returnAll": false,
+        "limit": 50,
+        "simple": false,
+        "options": {
+          "q": "((from:carl OR from:king OR from:griffet OR \"4 inch\" OR \"four inch\" OR \"4\\\"\") AND (subject:\"HVAC\" OR subject:\"bid\" OR subject:\"quote\" OR subject:\"proposal\" OR \"c1fa7198-7bf3-46ae-8865-2a67f0085988\")) AND -from:fletcher -subject:fletcher has:attachment"
+        }
+      },
+      "id": "gmail-search-other-contractors",
+      "name": "Gmail - Search Other Contractors",
+      "type": "n8n-nodes-base.gmail",
+      "typeVersion": 1,
+      "position": [450, 300],
+      "credentials": {
+        "gmailOAuth2": {
+          "id": "1",
+          "name": "Gmail OAuth2"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "operation": "get",
+        "messageId": "={{$json.id}}",
+        "options": {
+          "format": "full"
+        }
+      },
+      "id": "gmail-get-details",
+      "name": "Gmail - Get Message Details",
+      "type": "n8n-nodes-base.gmail",
+      "typeVersion": 1,
+      "position": [650, 300],
+      "credentials": {
+        "gmailOAuth2": {
+          "id": "1",
+          "name": "Gmail OAuth2"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "url": "http://localhost:8000/api/syphon/email",
+        "sendBody": true,
+        "specifyBody": "json",
+        "jsonBody": "={{JSON.stringify({\n  \"email_id\": $json.id,\n  \"subject\": $json.subject,\n  \"body\": $json.body,\n  \"from\": $json.from,\n  \"to\": $json.to,\n  \"metadata\": {\n    \"category\": \"hvac_bid\",\n    \"contractor\": \"other\"\n  }\n})}}",
+        "options": {}
+      },
+      "id": "syphon-extract",
+      "name": "@SYPHON Extract Intelligence",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 1,
+      "position": [850, 300]
+    },
+    {
+      "parameters": {
+        "url": "http://localhost:8000/api/hvac/extract-bid",
+        "sendBody": true,
+        "specifyBody": "json",
+        "jsonBody": "={{JSON.stringify($json)}}",
+        "options": {}
+      },
+      "id": "extract-bid-info",
+      "name": "Extract Bid Information",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 1,
+      "position": [1050, 300]
+    },
+    {
+      "parameters": {
+        "url": "http://localhost:8000/api/hvac/compare",
+        "sendBody": true,
+        "specifyBody": "json",
+        "jsonBody": "={{JSON.stringify($json)}}",
+        "options": {}
+      },
+      "id": "update-comparison",
+      "name": "Update Bid Comparison",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 1,
+      "position": [1250, 300]
+    },
+    {
+      "parameters": {
+        "url": "http://localhost:8000/api/lumina-gmail/jediarchives/archive",
+        "sendBody": true,
+        "specifyBody": "json",
+        "jsonBody": "={{JSON.stringify($json)}}",
+        "options": {}
+      },
+      "id": "archive-jediarchives",
+      "name": "Archive to JEDIARCHIVES",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 1,
+      "position": [1450, 300]
+    }
+  ],
+  "connections": {
+    "Schedule - Every 15 Minutes": {
+      "main": [[{"node": "Gmail - Search Other Contractors", "type": "main", "index": 0}]]
+    },
+    "Gmail - Search Other Contractors": {
+      "main": [[{"node": "Gmail - Get Message Details", "type": "main", "index": 0}]]
+    },
+    "Gmail - Get Message Details": {
+      "main": [[{"node": "@SYPHON Extract Intelligence", "type": "main", "index": 0}]]
+    },
+    "@SYPHON Extract Intelligence": {
+      "main": [[{"node": "Extract Bid Information", "type": "main", "index": 0}]]
+    },
+    "Extract Bid Information": {
+      "main": [[{"node": "Update Bid Comparison", "type": "main", "index": 0}]]
+    },
+    "Update Bid Comparison": {
+      "main": [[{"node": "Archive to JEDIARCHIVES", "type": "main", "index": 0}]]
+    }
+  },
+  "pinData": {},
+  "settings": {
+    "executionOrder": "v1",
+    "saveDataErrorExecution": "all",
+    "saveDataSuccessExecution": "all",
+    "saveManualExecutions": true
+  },
+  "staticData": null,
+  "tags": [
+    {"name": "HVAC"},
+    {"name": "SYPHON"},
+    {"name": "MONITORING"},
+    {"name": "LUMINA"}
+  ],
+  "triggerCount": 0,
+  "updatedAt": "2026-01-02T00:00:00.000Z",
+  "versionId": "1"
+}

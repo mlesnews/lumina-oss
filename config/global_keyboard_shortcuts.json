@@ -1,0 +1,27 @@
+{
+  "version": "1.0.0",
+  "description": "Global Keyboard Shortcuts Configuration - @ASK Integration",
+  "last_updated": "2026-01-08",
+  "cursor_ide": {
+    "workbench.action.sourceControl.discardAll": "ctrl+alt+u",
+    "git.stageAll": "ctrl+alt+k"
+  },
+  "windows_global": {
+    "ctrl+alt+u": {
+      "description": "Undo All Changes (Global)",
+      "command": "Send, ^!u",
+      "applicable_to": "all"
+    },
+    "ctrl+alt+k": {
+      "description": "Keep All Changes (Global)",
+      "command": "Send, ^!k",
+      "applicable_to": "all"
+    }
+  },
+  "application_specific": {},
+  "ask_integration": {
+    "enabled": true,
+    "intent": "Universal keyboard shortcut management across all applications and Windows OS",
+    "scope": "global"
+  }
+}

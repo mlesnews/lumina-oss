@@ -1,0 +1,32 @@
+{
+  "gmail": {
+    "enabled": true,
+    "from_email": "user@company.local",
+    "to_email": "your-gmail-test@gmail.com",
+    "password": "${vault:nas-mailplus-password}",
+    "smtp_server": "10.17.17.32",
+    "smtp_port": 587,
+    "channel": "test",
+    "description": "Gmail test account - receives notifications via NAS MailPlus"
+  },
+  "protonmail": {
+    "enabled": true,
+    "to_email": "your-protonmail@protonmail.com",
+    "account_name": "default",
+    "channel": "production",
+    "description": "ProtonMail production account - receives secure notifications via ProtonBridge"
+  },
+  "sms": {
+    "enabled": true,
+    "phone_number": "+1234567890",
+    "channel": "production",
+    "description": "SMS production - receives text notifications via ElevenLabs"
+  },
+  "notes": [
+    "Three notification channels:",
+    "1. Gmail (TEST) - Company email via NAS MailPlus",
+    "2. ProtonMail (PRODUCTION) - Secure email via ProtonBridge",
+    "3. SMS (PRODUCTION) - Text messages via ElevenLabs",
+    "Keep this file secure - do not commit to git"
+  ]
+}

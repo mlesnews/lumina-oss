@@ -1,0 +1,19 @@
+{
+  "name": "email_import_to_nas_daemon",
+  "description": "Scheduled email import from Gmail/ProtonMail to NAS MailPlus",
+  "script": "scripts/python/import_emails_to_nas_hub.py",
+  "schedule": {
+    "enabled": true,
+    "interval_minutes": 15,
+    "run_at_startup": true
+  },
+  "settings": {
+    "days_back": 30,
+    "sources": [
+      "gmail",
+      "protonmail"
+    ],
+    "skip_duplicates": true
+  },
+  "log_file": "data/email_import/daemon.log"
+}

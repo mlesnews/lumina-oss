@@ -1,0 +1,93 @@
+{
+  "workflow_id": "jarvis_order66_autonomous_work",
+  "name": "JARVIS ORDER 66 Autonomous Work",
+  "description": "Autonomous AI agent workflow - work on TODOs, resolve roadblocks, optimize ecosystem",
+  "enabled": true,
+  "schedule": {
+    "type": "dynamic_scaling",
+    "base_interval_hours": 1,
+    "max_interval_hours": 3,
+    "scaling_criteria": {
+      "system_load": {
+        "low": 1,
+        "medium": 2,
+        "high": 3
+      },
+      "pending_todos": {
+        "low": 1,
+        "medium": 2,
+        "high": 3
+      },
+      "roadblocks": {
+        "none": 1,
+        "some": 2,
+        "many": 3
+      },
+      "va_health": {
+        "all_healthy": 1,
+        "some_issues": 2,
+        "critical": 3
+      }
+    },
+    "dynamic_scaling_module": "scripts/python/dynamic_schedule_scaler.py"
+  },
+  "execution": {
+    "script": "scripts/python/jarvis_take_wheel.py",
+    "args": ["--take-wheel"],
+    "timeout_seconds": 3600,
+    "retry_on_failure": true,
+    "max_retries": 3,
+    "retry_delay_seconds": 300
+  },
+  "load_balancing": {
+    "enabled": true,
+    "smart_balancing": true,
+    "resource_monitoring": {
+      "cpu_threshold": 80,
+      "memory_threshold": 80,
+      "disk_io_threshold": 80,
+      "network_threshold": 80
+    },
+    "aiq_fallback": {
+      "enabled": true,
+      "decisioning": true,
+      "troubleshooting": true,
+      "fallback_script": "scripts/python/aiq_fallback_decisioning.py"
+    },
+    "dynamic_scaling": {
+      "enabled": true,
+      "scale_up_on_load": true,
+      "scale_down_on_idle": true,
+      "min_interval_hours": 1,
+      "max_interval_hours": 3
+    }
+  },
+  "tags": [
+    "#DOIT",
+    "#ORDER66",
+    "#AUTONOMOUS_AI",
+    "#DECISIONING",
+    "#TROUBLESHOOTING",
+    "#LOAD_BALANCING",
+    "#DYNAMIC_SCALING",
+    "@JARVIS",
+    "@AIQ",
+    "@LUMINA"
+  ],
+  "rules": {
+    "always_include": [
+      "#DECISIONING",
+      "#TROUBLESHOOTING",
+      "@AIQ",
+      "@DOIT"
+    ],
+    "require_update": true,
+    "maintenance_frequency": "daily",
+    "update_on_change": true
+  },
+  "metadata": {
+    "created": "2026-01-08T05:00:00",
+    "last_updated": "2026-01-08T05:00:00",
+    "version": "1.0.0"
+  }
+}

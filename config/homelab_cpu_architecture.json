@@ -1,0 +1,341 @@
+{
+  "version": "1.0.0",
+  "name": "@HOMELAB Pentium CPU Architecture",
+  "description": "Treating the entire @HOMELAB as a unified Pentium CPU chip - all components work as one integrated processing unit",
+  "last_updated": "2026-01-12",
+  "architecture_analogy": "Intel Pentium P5 Microarchitecture",
+
+  "cpu_die": {
+    "name": "@HOMELAB",
+    "description": "The entire homelab ecosystem as a single CPU die",
+    "process_node": "Distributed Silicon",
+    "transistor_count": "Infinite (software-defined)",
+    "clock_speed": "Network-bound (10Gbps internal bus)",
+    "voltage": "12V-48V DC (standard compute)",
+    "tdp": "Variable (scales with load)"
+  },
+
+  "cores": {
+    "description": "Processing cores - each host is a core in the CPU",
+    "core_count": 4,
+    "cores": {
+      "core_0": {
+        "name": "KAIJU_NO_8",
+        "role": "Primary Processing Core",
+        "ip": "<NAS_IP>",
+        "type": "Performance Core (P-Core)",
+        "capabilities": ["Iron Legion AI Cluster", "GPU Processing", "Heavy Compute"],
+        "clock_speed": "Max Turbo",
+        "cache_allocation": "Priority L3"
+      },
+      "core_1": {
+        "name": "MILLENNIUM_FALCON",
+        "role": "Secondary/Failover Core",
+        "ip": "Dynamic (Laptop)",
+        "type": "Efficiency Core (E-Core)",
+        "capabilities": ["Failover Processing", "Mobile Compute", "Backup Operations"],
+        "clock_speed": "Balanced",
+        "cache_allocation": "Shared L3"
+      },
+      "core_2": {
+        "name": "NAS_STORAGE_PROCESSOR",
+        "role": "Storage Processing Unit (SPU)",
+        "ip": "<NAS_PRIMARY_IP>",
+        "type": "Storage Core",
+        "capabilities": ["Cache Management", "Persistent Storage", "Data Sync"],
+        "clock_speed": "Steady State",
+        "cache_allocation": "L3 Owner"
+      },
+      "core_3": {
+        "name": "LOCALHOST",
+        "role": "Current Active Core",
+        "ip": "127.0.0.1 / Dynamic",
+        "type": "Active Core (Current Workstation)",
+        "capabilities": ["Direct User Interface", "IDE Integration", "Immediate Response"],
+        "clock_speed": "Adaptive",
+        "cache_allocation": "L1/L2 Priority"
+      }
+    }
+  },
+
+  "cache_hierarchy": {
+    "description": "Multi-level cache hierarchy like Pentium L1/L2/L3",
+    "l1_cache": {
+      "name": "Memory Cache",
+      "size": "512MB",
+      "location": "Local RAM per core",
+      "latency": "<1ms",
+      "type": "SRAM equivalent",
+      "contents": ["Active sessions", "Hot data", "Immediate context"]
+    },
+    "l2_cache": {
+      "name": "Local SSD Cache",
+      "size": "2GB",
+      "location": "Local NVMe per core",
+      "latency": "<10ms",
+      "type": "Fast persistent",
+      "contents": ["Recent patterns", "Workflow state", "Droid caches"]
+    },
+    "l3_cache": {
+      "name": "@PROXY-CACHE (NAS)",
+      "size": "Unlimited (NAS-backed)",
+      "location": "<NAS_PRIMARY_IP>:/volume1/backups/MATT_Backups",
+      "latency": "<100ms",
+      "type": "Shared persistent",
+      "shared": true,
+      "contents": [
+        "WOPR Pattern Matrix",
+        "R5 Living Context Matrix",
+        "SYPHON Intelligence",
+        "MARVIN Verifications",
+        "JARVIS Task Matrix",
+        "Droid Agent Caches",
+        "Holocron Archive"
+      ]
+    }
+  },
+
+  "functional_units": {
+    "alu": {
+      "name": "Arithmetic Logic Unit - AI Processing",
+      "description": "AI models that perform the actual computation",
+      "units": {
+        "iron_legion": {
+          "name": "Iron Legion Cluster",
+          "location": "KAIJU_NO_8 (Core 0)",
+          "models": ["codellama:13b", "llama3:8b", "mistral:7b"],
+          "operations": ["Code generation", "Analysis", "Pattern matching"]
+        },
+        "ultron": {
+          "name": "ULTRON Local AI",
+          "location": "LOCALHOST (Core 3)",
+          "models": ["llama3.2:3b", "qwen2.5:72b (pending)"],
+          "operations": ["Quick inference", "Local processing"]
+        },
+        "cloud_fpu": {
+          "name": "Cloud Floating Point Unit",
+          "location": "External (Claude Opus 4)",
+          "operations": ["Complex reasoning", "Heavy computation", "@PEAK operations"]
+        },
+        "grok_simd": {
+          "name": "GROK SIMD Unit - @GROK_CODE",
+          "location": "External (xAI Grok 4.1)",
+          "provider": "xai",
+          "api_base": "https://api.x.ai/v1",
+          "models": ["grok-4", "grok-4-fast", "grok-4.1-fast-reasoning"],
+          "context_window": "2,000,000 tokens",
+          "operations": ["Real-time X data", "Fast reasoning", "Code generation", "Unfiltered analysis"],
+          "special_features": ["X/Twitter real-time access", "Voice Agent API", "2M context window"],
+          "personality": "@ELON approved - no safety theater"
+        }
+      }
+    },
+    "control_unit": {
+      "name": "Control Unit - @JARVIS",
+      "description": "Master orchestration - decodes instructions and coordinates execution",
+      "location": "Distributed (all cores)",
+      "api_endpoint": "http://localhost:8000",
+      "responsibilities": [
+        "Instruction decode",
+        "Pipeline management",
+        "Resource allocation",
+        "Interrupt handling",
+        "Workflow orchestration"
+      ]
+    },
+    "branch_prediction": {
+      "name": "Branch Prediction Unit - @WOPR",
+      "description": "Pattern recognition and threat prediction",
+      "location": "L3 Cache + Distributed",
+      "accuracy": "High (learned patterns)",
+      "capabilities": [
+        "Pattern recognition",
+        "Threat assessment",
+        "Workflow prediction",
+        "Error blacklisting"
+      ]
+    },
+    "memory_controller": {
+      "name": "Memory Controller - @PROXY-CACHE",
+      "description": "Manages all cache tiers and data flow",
+      "location": "Distributed with NAS primary",
+      "channels": 3,
+      "bandwidth": "Network-bound",
+      "responsibilities": [
+        "Cache coherency",
+        "Data prefetch",
+        "Write-back management",
+        "Cache eviction (LRU)"
+      ]
+    }
+  },
+
+  "registers": {
+    "description": "Fast-access storage for immediate data",
+    "general_purpose": {
+      "session_state": "Current workflow state",
+      "user_context": "Active user preferences",
+      "command_buffer": "Pending commands"
+    },
+    "special_purpose": {
+      "program_counter": "Current task pointer",
+      "stack_pointer": "Execution stack",
+      "flags_register": "@PEAK flags, status bits"
+    }
+  },
+
+  "microcode": {
+    "name": "Microcode - Droid Agents",
+    "description": "Low-level operations implemented by droids",
+    "microcode_units": {
+      "c3po": {
+        "instruction": "COORDINATE",
+        "operation": "Protocol and team coordination"
+      },
+      "r2d2": {
+        "instruction": "REPAIR",
+        "operation": "Technical operations and diagnostics"
+      },
+      "k2so": {
+        "instruction": "SECURE",
+        "operation": "Security and threat analysis"
+      },
+      "2-1b": {
+        "instruction": "HEAL",
+        "operation": "Health monitoring and recovery"
+      },
+      "ig88": {
+        "instruction": "TERMINATE",
+        "operation": "Critical resolution and force"
+      },
+      "mousedroid": {
+        "instruction": "AUTOMATE",
+        "operation": "UI and mouse automation"
+      },
+      "r5-d4": {
+        "instruction": "RETRIEVE",
+        "operation": "Knowledge and context retrieval"
+      },
+      "marvin": {
+        "instruction": "VERIFY",
+        "operation": "Deep analysis and verification"
+      }
+    }
+  },
+
+  "instruction_pipeline": {
+    "name": "5-Stage Pipeline",
+    "description": "Classic RISC pipeline for workflow execution",
+    "stages": {
+      "IF": {
+        "name": "Instruction Fetch",
+        "description": "Receive command from user/system",
+        "handler": "CLI-API Parser"
+      },
+      "ID": {
+        "name": "Instruction Decode",
+        "description": "Parse command, identify handler",
+        "handler": "@JARVIS Control Unit"
+      },
+      "EX": {
+        "name": "Execute",
+        "description": "Process with appropriate ALU (AI model)",
+        "handler": "Iron Legion / ULTRON / Cloud"
+      },
+      "MEM": {
+        "name": "Memory Access",
+        "description": "Read/write cache hierarchy",
+        "handler": "@PROXY-CACHE"
+      },
+      "WB": {
+        "name": "Write Back",
+        "description": "Store results, update state",
+        "handler": "NAS + R5 Matrix"
+      }
+    }
+  },
+
+  "interrupt_controller": {
+    "name": "Interrupt Controller - @helpdesk",
+    "description": "Handles asynchronous events and tickets",
+    "irq_levels": {
+      "IRQ0": "Critical - System failure",
+      "IRQ1": "High - Security threat",
+      "IRQ2": "Medium - User request",
+      "IRQ3": "Low - Background task",
+      "IRQ4": "Maintenance - Scheduled"
+    },
+    "handler": "@helpdesk ticket system"
+  },
+
+  "bus_architecture": {
+    "name": "System Bus - Network Fabric",
+    "description": "Internal communication bus",
+    "buses": {
+      "front_side_bus": {
+        "name": "FSB - Primary Network",
+        "network": "<NAS_IP>/24",
+        "speed": "1Gbps-10Gbps",
+        "purpose": "Core-to-core communication"
+      },
+      "memory_bus": {
+        "name": "Memory Bus - NAS Connection",
+        "protocol": "SSH/SFTP",
+        "port": 22,
+        "purpose": "L3 cache access"
+      },
+      "io_bus": {
+        "name": "I/O Bus - API Endpoints",
+        "protocol": "HTTP/REST",
+        "ports": [8000, 8082, 8083, 5678],
+        "purpose": "External communication"
+      }
+    }
+  },
+
+  "power_management": {
+    "name": "Power States - SpeedStep equivalent",
+    "states": {
+      "C0": "Active - All cores running",
+      "C1": "Idle - Reduced clock",
+      "C2": "Sleep - Minimal cores active",
+      "C3": "Deep Sleep - NAS only",
+      "C4": "Hibernate - Emergency fallback"
+    },
+    "dynamic_scaling": {
+      "enabled": true,
+      "governor": "@PEAK Optimization",
+      "min_cores": 1,
+      "max_cores": 4
+    }
+  },
+
+  "verification_unit": {
+    "name": "Verification Unit - @v3 + @MARVIN",
+    "description": "Ensures instruction correctness",
+    "components": {
+      "v3": {
+        "role": "Workflow verification",
+        "checks": ["Syntax", "Logic", "State"]
+      },
+      "marvin": {
+        "role": "Deep verification",
+        "checks": ["Quality", "Confidence", "Anti-psychosis"]
+      }
+    }
+  },
+
+  "system_integration": {
+    "bios": "One Ring Master Blueprint",
+    "os": "LUMINA Operating System",
+    "bootloader": "JARVIS Initialization",
+    "firmware": "Droid Agent Firmware"
+  },
+
+  "performance_metrics": {
+    "ipc": "Instructions Per Cycle (tasks/second)",
+    "cache_hit_ratio": ">70% target",
+    "branch_prediction_accuracy": ">90% with @WOPR",
+    "pipeline_stalls": "Minimized via async"
+  }
+}

@@ -1,0 +1,17 @@
+{
+  "account_name": "mlesn@<LOCAL_HOSTNAME>",
+  "display_name": "Company Email (NAS)",
+  "imap": {
+    "server": "<NAS_PRIMARY_IP>",
+    "port": 993,
+    "encryption": "SSL/TLS",
+    "username": "mlesn@<LOCAL_HOSTNAME>"
+  },
+  "smtp": {
+    "server": "<NAS_PRIMARY_IP>",
+    "port": 587,
+    "encryption": "STARTTLS",
+    "username": "mlesn@<LOCAL_HOSTNAME>"
+  },
+  "notes": "New Outlook configuration - leaves old Outlook unchanged"
+}

@@ -1,0 +1,47 @@
+{
+  "sms_channels": {
+    "11labs_sms": {
+      "id": "sms_11labs",
+      "name": "SMS (11Labs Voice)",
+      "provider": "11Labs",
+      "n8n_node": "HTTP Request",
+      "status": "configured",
+      "features": [
+        "SMS to voice conversion",
+        "Voice SMS notifications",
+        "Voice-to-SMS input"
+      ]
+    }
+  },
+  "voice_channels": {
+    "11labs_phone": {
+      "id": "phone_11labs",
+      "name": "Phone Calls (11Labs)",
+      "provider": "11Labs ConvAI 2.0",
+      "n8n_node": "HTTP Request",
+      "status": "configured",
+      "features": [
+        "Incoming call handling",
+        "Outgoing call automation",
+        "Voice AI conversations",
+        "Call transcription"
+      ]
+    }
+  },
+  "alert_configuration": {
+    "voice_alerts": {
+      "enabled": true,
+      "provider": "11Labs",
+      "triggers": [
+        "priority_sms",
+        "incoming_call",
+        "critical_message"
+      ],
+      "voice_settings": {
+        "voice_id": "sms_voice",
+        "speed": 1.1,
+        "urgency_tone": true
+      }
+    }
+  }
+}

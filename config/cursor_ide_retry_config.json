@@ -1,0 +1,113 @@
+{
+  "version": "1.0.0",
+  "description": "Cursor IDE Retry Watchdog Configuration",
+  "last_updated": "2026-01-13",
+  
+  "watchdog": {
+    "enabled": true,
+    "handler": "scripts/python/cursor_ide_retry_watchdog.py",
+    "singleton": true
+  },
+
+  "retry_policy": {
+    "max_retries": 3,
+    "retry_delay_seconds": 3.0,
+    "reset_after_minutes": 30,
+    "exponential_backoff": false,
+    "backoff_multiplier": 1.5
+  },
+
+  "keyboard_shortcuts": {
+    "reload_window": {
+      "correct": "Ctrl+Shift+P → Type 'Reload Window' → Enter",
+      "incorrect": "Ctrl+R",
+      "note": "Ctrl+R opens NEW AI AGENT Chat window, does NOT reload!"
+    }
+  },
+
+  "error_patterns": {
+    "serialize_binary_overflow": {
+      "pattern": "serialize binary: invalid int 32: 4294967295",
+      "category": "ConnectError",
+      "severity": "transient",
+      "auto_retry": true,
+      "requires_window_reload": true,
+      "reload_command": "Ctrl+Shift+P → 'Reload Window'"
+    },
+    "econnreset": {
+      "pattern": "ECONNRESET",
+      "category": "ConnectionError",
+      "severity": "transient",
+      "auto_retry": true,
+      "requires_window_reload": false
+    },
+    "timeout": {
+      "pattern": "timeout|timed out",
+      "category": "TimeoutError",
+      "severity": "transient",
+      "auto_retry": true,
+      "requires_window_reload": false
+    },
+    "model_not_found": {
+      "pattern": "model.*not found|invalid model",
+      "category": "ConfigurationError",
+      "severity": "persistent",
+      "auto_retry": false,
+      "requires_config_fix": true
+    }
+  },
+
+  "parent_ask_tracking": {
+    "enabled": true,
+    "description": "Track retry attempts by parent @ask ID",
+    "inherit_retry_count": true,
+    "reset_on_new_ask": false
+  },
+
+  "notifications": {
+    "on_retry": {
+      "enabled": true,
+      "log_level": "INFO",
+      "console_output": true
+    },
+    "on_exhausted": {
+      "enabled": true,
+      "log_level": "ERROR",
+      "console_output": true,
+      "alert_jarvis": true
+    },
+    "on_success": {
+      "enabled": true,
+      "log_level": "INFO",
+      "console_output": true
+    }
+  },
+
+  "data_storage": {
+    "state_file": "data/cursor_ide_retry/watchdog_state.json",
+    "history_file": "data/cursor_ide_retry/retry_history.jsonl",
+    "patterns_dir": "data/cursor_error_handling/patterns/"
+  },
+
+  "integration": {
+    "cursor_error_handler": {
+      "enabled": true,
+      "handler": "scripts/python/cursor_error_handler_integration.py",
+      "auto_invoke": true
+    },
+    "frb_battleground": {
+      "enabled": true,
+      "test_connectivity_on_error": true
+    },
+    "marvin_analysis": {
+      "enabled": true,
+      "log_patterns": true
+    }
+  },
+
+  "commands": {
+    "status": "python scripts/python/cursor_ide_retry_watchdog.py --status",
+    "clear": "python scripts/python/cursor_ide_retry_watchdog.py --clear",
+    "test": "python scripts/python/cursor_ide_retry_watchdog.py --test <request_id>"
+  }
+}

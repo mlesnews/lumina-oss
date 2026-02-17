@@ -1,0 +1,60 @@
+{
+  "proton_bridge": {
+    "host": "host.docker.internal",
+    "imap_port": 1143,
+    "smtp_port": 1025,
+    "note": "Bridge on host PC - N8N in Docker uses host.docker.internal",
+    "alternative": {
+      "host": "[HOST_PC_IP]",
+      "note": "If host.docker.internal doesn't work, use host PC IP address"
+    }
+  },
+  "workflow_nodes": {
+    "email_trigger_imap": {
+      "host": "host.docker.internal",
+      "port": 1143,
+      "username": "Retrieved from ProtonPassCli or Azure Vault",
+      "password": "Retrieved from ProtonPassCli or Azure Vault",
+      "credential_source": {
+        "primary": "protonpasscli",
+        "fallback": "azure_key_vault",
+        "retrieval_script": "scripts/python/get_proton_bridge_credentials.py"
+      },
+      "ssl": false,
+      "allow_self_signed": true,
+      "note": "Credentials retrieved via get_proton_bridge_credentials.py script"
+    },
+    "send_email_smtp": {
+      "host": "host.docker.internal",
+      "port": 1025,
+      "username": "Retrieved from ProtonPassCli or Azure Vault",
+      "password": "Retrieved from ProtonPassCli or Azure Vault",
+      "credential_source": {
+        "primary": "protonpasscli",
+        "fallback": "azure_key_vault",
+        "retrieval_script": "scripts/python/get_proton_bridge_credentials.py"
+      },
+      "ssl": false,
+      "allow_self_signed": true,
+      "note": "Credentials retrieved via get_proton_bridge_credentials.py script"
+    }
+  },
+  "credential_storage": {
+    "protonpasscli": {
+      "entry_names": [
+        "proton-bridge-password",
+        "proton-bridge",
+        "protonmail-bridge"
+      ],
+      "note": "Primary credential storage - Zero-knowledge encryption"
+    },
+    "azure_key_vault": {
+      "vault_url": "https://jarvis-lumina.vault.azure.net/",
+      "secret_names": [
+        "proton-bridge-username",
+        "proton-bridge-password"
+      ],
+      "note": "Redundancy/fallback storage - Enterprise security"
+    }
+  }
+}

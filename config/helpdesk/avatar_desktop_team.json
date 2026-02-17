@@ -1,0 +1,178 @@
+{
+  "team_metadata": {
+    "team_id": "avatar_desktop",
+    "team_name": "Avatar & Desktop Visualization Team",
+    "description": "Desktop avatar visualization, character animation, desktop walking, and visual assistant systems. Responsible for implementing and maintaining avatar desktop walking capabilities like Ace.",
+    "manager": "@c3po",
+    "technical_lead": "@r2d2",
+    "location": "@desktop",
+    "status": "active",
+    "tags": ["#avatar", "#desktop", "#visualization", "#animation", "@desktop"],
+    "classification": "Visualization & User Experience Division"
+  },
+  "job_slots": {
+    "team_manager": {
+      "slot_id": "avatar_desktop_manager",
+      "role": "Team Manager - Avatar & Desktop Coordinator",
+      "assigned_to": "@c3po",
+      "status": "active",
+      "specialization": "Avatar coordination, desktop visualization management, character animation oversight",
+      "capabilities": [
+        "avatar_management",
+        "desktop_visualization",
+        "character_animation",
+        "workflow_coordination",
+        "team_coordination"
+      ],
+      "max_tickets": 10,
+      "current_tickets": 0,
+      "module": "@c3po.protocol.droid.agent.jsn"
+    },
+    "technical_lead": {
+      "slot_id": "avatar_desktop_technical_lead",
+      "role": "Technical Lead Engineer - Desktop Visualization",
+      "assigned_to": "@r2d2",
+      "status": "active",
+      "specialization": "Desktop visualization systems, avatar rendering, animation engines, desktop integration",
+      "capabilities": [
+        "desktop_visualization",
+        "avatar_rendering",
+        "animation_engines",
+        "desktop_integration",
+        "technical_leadership",
+        "system_architecture"
+      ],
+      "max_tickets": 8,
+      "current_tickets": 0,
+      "module": "@r2d2.astromech.droid.agent.jsn"
+    },
+    "avatar_engineer_1": {
+      "slot_id": "avatar_engineer_1",
+      "role": "Avatar Engineer - Character Animation & Desktop Walking",
+      "assigned_to": "smart_agent_avatar_engineer_001",
+      "status": "active",
+      "specialization": "Character avatar implementation, desktop walking mechanics, animation systems, Ace-like behavior",
+      "capabilities": [
+        "avatar_implementation",
+        "desktop_walking",
+        "character_animation",
+        "ace_behavior_replication",
+        "animation_systems",
+        "desktop_movement"
+      ],
+      "max_tickets": 12,
+      "current_tickets": 0,
+      "intelligent_agent": true,
+      "framework_integrations": ["JARVIS", "MANUS"],
+      "module": "@avatar.engineer.smart.agent.jsn"
+    },
+    "visualization_specialist_1": {
+      "slot_id": "visualization_specialist_1",
+      "role": "Desktop Visualization Specialist - Rendering & Display",
+      "assigned_to": "smart_agent_visualization_specialist_001",
+      "status": "active",
+      "specialization": "Desktop rendering, window management, transparent overlays, always-on-top display",
+      "capabilities": [
+        "desktop_rendering",
+        "window_management",
+        "transparent_overlays",
+        "always_on_top",
+        "canvas_rendering",
+        "visual_effects"
+      ],
+      "max_tickets": 10,
+      "current_tickets": 0,
+      "intelligent_agent": true,
+      "framework_integrations": ["JARVIS", "MANUS"],
+      "module": "@visualization.specialist.smart.agent.jsn"
+    },
+    "character_animator_1": {
+      "slot_id": "character_animator_1",
+      "role": "Character Animator - Iron Man & Avatar Animation",
+      "assigned_to": "smart_agent_character_animator_001",
+      "status": "active",
+      "specialization": "Iron Man avatar animation, character movement, arc reactor effects, avatar behavior",
+      "capabilities": [
+        "iron_man_animation",
+        "character_movement",
+        "arc_reactor_effects",
+        "avatar_behavior",
+        "animation_timing",
+        "character_design"
+      ],
+      "max_tickets": 10,
+      "current_tickets": 0,
+      "intelligent_agent": true,
+      "framework_integrations": ["JARVIS"],
+      "module": "@character.animator.smart.agent.jsn"
+    }
+  },
+  "routing": {
+    "keywords": [
+      "avatar",
+      "desktop",
+      "walking",
+      "animation",
+      "character",
+      "iron man",
+      "ace",
+      "visualization",
+      "desktop_walking",
+      "avatar_walking",
+      "character_animation"
+    ],
+    "default_assignment": "avatar_engineer_1"
+  },
+  "workflow": {
+    "avatar_walking_request": {
+      "step_1": "Avatar Engineer receives request for desktop walking capability",
+      "step_2": "Engineer analyzes Ace implementation for reference",
+      "step_3": "Technical Lead validates approach and architecture",
+      "step_4": "Character Animator implements animation and behavior",
+      "step_5": "Visualization Specialist ensures proper desktop rendering",
+      "step_6": "Team Manager validates protocol compliance",
+      "step_7": "Ticket resolved and avatar walking enabled"
+    },
+    "avatar_implementation": {
+      "step_1": "Character Animator designs avatar appearance and behavior",
+      "step_2": "Avatar Engineer implements desktop walking mechanics",
+      "step_3": "Visualization Specialist ensures proper rendering",
+      "step_4": "Technical Lead validates technical implementation",
+      "step_5": "Team Manager validates completion"
+    }
+  },
+  "framework_integrations": {
+    "JARVIS": {
+      "enabled": true,
+      "description": "JARVIS integration for avatar control and behavior",
+      "integration_points": [
+        "avatar_control",
+        "behavior_management",
+        "desktop_integration"
+      ],
+      "specialist": "avatar_engineer_1"
+    },
+    "MANUS": {
+      "enabled": true,
+      "description": "MANUS framework for desktop control and automation",
+      "integration_points": [
+        "desktop_control",
+        "window_management",
+        "cursor_control"
+      ],
+      "specialist": "visualization_specialist_1"
+    }
+  },
+  "engagement_protocols": {
+    "avatar_walking_workflow": [
+      "1. Avatar Engineer receives request",
+      "2. Analyze Ace implementation for reference",
+      "3. Technical Lead validates approach",
+      "4. Character Animator implements animation",
+      "5. Visualization Specialist ensures rendering",
+      "6. Team Manager validates protocol",
+      "7. Avatar walking enabled"
+    ]
+  },
+  "escalation_path": "@c3po → JARVIS (as protocol demands)"
+}

@@ -1,0 +1,121 @@
+{
+  "version": "1.0.0",
+  "name": "Lumina Company Configuration",
+  "description": "EXAMPLE/TEMPLATE - Customize Lumina to represent your company - Single Source of Truth for company branding",
+  "last_updated": "2025-01-24",
+  "ssot": true,
+  "ssot_location": "config/lumina_company_config.json",
+  "note": "This is an example template. Copy to lumina_company_config.json and fill in your company information.",
+  
+  "company": {
+    "name": "YOUR COMPANY NAME HERE",
+    "legal_name": "YOUR LEGAL COMPANY NAME",
+    "short_name": "YOUR_SHORT_NAME",
+    "domain": "yourcompany.com",
+    "email_domain": "@yourcompany.com",
+    "website": "https://yourcompany.com",
+    "description": "Your company description",
+    "industry": "Your Industry",
+    "sector": "Your Sector"
+  },
+  
+  "branding": {
+    "internal": {
+      "enabled": true,
+      "maintainer": "YOUR COMPANY NAME HERE",
+      "container_prefix": "yourcompany",
+      "volume_prefix": "yourcompany",
+      "network_prefix": "yourcompany",
+      "image_prefix": "yourcompany",
+      "description_suffix": "for YOUR COMPANY NAME",
+      "use_company_name": true
+    },
+    "public": {
+      "enabled": true,
+      "maintainer": "Lumina Project",
+      "container_prefix": "lumina",
+      "volume_prefix": "lumina",
+      "network_prefix": "lumina",
+      "image_prefix": "lumina",
+      "description_suffix": "for Lumina",
+      "use_company_name": false
+    },
+    "active_mode": "internal"
+  },
+  
+  "docker": {
+    "internal": {
+      "maintainer": "YOUR COMPANY NAME HERE",
+      "container_names": {
+        "ollama_primary": "yourcompany-ollama-primary",
+        "ollama_secondary": "yourcompany-ollama-secondary",
+        "ollama_tertiary": "yourcompany-ollama-tertiary",
+        "loadbalancer": "yourcompany-llm-loadbalancer"
+      },
+      "volumes": {
+        "ollama_data": "yourcompany-ollama-data"
+      },
+      "networks": {
+        "llm_cluster": "yourcompany-llm-cluster"
+      },
+      "images": {
+        "prefix": "yourcompany",
+        "ollama": "yourcompany/ollama:latest"
+      }
+    },
+    "public": {
+      "maintainer": "Lumina Project",
+      "container_names": {
+        "ollama_primary": "lumina-ollama-primary",
+        "ollama_secondary": "lumina-ollama-secondary",
+        "ollama_tertiary": "lumina-ollama-tertiary",
+        "loadbalancer": "lumina-llm-loadbalancer"
+      },
+      "volumes": {
+        "ollama_data": "lumina-ollama-data"
+      },
+      "networks": {
+        "llm_cluster": "lumina-llm-cluster"
+      },
+      "images": {
+        "prefix": "lumina",
+        "ollama": "lumina/ollama:latest"
+      }
+    }
+  },
+  
+  "llm_cluster": {
+    "name": "Iron Legion",
+    "description": "Local LLM cluster for YOUR COMPANY - Integrated with Lumina",
+    "endpoint": "http://localhost:3000",
+    "ports": {
+      "loadbalancer": 3000,
+      "primary": 3001,
+      "secondary": 3002,
+      "tertiary": 3003
+    },
+    "models": {
+      "primary": "codellama:13b",
+      "secondary": "llama3.2:11b",
+      "lightweight": "qwen2.5-coder:1.5b-base"
+    }
+  },
+  
+  "integration": {
+    "lumina_integration": true,
+    "description": "Lumina is customized for YOUR COMPANY. The local LLM cluster is integrated with Lumina and branded for internal company use.",
+    "public_facing": "All public-facing materials (GitHub, VS Code extensions) use Lumina Project branding",
+    "internal_use": "All internal configurations use YOUR COMPANY branding"
+  },
+  
+  "_metadata": {
+    "documentation": "docs/system/LUMINA_COMPANY_CUSTOMIZATION.md",
+    "script": "scripts/python/customize_lumina_company.py",
+    "consumers": [
+      "scripts/python/customize_lumina_company.py",
+      "scripts/powershell/apply-company-branding.ps1"
+    ],
+    "notes": "This is a template file. Copy to lumina_company_config.json and customize for your company. The actual config file is in .gitignore to protect private information."
+  }
+}
+

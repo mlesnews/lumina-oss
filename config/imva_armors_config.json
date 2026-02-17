@@ -1,0 +1,287 @@
+{
+  "version": "1.0.0",
+  "description": "IMVA Armor and Outfit Configuration - All Iron Man armors and Tony Stark variants",
+  "last_updated": "2026-01-15",
+  "armors": {
+    "mark_v": {
+      "name": "Mark V - Suitcase Suit",
+      "display_name": "Mark V",
+      "type": "armor",
+      "mark_level": 5,
+      "description": "Portable briefcase-sized armor - lighter, compact, always ready",
+      "color_scheme": {
+        "primary": "#DC143C",
+        "secondary": "#C0C0C0",
+        "glow": "#FFFFFF",
+        "outline": "#FFFFFF"
+      },
+      "features": [
+        "briefcase_transformation",
+        "portable",
+        "quick_deployment",
+        "lightweight"
+      ],
+      "capabilities": {
+        "flight": "limited",
+        "weapons": "reduced",
+        "durability": "moderate",
+        "portability": "maximum"
+      },
+      "suit_up_sequence": true,
+      "transformation_animation": "briefcase_to_armor",
+      "file": "jarvis_mark_v_desktop_assistant.py"
+    },
+    "mark_iii": {
+      "name": "Mark III",
+      "display_name": "Mark III",
+      "type": "armor",
+      "mark_level": 3,
+      "description": "Classic red and gold - the iconic Iron Man suit",
+      "color_scheme": {
+        "primary": "#DC143C",
+        "secondary": "#FFD700",
+        "glow": "#00D9FF",
+        "outline": "#FFFFFF"
+      },
+      "features": [
+        "classic_design",
+        "full_weapons",
+        "flight",
+        "hud"
+      ],
+      "capabilities": {
+        "flight": "full",
+        "weapons": "full",
+        "durability": "high",
+        "portability": "low"
+      },
+      "suit_up_sequence": true,
+      "transformation_animation": "ring_deployment",
+      "file": "jarvis_mark_iii_desktop_assistant.py"
+    },
+    "mark_vi": {
+      "name": "Mark VI",
+      "display_name": "Mark VI",
+      "type": "armor",
+      "mark_level": 6,
+      "description": "Improved design with triangular arc reactor",
+      "color_scheme": {
+        "primary": "#B22222",
+        "secondary": "#FFD700",
+        "glow": "#00D9FF",
+        "outline": "#FFFFFF"
+      },
+      "features": [
+        "triangular_reactor",
+        "improved_design",
+        "enhanced_weapons",
+        "flight"
+      ],
+      "capabilities": {
+        "flight": "full",
+        "weapons": "enhanced",
+        "durability": "high",
+        "portability": "low"
+      },
+      "suit_up_sequence": true,
+      "transformation_animation": "ring_deployment",
+      "file": "jarvis_mark_vi_desktop_assistant.py"
+    },
+    "mark_vii": {
+      "name": "Mark VII",
+      "display_name": "Mark VII",
+      "type": "armor",
+      "mark_level": 7,
+      "description": "Portable suit-up via briefcase - advanced version",
+      "color_scheme": {
+        "primary": "#DC143C",
+        "secondary": "#FFD700",
+        "glow": "#00D9FF",
+        "outline": "#FFFFFF"
+      },
+      "features": [
+        "portable_suit_up",
+        "advanced_weapons",
+        "flight",
+        "hud"
+      ],
+      "capabilities": {
+        "flight": "full",
+        "weapons": "advanced",
+        "durability": "high",
+        "portability": "medium"
+      },
+      "suit_up_sequence": true,
+      "transformation_animation": "briefcase_deployment",
+      "file": "jarvis_mark_vii_desktop_assistant.py"
+    },
+    "mark_xlii": {
+      "name": "Mark XLII - Autonomous Prehensile",
+      "display_name": "Mark XLII",
+      "type": "armor",
+      "mark_level": 42,
+      "description": "Autonomous suit-up - can assemble remotely",
+      "color_scheme": {
+        "primary": "#DC143C",
+        "secondary": "#FFD700",
+        "glow": "#00D9FF",
+        "outline": "#FFFFFF"
+      },
+      "features": [
+        "autonomous",
+        "remote_assembly",
+        "prehensile",
+        "advanced_ai"
+      ],
+      "capabilities": {
+        "flight": "full",
+        "weapons": "advanced",
+        "durability": "high",
+        "portability": "high",
+        "autonomy": "full"
+      },
+      "suit_up_sequence": true,
+      "transformation_animation": "autonomous_assembly",
+      "file": "jarvis_mark_xlii_desktop_assistant.py"
+    },
+    "mark_l": {
+      "name": "Mark L - Bleeding Edge",
+      "display_name": "Mark L",
+      "type": "armor",
+      "mark_level": 50,
+      "description": "Nanotechnology-based suit stored in housing unit",
+      "color_scheme": {
+        "primary": "#DC143C",
+        "secondary": "#FFD700",
+        "glow": "#00D9FF",
+        "outline": "#FFFFFF"
+      },
+      "features": [
+        "nanotechnology",
+        "instant_deployment",
+        "shape_shifting",
+        "advanced_weapons"
+      ],
+      "capabilities": {
+        "flight": "full",
+        "weapons": "ultimate",
+        "durability": "maximum",
+        "portability": "maximum",
+        "versatility": "maximum"
+      },
+      "suit_up_sequence": true,
+      "transformation_animation": "nanotech_deployment",
+      "file": "jarvis_mark_l_desktop_assistant.py"
+    },
+    "hulkbuster": {
+      "name": "Hulkbuster - Mark XLIV",
+      "display_name": "Hulkbuster",
+      "type": "armor",
+      "mark_level": 44,
+      "description": "Massive armor designed to fight the Hulk",
+      "color_scheme": {
+        "primary": "#8B0000",
+        "secondary": "#FFD700",
+        "glow": "#FF4500",
+        "outline": "#FFFFFF"
+      },
+      "features": [
+        "massive_size",
+        "heavy_weapons",
+        "reinforced",
+        "hulk_combat"
+      ],
+      "capabilities": {
+        "flight": "limited",
+        "weapons": "heavy",
+        "durability": "maximum",
+        "portability": "none",
+        "size": "massive"
+      },
+      "suit_up_sequence": true,
+      "transformation_animation": "hulkbuster_assembly",
+      "file": "jarvis_hulkbuster_desktop_assistant.py"
+    }
+  },
+  "tony_stark_variants": {
+    "tony_casual": {
+      "name": "Tony Stark - Casual",
+      "display_name": "Tony (Casual)",
+      "type": "character",
+      "description": "Tony Stark in casual clothing",
+      "outfit": "casual",
+      "color_scheme": {
+        "primary": "#2C3E50",
+        "secondary": "#34495E",
+        "glow": "#3498DB",
+        "outline": "#ECF0F1"
+      },
+      "features": [
+        "human_form",
+        "casual_clothing",
+        "no_armor"
+      ],
+      "file": "jarvis_tony_casual_desktop_assistant.py"
+    },
+    "tony_business": {
+      "name": "Tony Stark - Business",
+      "display_name": "Tony (Business)",
+      "type": "character",
+      "description": "Tony Stark in business attire",
+      "outfit": "business",
+      "color_scheme": {
+        "primary": "#1A1A1A",
+        "secondary": "#2C2C2C",
+        "glow": "#FFD700",
+        "outline": "#FFFFFF"
+      },
+      "features": [
+        "human_form",
+        "business_suit",
+        "no_armor"
+      ],
+      "file": "jarvis_tony_business_desktop_assistant.py"
+    },
+    "tony_workshop": {
+      "name": "Tony Stark - Workshop",
+      "display_name": "Tony (Workshop)",
+      "type": "character",
+      "description": "Tony Stark in workshop gear",
+      "outfit": "workshop",
+      "color_scheme": {
+        "primary": "#34495E",
+        "secondary": "#7F8C8D",
+        "glow": "#E74C3C",
+        "outline": "#ECF0F1"
+      },
+      "features": [
+        "human_form",
+        "workshop_clothing",
+        "tools",
+        "no_armor"
+      ],
+      "file": "jarvis_tony_workshop_desktop_assistant.py"
+    },
+    "tony_suit_up": {
+      "name": "Tony Stark - Suiting Up",
+      "display_name": "Tony (Suiting Up)",
+      "type": "character",
+      "description": "Tony Stark in the process of suiting up",
+      "outfit": "suit_up",
+      "color_scheme": {
+        "primary": "#DC143C",
+        "secondary": "#FFD700",
+        "glow": "#00D9FF",
+        "outline": "#FFFFFF"
+      },
+      "features": [
+        "human_form",
+        "partial_armor",
+        "transformation"
+      ],
+      "file": "jarvis_tony_suit_up_desktop_assistant.py"
+    }
+  },
+  "default_armor": "mark_v",
+  "default_tony": "tony_casual"
+}

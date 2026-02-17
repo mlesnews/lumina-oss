@@ -1,0 +1,30 @@
+{
+  "default_browser": "NEO",
+  "neo_browser_path": "C:\\Users\\mlesn\\AppData\\Local\\Neo\\Application\\neo.exe",
+  "preferences": {
+    "use_neo_for_all_operations": true,
+    "prevent_video_autoplay": true,
+    "mute_videos_by_default": true,
+    "silent_extraction_mode": true
+  },
+  "youtube_extraction": {
+    "silent_mode": true,
+    "autoplay": false,
+    "mute": true,
+    "url_parameters": "?autoplay=0&mute=1",
+    "prevent_multiple_playback": true,
+    "close_tabs_after_extraction": true
+  },
+  "mcp_browser_config": {
+    "preferred_browser": "NEO",
+    "use_default_browser": true,
+    "default_browser_path": "C:\\Users\\mlesn\\AppData\\Local\\Neo\\Application\\neo.exe",
+    "fallback_browser": "Edge",
+    "fallback_browser_path": "C:\\Program Files (x86)\\Microsoft\\Edge\\Application\\msedge.exe",
+    "fallback_to_default": true,
+    "use_neo_for_mcp_operations": true,
+    "notes": "Previously configured: Use default browser (NEO) with Edge as fallback. This setting should be applied to MCP browser server configuration.",
+    "configuration_note": "Use default browser (NEO) with Edge as fallback. Previously configured setting."
+  },
+  "notes": "NEO browser is the preferred browser for all operations. Videos should not play out loud during extraction processes."
+}

@@ -1,0 +1,631 @@
+{
+  "version": "1.0.0",
+  "name": "Homelab Azure Service Bus Interoperability Configuration",
+  "description": "Async Azure Service Bus connectivity for all @HOMELAB assets at multiple infrastructure and inference layers",
+  "last_updated": "2026-01-02",
+  "ssot": true,
+  "ssot_location": "config/homelab_azure_bus_interoperability.json",
+  
+  "azure_service_bus": {
+    "namespace": "jarvis-lumina-bus.servicebus.windows.net",
+    "connection_string_source": "azure_key_vault",
+    "key_vault_name": "jarvis-lumina",
+    "connection_string_secret": "service-bus-connection-string",
+    "namespace_secret": "service-bus-namespace",
+    "credential_type": "DefaultAzureCredential",
+    "async_mode": true,
+    "message_retry_policy": {
+      "max_retries": 3,
+      "retry_delay_seconds": 5,
+      "exponential_backoff": true
+    }
+  },
+  
+  "homelab_assets": {
+    "FALC": {
+      "asset_id": "falc",
+      "name": "@FALC",
+      "type": "system",
+      "ip_address": null,
+      "azure_bus_integration": {
+        "enabled": true,
+        "topics": [
+          "falc.workflows",
+          "falc.events",
+          "falc.commands"
+        ],
+        "queues": [
+          "falc-command-queue",
+          "falc-response-queue"
+        ],
+        "subscriptions": [
+          "falc-workflow-subscription",
+          "falc-event-subscription"
+        ],
+        "message_types": [
+          "workflow",
+          "event",
+          "command",
+          "response"
+        ]
+      },
+      "infrastructure_layer": {
+        "enabled": true,
+        "topics": [
+          "infrastructure.falc.system",
+          "infrastructure.falc.monitoring",
+          "infrastructure.falc.health"
+        ]
+      },
+      "inference_layer": {
+        "enabled": true,
+        "topics": [
+          "inference.falc.ai",
+          "inference.falc.llm",
+          "inference.falc.decision"
+        ]
+      }
+    },
+    
+    "NAS": {
+      "asset_id": "nas",
+      "name": "@NAS",
+      "type": "storage",
+      "ip_address": "<NAS_PRIMARY_IP>",
+      "hostname": "<NAS_PRIMARY_IP>",
+      "azure_bus_integration": {
+        "enabled": true,
+        "topics": [
+          "nas.storage",
+          "nas.backup",
+          "nas.monitoring",
+          "nas.file_operations"
+        ],
+        "queues": [
+          "nas-storage-queue",
+          "nas-backup-queue",
+          "nas-monitoring-queue"
+        ],
+        "subscriptions": [
+          "nas-storage-subscription",
+          "nas-backup-subscription"
+        ],
+        "message_types": [
+          "storage_request",
+          "backup_request",
+          "monitoring_event",
+          "file_operation"
+        ]
+      },
+      "infrastructure_layer": {
+        "enabled": true,
+        "topics": [
+          "infrastructure.nas.storage",
+          "infrastructure.nas.network",
+          "infrastructure.nas.health"
+        ]
+      },
+      "inference_layer": {
+        "enabled": true,
+        "topics": [
+          "inference.nas.cache",
+          "inference.nas.data",
+          "inference.nas.physics"
+        ]
+      }
+    },
+    
+    "PFSENSEFW": {
+      "asset_id": "pfsensefw",
+      "name": "@PFSENSEFW",
+      "type": "firewall",
+      "ip_address": "<NAS_IP>",
+      "hostname": "<NAS_IP>",
+      "azure_bus_integration": {
+        "enabled": true,
+        "topics": [
+          "pfsense.network",
+          "pfsense.firewall",
+          "pfsense.monitoring",
+          "pfsense.security"
+        ],
+        "queues": [
+          "pfsense-network-queue",
+          "pfsense-firewall-queue",
+          "pfsense-security-queue"
+        ],
+        "subscriptions": [
+          "pfsense-network-subscription",
+          "pfsense-firewall-subscription"
+        ],
+        "message_types": [
+          "network_event",
+          "firewall_rule",
+          "security_alert",
+          "monitoring_data"
+        ]
+      },
+      "infrastructure_layer": {
+        "enabled": true,
+        "topics": [
+          "infrastructure.pfsense.network",
+          "infrastructure.pfsense.routing",
+          "infrastructure.pfsense.security"
+        ]
+      },
+      "inference_layer": {
+        "enabled": true,
+        "topics": [
+          "inference.pfsense.traffic",
+          "inference.pfsense.patterns",
+          "inference.pfsense.threats"
+        ]
+      }
+    },
+    
+    "KAIJU_NO_8": {
+      "asset_id": "kaiju_no_8",
+      "name": "@KAIJU_NO_8",
+      "type": "workstation",
+      "ip_address": "<NAS_IP>",
+      "hostname": "<NAS_IP>",
+      "description": "Desktop PC - KAIJU Iron Legion Cluster Node",
+      "azure_bus_integration": {
+        "enabled": true,
+        "topics": [
+          "kaiju.workflows",
+          "kaiju.compute",
+          "kaiju.mcp",
+          "kaiju.monitoring"
+        ],
+        "queues": [
+          "kaiju-workflow-queue",
+          "kaiju-compute-queue",
+          "kaiju-mcp-queue"
+        ],
+        "subscriptions": [
+          "kaiju-workflow-subscription",
+          "kaiju-compute-subscription"
+        ],
+        "message_types": [
+          "workflow_request",
+          "compute_task",
+          "mcp_request",
+          "monitoring_event"
+        ]
+      },
+      "infrastructure_layer": {
+        "enabled": true,
+        "topics": [
+          "infrastructure.kaiju.system",
+          "infrastructure.kaiju.network",
+          "infrastructure.kaiju.resources"
+        ]
+      },
+      "inference_layer": {
+        "enabled": true,
+        "topics": [
+          "inference.kaiju.llm",
+          "inference.kaiju.ai",
+          "inference.kaiju.cluster"
+        ]
+      }
+    },
+    
+    "HOMELAB": {
+      "asset_id": "homelab",
+      "name": "@HOMELAB",
+      "type": "infrastructure",
+      "description": "Entire homelab infrastructure",
+      "azure_bus_integration": {
+        "enabled": true,
+        "topics": [
+          "homelab.orchestration",
+          "homelab.coordination",
+          "homelab.monitoring",
+          "homelab.events"
+        ],
+        "queues": [
+          "homelab-orchestration-queue",
+          "homelab-coordination-queue",
+          "homelab-monitoring-queue"
+        ],
+        "subscriptions": [
+          "homelab-orchestration-subscription",
+          "homelab-coordination-subscription"
+        ],
+        "message_types": [
+          "orchestration_command",
+          "coordination_request",
+          "monitoring_event",
+          "infrastructure_event"
+        ]
+      },
+      "infrastructure_layer": {
+        "enabled": true,
+        "topics": [
+          "infrastructure.homelab.network",
+          "infrastructure.homelab.security",
+          "infrastructure.homelab.resources",
+          "infrastructure.homelab.health"
+        ]
+      },
+      "inference_layer": {
+        "enabled": true,
+        "topics": [
+          "inference.homelab.ai",
+          "inference.homelab.llm",
+          "inference.homelab.decision",
+          "inference.homelab.patterns"
+        ]
+      }
+    },
+    
+    "COMPANY": {
+      "asset_id": "company",
+      "name": "@COMPANY",
+      "type": "organization",
+      "description": "Entire company infrastructure",
+      "azure_bus_integration": {
+        "enabled": true,
+        "topics": [
+          "company.workflows",
+          "company.coordination",
+          "company.security",
+          "company.compliance"
+        ],
+        "queues": [
+          "company-workflow-queue",
+          "company-coordination-queue",
+          "company-security-queue"
+        ],
+        "subscriptions": [
+          "company-workflow-subscription",
+          "company-coordination-subscription"
+        ],
+        "message_types": [
+          "workflow_request",
+          "coordination_request",
+          "security_event",
+          "compliance_check"
+        ]
+      },
+      "infrastructure_layer": {
+        "enabled": true,
+        "topics": [
+          "infrastructure.company.network",
+          "infrastructure.company.security",
+          "infrastructure.company.resources"
+        ]
+      },
+      "inference_layer": {
+        "enabled": true,
+        "topics": [
+          "inference.company.ai",
+          "inference.company.decision",
+          "inference.company.strategy"
+        ]
+      }
+    }
+  },
+  
+  "engineering_teams": {
+    "interconnectivity_team": {
+      "team_id": "interconnectivity",
+      "name": "Interconnectivity Engineering Team",
+      "responsibilities": [
+        "Azure Service Bus topology design",
+        "Message routing and delivery",
+        "Component integration",
+        "Interoperability testing",
+        "Connection management"
+      ],
+      "azure_bus_topics": [
+        "teams.interconnectivity.design",
+        "teams.interconnectivity.routing",
+        "teams.interconnectivity.integration"
+      ],
+      "azure_bus_queues": [
+        "interconnectivity-design-queue",
+        "interconnectivity-routing-queue"
+      ]
+    },
+    
+    "security_team": {
+      "team_id": "security",
+      "name": "Security Engineering Team",
+      "responsibilities": [
+        "Security policy enforcement",
+        "Threat detection and response",
+        "Access control",
+        "Audit and compliance",
+        "Security monitoring"
+      ],
+      "azure_bus_topics": [
+        "teams.security.policy",
+        "teams.security.threats",
+        "teams.security.audit"
+      ],
+      "azure_bus_queues": [
+        "security-policy-queue",
+        "security-threat-queue",
+        "security-audit-queue"
+      ]
+    },
+    
+    "network_team": {
+      "team_id": "network",
+      "name": "Network Engineering Team",
+      "responsibilities": [
+        "Network topology",
+        "Routing and switching",
+        "Firewall management",
+        "Network monitoring",
+        "Performance optimization"
+      ],
+      "azure_bus_topics": [
+        "teams.network.topology",
+        "teams.network.routing",
+        "teams.network.monitoring"
+      ],
+      "azure_bus_queues": [
+        "network-topology-queue",
+        "network-routing-queue"
+      ]
+    },
+    
+    "system_engineering_team": {
+      "team_id": "system_engineering",
+      "name": "System Engineering Team",
+      "responsibilities": [
+        "System architecture",
+        "Infrastructure design",
+        "Resource management",
+        "System monitoring",
+        "Performance tuning"
+      ],
+      "azure_bus_topics": [
+        "teams.system.architecture",
+        "teams.system.infrastructure",
+        "teams.system.monitoring"
+      ],
+      "azure_bus_queues": [
+        "system-architecture-queue",
+        "system-infrastructure-queue"
+      ]
+    }
+  },
+  
+  "infrastructure_layers": {
+    "layer_1_physical": {
+      "name": "Physical Infrastructure",
+      "description": "Hardware, network, storage",
+      "assets": ["NAS", "PFSENSEFW", "KAIJU_NO_8"],
+      "azure_bus_topics": [
+        "infrastructure.physical.hardware",
+        "infrastructure.physical.network",
+        "infrastructure.physical.storage"
+      ]
+    },
+    
+    "layer_2_network": {
+      "name": "Network Infrastructure",
+      "description": "Network topology, routing, firewall",
+      "assets": ["PFSENSEFW", "HOMELAB"],
+      "azure_bus_topics": [
+        "infrastructure.network.topology",
+        "infrastructure.network.routing",
+        "infrastructure.network.security"
+      ]
+    },
+    
+    "layer_3_system": {
+      "name": "System Infrastructure",
+      "description": "Operating systems, services, applications",
+      "assets": ["KAIJU_NO_8", "NAS", "HOMELAB"],
+      "azure_bus_topics": [
+        "infrastructure.system.os",
+        "infrastructure.system.services",
+        "infrastructure.system.applications"
+      ]
+    },
+    
+    "layer_4_application": {
+      "name": "Application Infrastructure",
+      "description": "Applications, APIs, services",
+      "assets": ["FALC", "HOMELAB", "COMPANY"],
+      "azure_bus_topics": [
+        "infrastructure.application.apis",
+        "infrastructure.application.services",
+        "infrastructure.application.workflows"
+      ]
+    }
+  },
+  
+  "inference_layers": {
+    "layer_1_data": {
+      "name": "Data Inference Layer",
+      "description": "Data processing, caching, storage",
+      "assets": ["NAS", "HOMELAB"],
+      "azure_bus_topics": [
+        "inference.data.processing",
+        "inference.data.caching",
+        "inference.data.storage"
+      ]
+    },
+    
+    "layer_2_ai": {
+      "name": "AI Inference Layer",
+      "description": "AI models, LLM inference, decision making",
+      "assets": ["KAIJU_NO_8", "FALC", "HOMELAB"],
+      "azure_bus_topics": [
+        "inference.ai.models",
+        "inference.ai.llm",
+        "inference.ai.decision"
+      ]
+    },
+    
+    "layer_3_coordination": {
+      "name": "Coordination Inference Layer",
+      "description": "Workflow orchestration, coordination, intelligence",
+      "assets": ["HOMELAB", "COMPANY"],
+      "azure_bus_topics": [
+        "inference.coordination.workflow",
+        "inference.coordination.intelligence",
+        "inference.coordination.orchestration"
+      ]
+    },
+    
+    "layer_4_strategy": {
+      "name": "Strategy Inference Layer",
+      "description": "Strategic decision making, planning, optimization",
+      "assets": ["COMPANY", "HOMELAB"],
+      "azure_bus_topics": [
+        "inference.strategy.planning",
+        "inference.strategy.optimization",
+        "inference.strategy.decision"
+      ]
+    }
+  },
+  
+  "message_routing": {
+    "cross_asset_routing": {
+      "enabled": true,
+      "patterns": [
+        {
+          "from": "FALC",
+          "to": "NAS",
+          "topics": ["falc.workflows", "nas.storage"],
+          "routing": "topic_based"
+        },
+        {
+          "from": "NAS",
+          "to": "KAIJU_NO_8",
+          "topics": ["nas.storage", "kaiju.compute"],
+          "routing": "topic_based"
+        },
+        {
+          "from": "PFSENSEFW",
+          "to": "HOMELAB",
+          "topics": ["pfsense.network", "homelab.orchestration"],
+          "routing": "topic_based"
+        },
+        {
+          "from": "KAIJU_NO_8",
+          "to": "COMPANY",
+          "topics": ["kaiju.workflows", "company.workflows"],
+          "routing": "topic_based"
+        }
+      ]
+    },
+    
+    "team_routing": {
+      "enabled": true,
+      "patterns": [
+        {
+          "team": "interconnectivity_team",
+          "topics": ["teams.interconnectivity.*"],
+          "assets": ["FALC", "NAS", "PFSENSEFW", "KAIJU_NO_8", "HOMELAB"]
+        },
+        {
+          "team": "security_team",
+          "topics": ["teams.security.*"],
+          "assets": ["PFSENSEFW", "HOMELAB", "COMPANY"]
+        },
+        {
+          "team": "network_team",
+          "topics": ["teams.network.*"],
+          "assets": ["PFSENSEFW", "HOMELAB"]
+        },
+        {
+          "team": "system_engineering_team",
+          "topics": ["teams.system.*"],
+          "assets": ["NAS", "KAIJU_NO_8", "HOMELAB"]
+        }
+      ]
+    },
+    
+    "layer_routing": {
+      "enabled": true,
+      "infrastructure_to_inference": {
+        "pattern": "infrastructure.* → inference.*",
+        "topics": [
+          "infrastructure.*",
+          "inference.*"
+        ]
+      },
+      "cross_layer": {
+        "enabled": true,
+        "topics": [
+          "infrastructure.*",
+          "inference.*",
+          "teams.*"
+        ]
+      }
+    }
+  },
+  
+  "security": {
+    "authentication": {
+      "method": "AzureKeyVault",
+      "credential_type": "DefaultAzureCredential",
+      "managed_identity": true,
+      "service_principal": false
+    },
+    "authorization": {
+      "rbac_enabled": true,
+      "topic_permissions": "role_based",
+      "queue_permissions": "role_based"
+    },
+    "encryption": {
+      "in_transit": true,
+      "at_rest": true,
+      "encryption_type": "TLS_1.2"
+    },
+    "audit": {
+      "enabled": true,
+      "log_all_messages": false,
+      "log_security_events": true,
+      "log_team_actions": true
+    }
+  },
+  
+  "monitoring": {
+    "health_checks": {
+      "enabled": true,
+      "interval_seconds": 60,
+      "topics": [
+        "monitoring.health.*"
+      ]
+    },
+    "metrics": {
+      "enabled": true,
+      "collect": [
+        "message_count",
+        "message_latency",
+        "error_rate",
+        "throughput"
+      ]
+    },
+    "alerts": {
+      "enabled": true,
+      "channels": [
+        "azure_bus_topic",
+        "email",
+        "slack"
+      ]
+    }
+  },
+  
+  "_metadata": {
+    "documentation": "docs/system/HOMELAB_AZURE_BUS_INTEROPERABILITY.md",
+    "script": "scripts/python/homelab_azure_bus_interoperability.py",
+    "consumers": [
+      "All @HOMELAB assets",
+      "All engineering teams",
+      "Infrastructure layers",
+      "Inference layers"
+    ],
+    "notes": "Comprehensive async Azure Service Bus interoperability for entire @HOMELAB and @COMPANY infrastructure at multiple layers"
+  }
+}

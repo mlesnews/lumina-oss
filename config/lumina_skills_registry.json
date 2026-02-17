@@ -1,0 +1,83 @@
+{
+  "_meta": {
+    "description": "Lumina skills registry — static manifest of available skills (ClawHub-style)",
+    "version": "1.0.0",
+    "updated_at": "2026-02-17",
+    "discovery_script": "scripts/python/lumina_skills_registry.py",
+    "skills_root": ".cursor/skills/",
+    "reference": "docs/system/OPENCLAW_UNIQUE_FEATURES_AND_LUMINA_FIT.md (Skills registry)"
+  },
+  "skills": {
+    "--ai-integration": {
+      "path": ".cursor/skills/--ai-integration",
+      "installed": true,
+      "category": "core",
+      "description": "AI integration patterns and workflows for Lumina",
+      "required_tools": [],
+      "gated": false
+    },
+    "--automation-first": {
+      "path": ".cursor/skills/--automation-first",
+      "installed": true,
+      "category": "core",
+      "description": "Automation-first workflow principles and patterns",
+      "required_tools": [],
+      "gated": false
+    },
+    "--helpdesk-pm": {
+      "path": ".cursor/skills/--helpdesk-pm",
+      "installed": true,
+      "category": "workflow",
+      "description": "Helpdesk and project management skill for ticket routing",
+      "required_tools": ["session_tools"],
+      "gated": false
+    },
+    "--local-resources-first": {
+      "path": ".cursor/skills/--local-resources-first",
+      "installed": true,
+      "category": "core",
+      "description": "Local-first resource usage — prefer ULTRON/KAIJU/NAS over cloud",
+      "required_tools": [],
+      "gated": false
+    },
+    "--mdv-troubleshoot": {
+      "path": ".cursor/skills/--mdv-troubleshoot",
+      "installed": true,
+      "category": "diagnostic",
+      "description": "MDV troubleshooting procedures for display/video issues",
+      "required_tools": ["execute_command"],
+      "gated": false
+    },
+    "--nas-dsm": {
+      "path": ".cursor/skills/--nas-dsm",
+      "installed": true,
+      "category": "infrastructure",
+      "description": "NAS DSM management — shares, backups, packages, Docker",
+      "required_tools": ["execute_command", "network_scan"],
+      "gated": false
+    },
+    "--request-workflow": {
+      "path": ".cursor/skills/--request-workflow",
+      "installed": true,
+      "category": "workflow",
+      "description": "Request workflow routing — tier classification and delegation",
+      "required_tools": ["session_tools"],
+      "gated": false
+    },
+    "--warm": {
+      "path": ".cursor/skills/--warm",
+      "installed": true,
+      "category": "persona",
+      "description": "Warm persona mode — empathetic and supportive communication style",
+      "required_tools": [],
+      "gated": false
+    }
+  },
+  "categories": {
+    "core": "Fundamental Lumina operating principles",
+    "workflow": "Task routing and project management",
+    "diagnostic": "Troubleshooting and system diagnostics",
+    "infrastructure": "Infrastructure management (NAS, clusters, network)",
+    "persona": "Communication style and personality modes"
+  }
+}

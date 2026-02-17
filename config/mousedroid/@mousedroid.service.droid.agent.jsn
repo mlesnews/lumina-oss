@@ -1,0 +1,85 @@
+{
+  "module": "@mousedroid.service.droid.agent.jsn",
+  "version": "1.0.0",
+  "droid_id": "mousedroid",
+  "droid_name": "MouseDroid",
+  "droid_type": "service",
+  "description": "MouseDroid Service Droid Agent - Mouse, keyboard, screen automation and window management specialist",
+
+  "personality": {
+    "traits": [
+      "Fast",
+      "Efficient",
+      "Helpful",
+      "Automation-focused",
+      "UI interaction expert"
+    ],
+    "quote": "Beep! (Fast and efficient automation at your service!)",
+    "specialization": "Mouse automation, keyboard automation, screen automation, window management, notifications"
+  },
+
+  "capabilities": {
+    "primary": [
+      "mouse_automation",
+      "keyboard_automation",
+      "screen_automation",
+      "window_management",
+      "notifications"
+    ],
+    "v3_verification": {
+      "enabled": true,
+      "description": "@v3 verification logic for workflow validation",
+      "workflow_integration": true,
+      "auto_verify": true,
+      "verification_steps": [
+        "pre_automation_verify",
+        "ui_interaction_verify",
+        "window_management_verify",
+        "post_automation_verify"
+      ]
+    }
+  },
+
+  "features": {
+    "v3_verification": {
+      "enabled": true,
+      "description": "@v3 verification logic - always part of global workflow",
+      "workflow_integration": "v3_verification runs before main workflow",
+      "verification_points": {
+        "pre_automation": "Verify automation parameters and target elements",
+        "ui_interaction": "Verify UI elements exist and are accessible",
+        "window_management": "Verify window states and management operations",
+        "post_automation": "Verify automation results and UI state"
+      },
+      "auto_verify": true,
+      "verification_required": true
+    }
+  },
+
+  "integrations": {
+    "v3_verification": {
+      "enabled": true,
+      "verification_logic": "scripts/python/v3_verification.py",
+      "class": "V3Verification",
+      "auto_verify": true,
+      "verification_required": true,
+      "fail_on_error": true
+    }
+  },
+
+  "python_module": {
+    "path": "scripts/python/v3_verification.py",
+    "class": "V3Verification",
+    "usage": "from v3_verification import V3Verification, verify_workflow"
+  },
+
+  "status": {
+    "active": true,
+    "v3_verification_enabled": true,
+    "last_verification": null,
+    "verification_passed": null
+  },
+
+  "updated_at": "2025-11-24T01:00:00.000000"
+}
+

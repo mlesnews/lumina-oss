@@ -1,0 +1,423 @@
+{
+  "version": "2.0.0",
+  "name": "@DEATHSTAR Compute Doctrine",
+  "codename": "ULTRON",
+  "description": "The @HOMELAB IS one virtual cluster called ULTRON — the Death Star. All nodes present as a single compute surface. Cloud is overflow only. Job scheduling inspired by mainframe JCL + modern chip pipeline architecture.",
+  "last_updated": "2026-02-17",
+  "protocol": "@DOIT @BAU @TRIAGE @END2END @AI2AI @AGENT2AGENT",
+  "authors": ["JARVIS", "Matt Lesnewski"],
+
+  "core_principles": [
+    "LOCAL-FIRST: All workloads run on ULTRON cluster by default",
+    "CLOUD = OVERFLOW: Azure/third-party frameworks absorb burst only when ULTRON saturated",
+    "ONE VIRTUAL CLUSTER: All homelab nodes present as 'ULTRON' — one compute surface",
+    "BALANCED WORKTREES: @GRID load-balances across nodes, no single point of saturation",
+    "MAINFRAME DISCIPLINE: Jobs are declared, scheduled, and tracked like mainframe JCL",
+    "CHIP PIPELINE: Workflows flow through fetch→decode→execute→memory→writeback stages"
+  ],
+
+  "cluster_identity": {
+    "name": "ULTRON",
+    "alias": "@DEATHSTAR",
+    "type": "Federated Virtual Cluster",
+    "nodes": {
+      "ULTRON-GPU": {
+        "hostname": "Millennium-Falcon",
+        "ip": "<NAS_IP>",
+        "role": "Primary GPU Compute",
+        "hardware": "RTX 5090",
+        "cpu_analogy": "P-Core (Performance)",
+        "mainframe_analogy": "LPAR-1 (General Purpose)",
+        "capabilities": ["GPU inference", "Heavy compute", "IDE host", "JARVIS primary"],
+        "ollama_port": 11434,
+        "services": ["claude-code", "ollama", "cache-service:8082"]
+      },
+      "KAIJU": {
+        "hostname": "kaiju",
+        "ip": "<NAS_IP>",
+        "role": "Secondary GPU + Iron Legion",
+        "hardware": "RTX 3090",
+        "cpu_analogy": "P-Core (Performance)",
+        "mainframe_analogy": "LPAR-2 (AI Specialty)",
+        "capabilities": ["Iron Legion cluster", "Expert routing", "Model serving"],
+        "iron_legion_port": 3001,
+        "services": ["iron-legion:3001", "ollama:11434"]
+      },
+      "NAS": {
+        "hostname": "ds1821",
+        "ip": "<NAS_PRIMARY_IP>",
+        "role": "Storage + CPU Compute + Services",
+        "hardware": "AMD Ryzen (8-core), 32GB, 8x HDD",
+        "cpu_analogy": "Storage Core (SPU)",
+        "mainframe_analogy": "DASD Controller + JES Spool",
+        "capabilities": ["Persistent storage", "Docker services", "MariaDB", "n8n", "Jupyter"],
+        "services": ["mariadb:3306", "n8n:5678", "jupyter:8888", "docker"]
+      },
+      "BitNet": {
+        "hostname": "Millennium-Falcon (process)",
+        "ip": "127.0.0.1",
+        "role": "CPU-Only 1.58-bit Inference",
+        "hardware": "CPU (no GPU needed)",
+        "cpu_analogy": "E-Core (Efficiency)",
+        "mainframe_analogy": "zIIP (Specialty Engine)",
+        "capabilities": ["Trivial queries", "Low-latency triage", "Always-on baseline"],
+        "port": 11435,
+        "throughput": "35 tok/s"
+      }
+    },
+    "cloud_overflow": {
+      "description": "External compute absorbed ONLY when ULTRON cluster saturated",
+      "providers": {
+        "azure": {
+          "services": ["Service Bus", "Functions", "Blob Storage", "Key Vault"],
+          "role": "Enterprise integration + disaster recovery",
+          "overflow_trigger": "Service Bus queue depth > 100 OR Azure Functions for serverless burst"
+        },
+        "anthropic": {
+          "services": ["Claude Opus 4.6", "Claude Sonnet 4.5"],
+          "role": "Complex reasoning overflow (@PEAK operations)",
+          "overflow_trigger": "Local models insufficient for task complexity"
+        },
+        "xai": {
+          "services": ["Grok 4.1", "Grok 4 Fast"],
+          "role": "Real-time X data, unfiltered analysis (@GROK_CODE)",
+          "overflow_trigger": "Real-time social/market data needed"
+        }
+      },
+      "policy": "NEVER migrate primary workloads to cloud. Cloud is burst buffer, not home base."
+    }
+  },
+
+  "mainframe_jcl_model": {
+    "description": "Workflows modeled after IBM mainframe Job Control Language (JCL). Every unit of work is a JOB with STEPs, each STEP has an EXEC (program) and DD (data definitions).",
+
+    "job_classes": {
+      "A": {
+        "name": "CRITICAL",
+        "description": "Security incidents, system failures, @PEAK operations",
+        "priority": 0,
+        "preemptive": true,
+        "max_concurrent": "unlimited",
+        "routing": "Nearest available core with GPU preference",
+        "irq_level": "IRQ0",
+        "examples": ["Security breach response", "Trading halt", "System recovery"]
+      },
+      "B": {
+        "name": "HIGH",
+        "description": "Trading signals, real-time analysis, user-initiated tasks",
+        "priority": 1,
+        "preemptive": false,
+        "max_concurrent": 4,
+        "routing": "Load-balanced across ULTRON-GPU + KAIJU",
+        "irq_level": "IRQ1",
+        "examples": ["@SYPHON intel sweep", "Bot Governor decisions", "Confidence aggregation"]
+      },
+      "C": {
+        "name": "MEDIUM",
+        "description": "Scheduled workflows, batch analysis, @HELPDESK tickets",
+        "priority": 2,
+        "preemptive": false,
+        "max_concurrent": 8,
+        "routing": "Any available core",
+        "irq_level": "IRQ2",
+        "examples": ["Strategy Collider runs", "@WOPR simulations", "Backup jobs"]
+      },
+      "D": {
+        "name": "LOW",
+        "description": "Background maintenance, log rotation, health checks",
+        "priority": 3,
+        "preemptive": false,
+        "max_concurrent": 16,
+        "routing": "NAS or BitNet preferred (off-load GPU cores)",
+        "irq_level": "IRQ3",
+        "examples": ["@GRID heartbeat", "Cache cleanup", "Pattern detection"]
+      },
+      "E": {
+        "name": "BATCH",
+        "description": "Long-running batch jobs, model training, mass analysis",
+        "priority": 4,
+        "preemptive": false,
+        "max_concurrent": 2,
+        "routing": "KAIJU (Iron Legion) for GPU, NAS for CPU-bound",
+        "irq_level": "IRQ4",
+        "examples": ["@DYNO stress tests", "10K year simulations", "Model fine-tuning"]
+      }
+    },
+
+    "job_lifecycle": {
+      "description": "Mainframe JES2 (Job Entry Subsystem) inspired lifecycle",
+      "states": [
+        {"state": "INPUT", "description": "Job submitted to @HELPDESK / @C-3PO dispatcher"},
+        {"state": "CONVERSION", "description": "@C-3PO parses, validates, assigns job class"},
+        {"state": "QUEUED", "description": "Waiting in priority queue per job class"},
+        {"state": "EXECUTION", "description": "Running on assigned @GRID node(s)"},
+        {"state": "OUTPUT", "description": "Results written to cache/NAS/Azure"},
+        {"state": "PURGE", "description": "Cleanup after retention period"}
+      ]
+    },
+
+    "step_template": {
+      "description": "Each STEP in a JOB follows this pattern",
+      "fields": {
+        "EXEC": "The program/agent to execute (e.g., @SYPHON, @WOPR, @DYNO)",
+        "PARM": "Parameters passed to the program",
+        "DD_SYSOUT": "Standard output destination (cache/NAS/Azure Blob)",
+        "DD_SYSIN": "Standard input source (previous step output / cache / config)",
+        "DD_WORK": "Working dataset (temp files, intermediate results)",
+        "COND": "Condition codes — proceed/skip based on prior step RC",
+        "REGION": "Resource allocation (GPU memory, CPU cores, max runtime)"
+      }
+    },
+
+    "example_job": {
+      "name": "SYPHON_INTEL_SWEEP",
+      "class": "B",
+      "steps": [
+        {
+          "step": "FETCH",
+          "exec": "@SYPHON",
+          "parm": "sources=7,budget=500",
+          "dd_sysin": "config/syphon_sources.json",
+          "dd_sysout": "data/syphon_intelligence/raw/",
+          "region": "CPU=2,MEM=4G,TIME=300"
+        },
+        {
+          "step": "PARSE",
+          "exec": "SpiceHarvester",
+          "parm": "format=quantum_particle",
+          "dd_sysin": "data/syphon_intelligence/raw/",
+          "dd_sysout": "data/trading/particles/",
+          "cond": "(0,NE)",
+          "region": "CPU=1,MEM=2G,TIME=120"
+        },
+        {
+          "step": "SIMULATE",
+          "exec": "@WOPR",
+          "parm": "iterations=10000,volatility=auto",
+          "dd_sysin": "data/trading/particles/",
+          "dd_sysout": "data/trading/simulations/",
+          "cond": "(0,NE)",
+          "region": "GPU=1,MEM=8G,TIME=600"
+        },
+        {
+          "step": "PROMOTE",
+          "exec": "StrategyLeaderboard",
+          "parm": "min_sharpe=1.5",
+          "dd_sysin": "data/trading/simulations/",
+          "dd_sysout": "data/trading/leaderboard/",
+          "cond": "(0,NE)",
+          "region": "CPU=1,MEM=1G,TIME=60"
+        }
+      ]
+    }
+  },
+
+  "wopr_mainframe_array": {
+    "description": "@WOPR is a MAINFRAME for PATTERNS — a custom @ARRAY using Jupyter Notebooks (Holocrons) with database linking, embedding, and @JOCASTA_NU as research librarian",
+    "identity": "Pattern Recognition Mainframe",
+    "analogy": "IBM z/Series + Sysplex for pattern processing",
+
+    "array_nodes": {
+      "description": "The @WOPR array is distributed across ULTRON cluster, with NAS as primary DASD",
+      "pattern_database": {
+        "engine": "MariaDB on NAS (<NAS_PRIMARY_IP>:3306)",
+        "database": "wopr",
+        "tables": ["regex_patterns", "pattern_detections", "wild_patterns"],
+        "purpose": "Pattern storage, versioning, activation states"
+      },
+      "holocron_notebooks": {
+        "location": "/mnt/nas_jupyter/notebooks/",
+        "server": "Jupyter on NAS (<NAS_PRIMARY_IP>:8888)",
+        "purpose": "Interactive pattern research, analysis, visualization",
+        "types": [
+          "Pattern discovery notebooks (research)",
+          "Strategy analysis notebooks (backtesting)",
+          "JARVIS Private Journal (blackbox/meta-cognition)",
+          "Signal correlation notebooks (multi-source)"
+        ]
+      },
+      "embedding_store": {
+        "engine": "ChromaDB (local + NAS mirror)",
+        "size": "140MB",
+        "purpose": "Semantic search over patterns, strategies, intel reports",
+        "sync": "rsync every 4h to NAS, Azure Blob for DR"
+      },
+      "simulation_engine": {
+        "script": "docker/cluster-ui/trading_simulator.py",
+        "method": "Monte Carlo (10K+ iterations)",
+        "calibrator": "docker/cluster-ui/simulation_calibrator.py",
+        "purpose": "Pattern fitness evaluation via simulated market scenarios"
+      }
+    },
+
+    "jocasta_nu": {
+      "description": "@JOCASTA_NU — Jedi Archivist and Research Librarian of the @WOPR mainframe",
+      "role": "Research, curation, and retrieval of pattern knowledge",
+      "responsibilities": [
+        "Index and catalog all pattern discoveries across Holocron notebooks",
+        "Link patterns to their source intel (which @SYPHON sweep found them)",
+        "Maintain embedding coherency between ChromaDB and MariaDB",
+        "Curate the Jedi Archives (NAS Jupyter) — prune stale, promote validated",
+        "Cross-reference patterns against historical market data",
+        "Serve as RAG retrieval interface for JARVIS and subagents",
+        "Flag pattern drift — when live performance diverges from backtest"
+      ],
+      "data_flow": [
+        "@SYPHON → raw intel → @JOCASTA_NU catalogs and embeds",
+        "Holocron notebooks → pattern research → @JOCASTA_NU indexes",
+        "@WOPR simulation → fitness scores → @JOCASTA_NU links to source patterns",
+        "Live trading → detection logs → @JOCASTA_NU tracks drift",
+        "Any agent → RAG query → @JOCASTA_NU retrieves relevant knowledge"
+      ],
+      "storage_tiers": {
+        "hot": "ChromaDB (in-memory, <10ms retrieval)",
+        "warm": "MariaDB wopr database (indexed, <100ms)",
+        "cold": "NAS Jupyter Holocrons (notebook files, <1s)",
+        "archive": "Azure Blob (DR, minutes)"
+      }
+    }
+  },
+
+  "modern_chip_pipeline": {
+    "description": "Extends homelab_cpu_architecture.json with modern out-of-order execution concepts",
+    "reference": "config/homelab_cpu_architecture.json",
+
+    "superscalar": {
+      "description": "Multiple execution units running in parallel (like modern CPUs)",
+      "execution_ports": {
+        "port_0": "GPU Inference (ULTRON-GPU RTX5090)",
+        "port_1": "GPU Inference (KAIJU RTX3090)",
+        "port_2": "CPU Compute (NAS 8-core)",
+        "port_3": "Efficiency Inference (BitNet 1.58-bit)",
+        "port_4": "Cloud Overflow (Azure/Anthropic/xAI)"
+      },
+      "dispatch_width": 4,
+      "note": "Up to 4 jobs executing simultaneously across local ports. Port 4 (cloud) only when ports 0-3 saturated."
+    },
+
+    "out_of_order_execution": {
+      "description": "Jobs can complete out of order if no data dependencies",
+      "enabled": true,
+      "reorder_buffer_size": 32,
+      "note": "@C-3PO tracks job dependencies. Independent jobs execute on any available port regardless of submission order."
+    },
+
+    "speculative_execution": {
+      "description": "Start likely-needed work before confirmed (like CPU branch prediction)",
+      "enabled": true,
+      "use_cases": [
+        "@SYPHON pre-fetches intel sources before sweep is formally triggered",
+        "@WOPR pre-warms simulation parameters based on last market regime",
+        "Cache service pre-loads compiled memory before session fully starts"
+      ],
+      "rollback": "If speculative work proves unnecessary, discard silently"
+    },
+
+    "simd": {
+      "description": "Single Instruction, Multiple Data — batch operations",
+      "use_cases": [
+        "Strategy Collider runs 7 particle types through same fitness function",
+        "@DYNO stress tests 8 profiles against same strategy simultaneously",
+        "@SYPHON sweeps 7 sources in parallel with same query template"
+      ]
+    },
+
+    "branch_prediction": {
+      "predictor": "@WOPR",
+      "description": "Pattern-based prediction of workflow outcomes",
+      "prediction_table": "MariaDB wopr.regex_patterns",
+      "accuracy_target": ">90%",
+      "misprediction_penalty": "Flush speculative results, re-execute on correct path"
+    }
+  },
+
+  "workload_manager": {
+    "description": "IBM WLM-inspired resource management. @GRID + @C-3PO coordinate.",
+    "service_classes": {
+      "REALTIME": {
+        "goal": "Response time < 1s",
+        "routing": "ULTRON-GPU or KAIJU (nearest GPU)",
+        "workloads": ["Trading signals", "Security alerts", "User CLI responses"]
+      },
+      "INTERACTIVE": {
+        "goal": "Response time < 30s",
+        "routing": "Any available core",
+        "workloads": ["@HELPDESK tickets", "Analysis requests", "Doctor diagnostics"]
+      },
+      "BATCH": {
+        "goal": "Throughput optimized, no time constraint",
+        "routing": "Least-loaded core, prefer NAS for CPU-bound",
+        "workloads": ["Simulations", "Backups", "Model training", "Stress tests"]
+      },
+      "DISCRETIONARY": {
+        "goal": "Best-effort, lowest priority",
+        "routing": "Idle cores only",
+        "workloads": ["Log analysis", "Health checks", "Cache warming"]
+      }
+    },
+    "resource_groups": {
+      "GPU_POOL": {
+        "nodes": ["ULTRON-GPU", "KAIJU"],
+        "total_vram": "40GB (24+16)",
+        "sharing": "Time-sliced per job class priority"
+      },
+      "CPU_POOL": {
+        "nodes": ["NAS", "BitNet", "ULTRON-GPU", "KAIJU"],
+        "total_cores": 32,
+        "sharing": "Fair-share with priority weighting"
+      },
+      "STORAGE_POOL": {
+        "nodes": ["NAS"],
+        "capacity": "48TB raw, RAID",
+        "tiers": ["SSD cache (L2)", "HDD bulk (L3)", "Azure Blob (DR)"]
+      }
+    }
+  },
+
+  "c3po_dispatcher": {
+    "description": "@C-3PO is the central job dispatcher — the JES2 of the @DEATHSTAR",
+    "role": "Manager of @HELPDESK, routes all jobs through proper channels",
+    "responsibilities": [
+      "Accept job submissions from all entry points (CLI, API, n8n, Azure Bus)",
+      "Classify job class (A-E) based on content and urgency",
+      "Route to appropriate @GRID node based on WLM service class",
+      "Track job lifecycle (INPUT → EXECUTION → OUTPUT → PURGE)",
+      "Escalate to JARVIS when job class A (CRITICAL) triggered",
+      "Coordinate with @GRID heartbeat for node health awareness",
+      "Manage job dependencies (hold STEP 2 until STEP 1 RC=0)"
+    ],
+    "entry_points": [
+      {"name": "CLI", "protocol": "Direct invocation", "handler": "claude-code hooks"},
+      {"name": "API", "protocol": "REST", "port": 8000, "handler": "JARVIS API"},
+      {"name": "n8n", "protocol": "Webhook", "port": 5678, "handler": "NAS n8n workflows"},
+      {"name": "Azure Bus", "protocol": "Service Bus", "handler": "Azure Functions → local relay"},
+      {"name": "Cron", "protocol": "Scheduled", "handler": "crontab on each @GRID node"},
+      {"name": "Email", "protocol": "IMAP → n8n", "handler": "syphon_email_pipeline.py"}
+    ]
+  },
+
+  "overflow_policy": {
+    "description": "When to spill compute to cloud — the @GRID governor decides",
+    "triggers": {
+      "gpu_saturation": "All GPU ports busy for > 30s with queued jobs",
+      "cpu_saturation": "All CPU cores > 90% utilization for > 60s",
+      "memory_pressure": "Available RAM < 2GB on executing node",
+      "complexity_threshold": "Task requires capabilities beyond local models (e.g., 200K+ context)",
+      "explicit_request": "User or JARVIS explicitly requests cloud execution"
+    },
+    "overflow_chain": [
+      "1. Try ULTRON-GPU (primary)",
+      "2. Try KAIJU (secondary GPU)",
+      "3. Try NAS (CPU-bound work)",
+      "4. Try BitNet (trivial/triage)",
+      "5. OVERFLOW → Azure Functions (serverless burst)",
+      "6. OVERFLOW → Anthropic API (complex reasoning)",
+      "7. OVERFLOW → xAI Grok (real-time data)"
+    ],
+    "cloud_budget": {
+      "monthly_cap": "Defined per provider in Azure Key Vault",
+      "tracking": "lumina_cost_tracker.py",
+      "alert_threshold": "80% of monthly cap"
+    }
+  }
+}

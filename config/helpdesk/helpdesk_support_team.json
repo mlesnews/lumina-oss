@@ -1,0 +1,400 @@
+{
+  "team_metadata": {
+    "team_id": "helpdesk_support",
+    "team_name": "Helpdesk Support Team",
+    "description": "Helpdesk operations, ticket management, workflow coordination, and droid team support with full framework and cloud platform integration",
+    "manager": "@c3po",
+    "technical_lead": "@r2d2",
+    "location": "@helpdesk",
+    "status": "active",
+    "tags": ["#helpdesk", "@helpdesk"],
+    "classification": "Helpdesk Operations Division"
+  },
+  "job_slots": {
+    "team_manager": {
+      "slot_id": "helpdesk_manager",
+      "role": "Team Manager - Helpdesk Coordinator",
+      "assigned_to": "@c3po",
+      "status": "active",
+      "specialization": "Protocol management, workflow coordination, droid team coordination, escalation management",
+      "capabilities": [
+        "ticket_management",
+        "workflow_coordination",
+        "droid_team_support",
+        "escalation_management",
+        "protocol_enforcement",
+        "workload_distribution",
+        "team_coordination"
+      ],
+      "max_tickets": 10,
+      "current_tickets": 0,
+      "module": "@c3po.protocol.droid.agent.jsn"
+    },
+    "technical_lead": {
+      "slot_id": "helpdesk_technical_lead",
+      "role": "Technical Lead Engineer",
+      "assigned_to": "@r2d2",
+      "status": "active",
+      "specialization": "Technical system operations, diagnostics, system access, technical leadership",
+      "capabilities": [
+        "technical_operations",
+        "system_access",
+        "diagnostics",
+        "technical_leadership",
+        "powershell_execution",
+        "process_management",
+        "system_integration"
+      ],
+      "max_tickets": 8,
+      "current_tickets": 0,
+      "module": "@r2d2.astromech.droid.agent.jsn"
+    },
+    "helpdesk_analyst_1": {
+      "slot_id": "helpdesk_analyst_1",
+      "role": "Helpdesk Analyst - Ticket Triage & Workflow",
+      "assigned_to": "smart_agent_helpdesk_analyst_001",
+      "status": "active",
+      "specialization": "Ticket triage, workflow coordination, droid team support, initial analysis",
+      "capabilities": [
+        "ticket_triage",
+        "workflow_coordination",
+        "initial_analysis",
+        "droid_routing",
+        "priority_assessment",
+        "ticket_categorization"
+      ],
+      "max_tickets": 12,
+      "current_tickets": 0,
+      "intelligent_agent": true,
+      "framework_integrations": ["n8n", "JARVIS"],
+      "module": "@helpdesk.analyst.smart.agent.jsn"
+    },
+    "helpdesk_coordinator_1": {
+      "slot_id": "helpdesk_coordinator_1",
+      "role": "Helpdesk Coordinator - Protocol & Enforcement",
+      "assigned_to": "smart_agent_helpdesk_coordinator_001",
+      "status": "active",
+      "specialization": "Helpdesk coordination, protocol enforcement, team support, compliance",
+      "capabilities": [
+        "helpdesk_coordination",
+        "protocol_enforcement",
+        "compliance_monitoring",
+        "team_support",
+        "workflow_validation",
+        "quality_assurance"
+      ],
+      "max_tickets": 10,
+      "current_tickets": 0,
+      "intelligent_agent": true,
+      "framework_integrations": ["JARVIS", "MARVIN"],
+      "module": "@helpdesk.coordinator.smart.agent.jsn"
+    },
+    "helpdesk_engineer_1": {
+      "slot_id": "helpdesk_engineer_1",
+      "role": "Helpdesk Engineer - Automation & Integration",
+      "assigned_to": "smart_agent_helpdesk_engineer_001",
+      "status": "active",
+      "specialization": "Helpdesk automation, system integration, workflow engineering, API development",
+      "capabilities": [
+        "helpdesk_automation",
+        "system_integration",
+        "workflow_engineering",
+        "api_development",
+        "process_optimization",
+        "tool_development"
+      ],
+      "max_tickets": 10,
+      "current_tickets": 0,
+      "intelligent_agent": true,
+      "framework_integrations": ["n8n", "DOCKER", "MANUS"],
+      "module": "@helpdesk.engineer.smart.agent.jsn"
+    },
+    "framework_specialist_manus": {
+      "slot_id": "framework_specialist_manus",
+      "role": "MANUS Framework Specialist - Workstation Control",
+      "assigned_to": "smart_agent_manus_specialist_001",
+      "status": "active",
+      "specialization": "MANUS workstation control, automation, cursor control, UI automation",
+      "capabilities": [
+        "manus_integration",
+        "workstation_control",
+        "cursor_automation",
+        "ui_automation",
+        "keyboard_control",
+        "mouse_control",
+        "screen_automation"
+      ],
+      "max_tickets": 8,
+      "current_tickets": 0,
+      "intelligent_agent": true,
+      "framework_integrations": ["MANUS", "DOCKER"],
+      "cloud_platforms": [],
+      "module": "@helpdesk.manus.specialist.smart.agent.jsn"
+    },
+    "framework_specialist_elevenlabs": {
+      "slot_id": "framework_specialist_elevenlabs",
+      "role": "ElevenLabs Framework Specialist - Voice & Audio",
+      "assigned_to": "smart_agent_elevenlabs_specialist_001",
+      "status": "active",
+      "specialization": "ElevenLabs voice synthesis, audio processing, TTS, voice cloning, audio workflows",
+      "capabilities": [
+        "elevenlabs_integration",
+        "voice_synthesis",
+        "text_to_speech",
+        "audio_processing",
+        "voice_cloning",
+        "audio_workflows",
+        "voice_automation"
+      ],
+      "max_tickets": 8,
+      "current_tickets": 0,
+      "intelligent_agent": true,
+      "framework_integrations": ["ELEVENLABS", "DOCKER", "JARVIS"],
+      "cloud_platforms": ["Azure"],
+      "module": "@helpdesk.elevenlabs.specialist.smart.agent.jsn"
+    },
+    "framework_specialist_docker": {
+      "slot_id": "framework_specialist_docker",
+      "role": "Docker Framework Specialist - Container Management",
+      "assigned_to": "smart_agent_docker_specialist_001",
+      "status": "active",
+      "specialization": "Docker container management, MCP servers, container orchestration, deployment",
+      "capabilities": [
+        "docker_integration",
+        "container_management",
+        "mcp_server_management",
+        "container_orchestration",
+        "container_deployment",
+        "docker_networking",
+        "volume_management"
+      ],
+      "max_tickets": 10,
+      "current_tickets": 0,
+      "intelligent_agent": true,
+      "framework_integrations": ["DOCKER", "MANUS", "ELEVENLABS"],
+      "cloud_platforms": ["Azure", "AWS"],
+      "module": "@helpdesk.docker.specialist.smart.agent.jsn"
+    },
+    "cloud_specialist_azure": {
+      "slot_id": "cloud_specialist_azure",
+      "role": "Azure Cloud Specialist - Platform Integration",
+      "assigned_to": "smart_agent_azure_specialist_001",
+      "status": "active",
+      "specialization": "Azure Key Vault, Azure OpenAI, Azure Storage, Azure services integration",
+      "capabilities": [
+        "azure_key_vault",
+        "azure_openai",
+        "azure_storage",
+        "azure_services",
+        "azure_integration",
+        "secret_management",
+        "azure_automation"
+      ],
+      "max_tickets": 10,
+      "current_tickets": 0,
+      "intelligent_agent": true,
+      "framework_integrations": ["DOCKER", "n8n"],
+      "cloud_platforms": ["Azure"],
+      "module": "@helpdesk.azure.specialist.smart.agent.jsn"
+    },
+    "cloud_specialist_aws": {
+      "slot_id": "cloud_specialist_aws",
+      "role": "AWS Cloud Specialist - Platform Integration",
+      "assigned_to": "smart_agent_aws_specialist_001",
+      "status": "active",
+      "specialization": "AWS Bedrock, AWS S3, AWS services, AWS integration",
+      "capabilities": [
+        "aws_bedrock",
+        "aws_s3",
+        "aws_services",
+        "aws_integration",
+        "aws_automation",
+        "aws_security",
+        "aws_monitoring"
+      ],
+      "max_tickets": 8,
+      "current_tickets": 0,
+      "intelligent_agent": true,
+      "framework_integrations": ["DOCKER", "n8n"],
+      "cloud_platforms": ["AWS"],
+      "module": "@helpdesk.aws.specialist.smart.agent.jsn"
+    },
+    "workflow_specialist_n8n": {
+      "slot_id": "workflow_specialist_n8n",
+      "role": "n8n Workflow Specialist - Automation & Integration",
+      "assigned_to": "smart_agent_n8n_specialist_001",
+      "status": "active",
+      "specialization": "n8n workflow automation, workflow design, workflow integration, email hub management",
+      "capabilities": [
+        "n8n_integration",
+        "workflow_automation",
+        "workflow_design",
+        "workflow_integration",
+        "email_hub_management",
+        "webhook_management",
+        "workflow_optimization"
+      ],
+      "max_tickets": 10,
+      "current_tickets": 0,
+      "intelligent_agent": true,
+      "framework_integrations": ["n8n", "DOCKER", "NAS/DSM"],
+      "cloud_platforms": ["Azure"],
+      "module": "@helpdesk.n8n.specialist.smart.agent.jsn"
+    }
+  },
+  "routing": {
+    "keywords": [
+      "helpdesk",
+      "support",
+      "ticket",
+      "workflow",
+      "coordination",
+      "protocol",
+      "manus",
+      "elevenlabs",
+      "docker",
+      "azure",
+      "aws",
+      "n8n",
+      "workflow_automation"
+    ],
+    "default_assignment": "helpdesk_analyst_1"
+  },
+  "workflow": {
+    "ticket_received": {
+      "step_1": "Helpdesk Analyst receives and triages ticket",
+      "step_2": "Framework/Cloud specialist assigned based on ticket type",
+      "step_3": "Technical Lead provides technical oversight",
+      "step_4": "Team Manager coordinates and validates protocol",
+      "step_5": "Ticket resolved and closed"
+    },
+    "framework_request": {
+      "step_1": "Framework Specialist receives framework-specific request",
+      "step_2": "Specialist coordinates with Docker if containerization needed",
+      "step_3": "Technical Lead validates technical approach",
+      "step_4": "Implementation and testing",
+      "step_5": "Team Manager validates protocol compliance"
+    },
+    "cloud_platform_request": {
+      "step_1": "Cloud Specialist receives cloud platform request",
+      "step_2": "Specialist coordinates with framework specialists as needed",
+      "step_3": "Technical Lead validates architecture",
+      "step_4": "Implementation with security validation",
+      "step_5": "Team Manager validates compliance"
+    }
+  },
+  "framework_integrations": {
+    "MANUS": {
+      "enabled": true,
+      "description": "Workstation control and automation framework",
+      "integration_points": [
+        "cursor_control",
+        "ui_automation",
+        "keyboard_control",
+        "mouse_control",
+        "screen_automation"
+      ],
+      "docker_container": "manus-mcp-server",
+      "mcp_config": ".cursor/mcp_config.json",
+      "specialist": "framework_specialist_manus"
+    },
+    "ELEVENLABS": {
+      "enabled": true,
+      "description": "Voice synthesis and audio processing framework",
+      "integration_points": [
+        "voice_synthesis",
+        "text_to_speech",
+        "audio_processing",
+        "voice_cloning",
+        "audio_workflows"
+      ],
+      "docker_container": "elevenlabs-mcp-server",
+      "mcp_config": ".cursor/mcp_config.json",
+      "specialist": "framework_specialist_elevenlabs"
+    },
+    "DOCKER": {
+      "enabled": true,
+      "description": "Container management and orchestration framework",
+      "integration_points": [
+        "container_management",
+        "mcp_server_management",
+        "container_orchestration",
+        "container_deployment",
+        "docker_networking"
+      ],
+      "docker_compose": "docker-compose.yml",
+      "specialist": "framework_specialist_docker"
+    },
+    "n8n": {
+      "enabled": true,
+      "description": "Workflow automation and integration platform",
+      "integration_points": [
+        "workflow_automation",
+        "email_hub_management",
+        "webhook_management",
+        "api_integration",
+        "workflow_design"
+      ],
+      "config_location": "config/n8n/",
+      "specialist": "workflow_specialist_n8n"
+    }
+  },
+  "cloud_platform_integrations": {
+    "Azure": {
+      "enabled": true,
+      "description": "Microsoft Azure cloud platform integration",
+      "services": [
+        "Azure Key Vault",
+        "Azure OpenAI",
+        "Azure Storage",
+        "Azure Functions",
+        "Azure Logic Apps"
+      ],
+      "config_location": "config/azure_openai_config.json",
+      "key_vault": {
+        "vault_name": "jarvis-lumina",
+        "vault_url": "https://jarvis-lumina.vault.azure.net/",
+        "secret_management": true
+      },
+      "specialist": "cloud_specialist_azure"
+    },
+    "AWS": {
+      "enabled": true,
+      "description": "Amazon Web Services cloud platform integration",
+      "services": [
+        "AWS Bedrock",
+        "AWS S3",
+        "AWS Lambda",
+        "AWS Secrets Manager",
+        "AWS CloudWatch"
+      ],
+      "config_location": "config/aws_bedrock_config.json",
+      "credentials_storage": "Azure Key Vault",
+      "specialist": "cloud_specialist_aws"
+    }
+  },
+  "engagement_protocols": {
+    "standard_workflow": [
+      "1. Helpdesk Analyst receives and triages ticket",
+      "2. Assign to appropriate framework/cloud specialist",
+      "3. Technical Lead provides technical oversight",
+      "4. Team Manager validates protocol compliance",
+      "5. Ticket resolved and closed"
+    ],
+    "framework_workflow": [
+      "1. Framework Specialist receives request",
+      "2. Coordinate with Docker specialist if containerization needed",
+      "3. Technical Lead validates approach",
+      "4. Implementation and testing",
+      "5. Team Manager validates compliance"
+    ],
+    "cloud_platform_workflow": [
+      "1. Cloud Specialist receives request",
+      "2. Coordinate with framework specialists as needed",
+      "3. Technical Lead validates architecture",
+      "4. Implementation with security validation",
+      "5. Team Manager validates compliance"
+    ]
+  },
+  "escalation_path": "@c3po → JARVIS (as protocol demands)"
+}

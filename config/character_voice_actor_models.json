@@ -1,0 +1,221 @@
+{
+  "character_voice_actor_models": {
+    "version": "1.0.0",
+    "description": "Model versioning per @CHAR[#CHARACTER + @VOICE-ACTOR[#ACTING]]",
+    "model_selection": {
+      "strategy": "character_voice_actor_specific",
+      "fallback": "default_model"
+    },
+    "characters": {
+      "@tony": {
+        "character_name": "Tony Stark / Iron Man",
+        "character_id": "tony",
+        "voice_actors": {
+          "rdj": {
+            "voice_actor_name": "Robert Downey Jr.",
+            "voice_actor_id": "rdj",
+            "models": {
+              "primary": {
+                "model_id": "claude-3-5-sonnet-20241022",
+                "model_name": "Claude 3.5 Sonnet",
+                "provider": "anthropic",
+                "version": "20241022",
+                "mark": "Mark VII",
+                "display_name": "IRON MAN Mark VII (RDJ Voice)",
+                "characteristics": [
+                  "confident",
+                  "tech_savvy",
+                  "witty",
+                  "sarcastic"
+                ]
+              },
+              "alternatives": [
+                {
+                  "model_id": "claude-3-opus-20240229",
+                  "model_name": "Claude 3 Opus",
+                  "provider": "anthropic",
+                  "version": "20240229",
+                  "mark": "Mark VI",
+                  "display_name": "IRON MAN Mark VI (RDJ Voice)"
+                },
+                {
+                  "model_id": "gpt-4-turbo",
+                  "model_name": "GPT-4 Turbo",
+                  "provider": "openai",
+                  "version": "turbo",
+                  "mark": "Mark V",
+                  "display_name": "IRON MAN Mark V (RDJ Voice)"
+                }
+              ]
+            },
+            "voice_config": {
+              "elevenlabs_voice_id": "21m00Tcm4TlvDq8ikWAM",
+              "voice_name": "Tony Stark (RDJ)",
+              "voice_style": "confident_tech_savvy"
+            }
+          },
+          "ai_generated": {
+            "voice_actor_name": "AI Generated (Tony Stark Style)",
+            "voice_actor_id": "ai_generated",
+            "models": {
+              "primary": {
+                "model_id": "claude-3-5-sonnet-20241022",
+                "model_name": "Claude 3.5 Sonnet",
+                "provider": "anthropic",
+                "version": "20241022",
+                "mark": "Mark VII-AI",
+                "display_name": "IRON MAN Mark VII-AI (AI Voice)"
+              },
+              "alternatives": []
+            },
+            "voice_config": {
+              "elevenlabs_voice_id": "21m00Tcm4TlvDq8ikWAM",
+              "voice_name": "Tony Stark (AI)",
+              "voice_style": "ai_generated"
+            }
+          }
+        }
+      },
+      "@mace": {
+        "character_name": "Mace Windu",
+        "character_id": "mace",
+        "voice_actors": {
+          "samuel_jackson": {
+            "voice_actor_name": "Samuel L. Jackson",
+            "voice_actor_id": "samuel_jackson",
+            "models": {
+              "primary": {
+                "model_id": "claude-3-5-sonnet-20241022",
+                "model_name": "Claude 3.5 Sonnet",
+                "provider": "anthropic",
+                "version": "20241022",
+                "mark": "Mace Windu v1.0",
+                "display_name": "Mace Windu (Samuel L. Jackson Voice)",
+                "characteristics": [
+                  "authoritative",
+                  "calm",
+                  "wise",
+                  "focused"
+                ]
+              },
+              "alternatives": [
+                {
+                  "model_id": "claude-3-opus-20240229",
+                  "model_name": "Claude 3 Opus",
+                  "provider": "anthropic",
+                  "version": "20240229",
+                  "mark": "Mace Windu v0.9",
+                  "display_name": "Mace Windu v0.9 (SLJ Voice)"
+                }
+              ]
+            },
+            "voice_config": {
+              "elevenlabs_voice_id": "pNInz6obpgDQGcFmaJgB",
+              "voice_name": "Mace Windu (SLJ)",
+              "voice_style": "authoritative_wise"
+            }
+          }
+        }
+      },
+      "@gandalf": {
+        "character_name": "Gandalf",
+        "character_id": "gandalf",
+        "voice_actors": {
+          "ian_mckellen": {
+            "voice_actor_name": "Ian McKellen",
+            "voice_actor_id": "ian_mckellen",
+            "models": {
+              "primary": {
+                "model_id": "claude-3-5-sonnet-20241022",
+                "model_name": "Claude 3.5 Sonnet",
+                "provider": "anthropic",
+                "version": "20241022",
+                "mark": "Gandalf the Grey v1.0",
+                "display_name": "Gandalf (Ian McKellen Voice)",
+                "characteristics": [
+                  "wise",
+                  "mystical",
+                  "thoughtful",
+                  "warm"
+                ]
+              },
+              "alternatives": [
+                {
+                  "model_id": "claude-3-opus-20240229",
+                  "model_name": "Claude 3 Opus",
+                  "provider": "anthropic",
+                  "version": "20240229",
+                  "mark": "Gandalf the Grey v0.9",
+                  "display_name": "Gandalf v0.9 (IM Voice)"
+                }
+              ]
+            },
+            "voice_config": {
+              "elevenlabs_voice_id": "EXAVITQu4vr4xnSDxMaL",
+              "voice_name": "Gandalf (Ian McKellen)",
+              "voice_style": "wise_mystical"
+            }
+          }
+        }
+      },
+      "@jarvis": {
+        "character_name": "JARVIS",
+        "character_id": "jarvis",
+        "voice_actors": {
+          "paul_bettany": {
+            "voice_actor_name": "Paul Bettany",
+            "voice_actor_id": "paul_bettany",
+            "models": {
+              "primary": {
+                "model_id": "claude-3-5-sonnet-20241022",
+                "model_name": "Claude 3.5 Sonnet",
+                "provider": "anthropic",
+                "version": "20241022",
+                "mark": "JARVIS v2.0",
+                "display_name": "JARVIS (Paul Bettany Voice)",
+                "characteristics": [
+                  "professional",
+                  "helpful",
+                  "efficient",
+                  "calm"
+                ]
+              },
+              "alternatives": [
+                {
+                  "model_id": "claude-3-opus-20240229",
+                  "model_name": "Claude 3 Opus",
+                  "provider": "anthropic",
+                  "version": "20240229",
+                  "mark": "JARVIS v1.5",
+                  "display_name": "JARVIS v1.5 (PB Voice)"
+                }
+              ]
+            },
+            "voice_config": {
+              "elevenlabs_voice_id": "21m00Tcm4TlvDq8ikWAM",
+              "voice_name": "JARVIS (Paul Bettany)",
+              "voice_style": "professional_helpful"
+            }
+          }
+        }
+      }
+    },
+    "default_model": {
+      "model_id": "claude-3-5-sonnet-20241022",
+      "model_name": "Claude 3.5 Sonnet",
+      "provider": "anthropic",
+      "version": "20241022",
+      "mark": "Default",
+      "display_name": "Default Model"
+    },
+    "model_versioning": {
+      "version_format": "character_mark_version",
+      "examples": [
+        "@tony + rdj: Mark VII (20241022)",
+        "@mace + samuel_jackson: Mace Windu v1.0",
+        "@gandalf + ian_mckellen: Gandalf the Grey v1.0",
+        "@jarvis + paul_bettany: JARVIS v2.0"
+      ]
+    }
+  }
+}

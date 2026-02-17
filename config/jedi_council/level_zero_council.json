@@ -1,0 +1,132 @@
+{
+  "council_config": {
+    "version": "1.0.0",
+    "council_name": "LEVEL-ZERO JEDI-COUNCIL",
+    "council_type": "foundation_layer",
+    "description": "Foundation base layer for all higher-level JEDI-HIGH-COUNCILS. Three equal yet unique individuals as UPPER MANAGEMENT.",
+    "last_updated": "2026-01-02",
+    "status": "active"
+  },
+
+  "upper_management": {
+    "structure": "three_equal_members",
+    "members": [
+      {
+        "member_id": "jarvis_tony_stark",
+        "name": "J.A.R.V.I.S. (Tony Stark)",
+        "role": "CTO",
+        "title": "Chief Technology Officer",
+        "avatar_config": "config/jarvis/jarvis_tony_stark_avatar.json",
+        "authority": "upper_management",
+        "equal_status": true,
+        "unique_contribution": "Technology innovation, strategic vision, team inspiration"
+      },
+      {
+        "member_id": "mace_windu",
+        "name": "MACE WINDU",
+        "role": "Strategic Leadership",
+        "title": "Strategic Leader",
+        "avatar_config": "config/jedi_council/mace_windu_avatar.json",
+        "authority": "upper_management",
+        "equal_status": true,
+        "unique_contribution": "Strategic planning, tactical decision-making, balanced perspective"
+      },
+      {
+        "member_id": "gandalf",
+        "name": "GANDALF",
+        "role": "Wisdom & Guidance",
+        "title": "Wisdom Leader",
+        "avatar_config": "config/jedi_council/gandalf_avatar.json",
+        "authority": "upper_management",
+        "equal_status": true,
+        "unique_contribution": "Wisdom, guidance, philosophical leadership, long-term perspective"
+      }
+    ],
+    "decision_mechanism": "consensus_based",
+    "voting_requirement": "unanimous_or_majority",
+    "escalation_path": "jedi_high_councils"
+  },
+
+  "decision_panels": {
+    "enabled": true,
+    "panel_sizes": [5, 7, 9],
+    "panel_selection": {
+      "standard_decisions": 5,
+      "complex_decisions": 7,
+      "critical_decisions": 9
+    },
+    "judges_system": {
+      "enabled": true,
+      "judge_types": [
+        "technical_feasibility",
+        "strategic_alignment",
+        "risk_assessment",
+        "ethical_considerations",
+        "resource_requirements",
+        "timeline_constraints"
+      ],
+      "evaluation_criteria": "multi_dimensional"
+    },
+    "cloud_ai_matching": {
+      "enabled": true,
+      "matching_strategy": "actorial_digital_personage_model",
+      "matching_criteria": [
+        "personality_traits",
+        "boons_banes",
+        "decision_complexity",
+        "required_expertise",
+        "model_capabilities",
+        "performance_requirements"
+      ]
+    }
+  },
+
+  "personality_modeling": {
+    "enabled": true,
+    "system": "actorial_digital_personage_model",
+    "quantifiable_traits": true,
+    "boons_banes_tracking": true,
+    "trait_scale": "0-100",
+    "personality_files": [
+      "config/jarvis/jarvis_tony_stark_avatar.json",
+      "config/jedi_council/mace_windu_avatar.json",
+      "config/jedi_council/gandalf_avatar.json"
+    ]
+  },
+
+  "integration": {
+    "jedi_council": {
+      "enabled": true,
+      "relationship": "foundation",
+      "escalation": true
+    },
+    "jedi_high_councils": {
+      "enabled": true,
+      "relationship": "foundation_for_higher_levels",
+      "escalation_path": true,
+      "authority_respect": true
+    },
+    "existing_systems": {
+      "jarvis_system": true,
+      "marvin_system": true,
+      "decision_tree": true,
+      "v3_verification": true
+    }
+  },
+
+  "governance": {
+    "decision_authority": "upper_management",
+    "consensus_requirement": "majority_or_unanimous",
+    "escalation_rules": {
+      "standard": "level_zero_decision",
+      "complex": "level_zero_with_panel",
+      "critical": "level_zero_to_high_council"
+    },
+    "monitoring": {
+      "enabled": true,
+      "decision_tracking": true,
+      "performance_metrics": true,
+      "consensus_analysis": true
+    }
+  }
+}

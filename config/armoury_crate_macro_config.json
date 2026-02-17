@@ -1,0 +1,22 @@
+{
+  "macro_name": "Right Alt - Retry + Voice Input",
+  "assigned_key": "RightAlt",
+  "action_type": "Execute Program",
+  "program_path": "C:\\Users\\mlesn\\Dropbox\\my_projects\\.lumina\\scripts\\python\\trigger_retry_and_voice.bat",
+  "description": "Executes @RETRY_MANAGER processing and triggers voice input in Cursor IDE",
+  "tags": [
+    "#RETRY_MANAGER",
+    "#VOICE_INPUT",
+    "@JARVIS",
+    "@LUMINA"
+  ],
+  "setup_instructions": {
+    "step_1": "Open Armoury Crate",
+    "step_2": "Navigate to Device → Keyboard → Macro",
+    "step_3": "Click 'Create New Macro' or '+'",
+    "step_4": "Set Name: 'Right Alt - Retry + Voice Input'",
+    "step_5": "Assign to Right Alt key",
+    "step_6": "Add Action: Execute Program → C:\\Users\\mlesn\\Dropbox\\my_projects\\.lumina\\scripts\\python\\trigger_retry_and_voice.bat",
+    "step_7": "Save macro"
+  }
+}

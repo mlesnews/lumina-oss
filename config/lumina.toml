@@ -1,0 +1,32 @@
+{
+  "lumina": {
+    "version": "2.0",
+    "environment": "${LUMINA_ENV:development}",
+    "log_level": "${LOG_LEVEL:INFO}"
+  },
+  "workflows": {
+    "default_type": "simple",
+    "max_concurrent": 10,
+    "timeout_seconds": 3600
+  },
+  "apis": {
+    "default_timeout": 30,
+    "retry_attempts": 3,
+    "circuit_breaker_threshold": 5
+  },
+  "database": {
+    "pool_size": 10,
+    "connection_timeout": 30,
+    "retry_attempts": 3
+  },
+  "caching": {
+    "enabled": true,
+    "ttl_seconds": 3600,
+    "max_memory_mb": 512
+  },
+  "monitoring": {
+    "enabled": true,
+    "metrics_interval": 60,
+    "alert_email": "${ADMIN_EMAIL}"
+  }
+}

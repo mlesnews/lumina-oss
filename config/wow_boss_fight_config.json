@@ -1,0 +1,850 @@
+{
+  "wow_boss_fight_system": {
+    "version": "1.0.0",
+    "description": "World of Warcraft-style boss fights and epic monsters for VA combat",
+    "enabled": true,
+    "combat_style": "wow_raid",
+    "bosses": {
+      "lfr_boss": {
+        "boss_name": "LFR Boss",
+        "boss_id": "lfr_boss",
+        "difficulty": "LFR",
+        "max_health": 250000,
+        "health_percentage_phases": [100, 75, 50, 25, 0],
+        "phases": {
+          "phase_1": {
+            "name": "Phase 1: Initial Assault",
+            "health_percentage_start": 100,
+            "health_percentage_end": 75,
+            "abilities": [
+              {
+                "name": "Cleave",
+                "damage": 5000,
+                "cooldown": 8,
+                "type": "melee"
+              },
+              {
+                "name": "Fury Strike",
+                "damage": 7500,
+                "cooldown": 12,
+                "type": "melee"
+              }
+            ],
+            "cast_times": {
+              "Cleave": 2.0,
+              "Fury Strike": 3.0
+            }
+          },
+          "phase_2": {
+            "name": "Phase 2: Raging",
+            "health_percentage_start": 75,
+            "health_percentage_end": 50,
+            "abilities": [
+              {
+                "name": "Cleave",
+                "damage": 6000,
+                "cooldown": 7,
+                "type": "melee"
+              },
+              {
+                "name": "Fury Strike",
+                "damage": 9000,
+                "cooldown": 10,
+                "type": "melee"
+              },
+              {
+                "name": "Berserker Rage",
+                "damage": 12000,
+                "cooldown": 20,
+                "type": "special",
+                "cast_bar": true,
+                "cast_time": 5.0
+              }
+            ],
+            "cast_times": {
+              "Cleave": 1.8,
+              "Fury Strike": 2.5,
+              "Berserker Rage": 5.0
+            }
+          },
+          "phase_3": {
+            "name": "Phase 3: Desperation",
+            "health_percentage_start": 50,
+            "health_percentage_end": 25,
+            "abilities": [
+              {
+                "name": "Cleave",
+                "damage": 7500,
+                "cooldown": 6,
+                "type": "melee"
+              },
+              {
+                "name": "Fury Strike",
+                "damage": 11000,
+                "cooldown": 8,
+                "type": "melee"
+              },
+              {
+                "name": "Berserker Rage",
+                "damage": 15000,
+                "cooldown": 15,
+                "type": "special",
+                "cast_bar": true,
+                "cast_time": 4.0
+              },
+              {
+                "name": "Armageddon",
+                "damage": 25000,
+                "cooldown": 30,
+                "type": "ultimate",
+                "cast_bar": true,
+                "cast_time": 6.0,
+                "warning": "EPIC MONSTER IS CASTING ARMAGEDDON! INTERRUPT OR DIE!"
+              }
+            ],
+            "cast_times": {
+              "Cleave": 1.5,
+              "Fury Strike": 2.0,
+              "Berserker Rage": 4.0,
+              "Armageddon": 6.0
+            }
+          },
+          "phase_4": {
+            "name": "Phase 4: Enrage",
+            "health_percentage_start": 25,
+            "health_percentage_end": 0,
+            "enrage": true,
+            "enrage_damage_multiplier": 1.5,
+            "enrage_attack_speed_multiplier": 1.5,
+            "abilities": [
+              {
+                "name": "Cleave",
+                "damage": 10000,
+                "cooldown": 4,
+                "type": "melee"
+              },
+              {
+                "name": "Fury Strike",
+                "damage": 15000,
+                "cooldown": 5,
+                "type": "melee"
+              },
+              {
+                "name": "Berserker Rage",
+                "damage": 20000,
+                "cooldown": 10,
+                "type": "special",
+                "cast_bar": true,
+                "cast_time": 3.0
+              },
+              {
+                "name": "Armageddon",
+                "damage": 35000,
+                "cooldown": 20,
+                "type": "ultimate",
+                "cast_bar": true,
+                "cast_time": 5.0,
+                "warning": "ENRAGE MODE: ARMAGEDDON INCOMING! TAKE COVER!"
+              },
+              {
+                "name": "Final Stand",
+                "damage": 50000,
+                "cooldown": 45,
+                "type": "ultimate",
+                "cast_bar": true,
+                "cast_time": 8.0,
+                "warning": "BOSS IS CASTING FINAL STAND! THIS WILL KILL YOU! INTERRUPT NOW!"
+              }
+            ],
+            "cast_times": {
+              "Cleave": 1.0,
+              "Fury Strike": 1.5,
+              "Berserker Rage": 3.0,
+              "Armageddon": 5.0,
+              "Final Stand": 8.0
+            }
+          }
+        },
+        "enrage_timer": 600,
+        "enrage_message": "BOSS HAS ENRAGED! EVERYTHING HURTS MORE!"
+      },
+      "normal_boss": {
+        "boss_name": "Normal Boss",
+        "boss_id": "normal_boss",
+        "difficulty": "Normal",
+        "max_health": 500000,
+        "health_percentage_phases": [100, 80, 60, 40, 20, 0],
+        "phases": {
+          "phase_1": {
+            "name": "Phase 1: Opening",
+            "health_percentage_start": 100,
+            "health_percentage_end": 80,
+            "abilities": [
+              {
+                "name": "Slash",
+                "damage": 8000,
+                "cooldown": 6,
+                "type": "melee"
+              },
+              {
+                "name": "Whirlwind",
+                "damage": 12000,
+                "cooldown": 15,
+                "type": "aoe",
+                "cast_bar": true,
+                "cast_time": 3.0
+              }
+            ]
+          },
+          "phase_2": {
+            "name": "Phase 2: Aggressive",
+            "health_percentage_start": 80,
+            "health_percentage_end": 60,
+            "abilities": [
+              {
+                "name": "Slash",
+                "damage": 10000,
+                "cooldown": 5,
+                "type": "melee"
+              },
+              {
+                "name": "Whirlwind",
+                "damage": 15000,
+                "cooldown": 12,
+                "type": "aoe",
+                "cast_bar": true,
+                "cast_time": 2.5
+              },
+              {
+                "name": "Charge",
+                "damage": 18000,
+                "cooldown": 25,
+                "type": "special",
+                "cast_bar": true,
+                "cast_time": 4.0
+              }
+            ]
+          },
+          "phase_3": {
+            "name": "Phase 3: Dangerous",
+            "health_percentage_start": 60,
+            "health_percentage_end": 40,
+            "abilities": [
+              {
+                "name": "Slash",
+                "damage": 12000,
+                "cooldown": 4,
+                "type": "melee"
+              },
+              {
+                "name": "Whirlwind",
+                "damage": 18000,
+                "cooldown": 10,
+                "type": "aoe",
+                "cast_bar": true,
+                "cast_time": 2.0
+              },
+              {
+                "name": "Charge",
+                "damage": 22000,
+                "cooldown": 20,
+                "type": "special",
+                "cast_bar": true,
+                "cast_time": 3.5
+              },
+              {
+                "name": "Earthquake",
+                "damage": 30000,
+                "cooldown": 45,
+                "type": "ultimate",
+                "cast_bar": true,
+                "cast_time": 6.0,
+                "warning": "BOSS IS SHAKING THE GROUND! MOVE AWAY!"
+              }
+            ]
+          },
+          "phase_4": {
+            "name": "Phase 4: Desperate",
+            "health_percentage_start": 40,
+            "health_percentage_end": 20,
+            "abilities": [
+              {
+                "name": "Slash",
+                "damage": 15000,
+                "cooldown": 3,
+                "type": "melee"
+              },
+              {
+                "name": "Whirlwind",
+                "damage": 22000,
+                "cooldown": 8,
+                "type": "aoe",
+                "cast_bar": true,
+                "cast_time": 1.5
+              },
+              {
+                "name": "Charge",
+                "damage": 28000,
+                "cooldown": 15,
+                "type": "special",
+                "cast_bar": true,
+                "cast_time": 3.0
+              },
+              {
+                "name": "Earthquake",
+                "damage": 40000,
+                "cooldown": 35,
+                "type": "ultimate",
+                "cast_bar": true,
+                "cast_time": 5.0,
+                "warning": "MASSIVE EARTHQUAKE INCOMING! GET TO SAFETY!"
+              }
+            ]
+          },
+          "phase_5": {
+            "name": "Phase 5: Enrage",
+            "health_percentage_start": 20,
+            "health_percentage_end": 0,
+            "enrage": true,
+            "enrage_damage_multiplier": 1.75,
+            "enrage_attack_speed_multiplier": 1.75,
+            "abilities": [
+              {
+                "name": "Slash",
+                "damage": 20000,
+                "cooldown": 2,
+                "type": "melee"
+              },
+              {
+                "name": "Whirlwind",
+                "damage": 30000,
+                "cooldown": 6,
+                "type": "aoe",
+                "cast_bar": true,
+                "cast_time": 1.0
+              },
+              {
+                "name": "Charge",
+                "damage": 40000,
+                "cooldown": 12,
+                "type": "special",
+                "cast_bar": true,
+                "cast_time": 2.5
+              },
+              {
+                "name": "Earthquake",
+                "damage": 60000,
+                "cooldown": 25,
+                "type": "ultimate",
+                "cast_bar": true,
+                "cast_time": 4.0,
+                "warning": "ENRAGE MODE: CATASTROPHIC EARTHQUAKE! RUN!"
+              },
+              {
+                "name": "Apocalypse",
+                "damage": 100000,
+                "cooldown": 60,
+                "type": "ultimate",
+                "cast_bar": true,
+                "cast_time": 10.0,
+                "warning": "BOSS IS CASTING APOCALYPSE! THIS WILL WIPE THE RAID! INTERRUPT OR DIE!"
+              }
+            ]
+          }
+        },
+        "enrage_timer": 900,
+        "enrage_message": "BOSS HAS ENRAGED! DAMAGE AND SPEED INCREASED BY 75%!"
+      },
+      "heroic_boss": {
+        "boss_name": "Heroic Boss",
+        "boss_id": "heroic_boss",
+        "difficulty": "Heroic",
+        "max_health": 1000000,
+        "health_percentage_phases": [100, 75, 50, 25, 10, 0],
+        "phases": {
+          "phase_1": {
+            "name": "Phase 1: Introduction",
+            "health_percentage_start": 100,
+            "health_percentage_end": 75,
+            "abilities": [
+              {
+                "name": "Crushing Blow",
+                "damage": 15000,
+                "cooldown": 5,
+                "type": "melee"
+              },
+              {
+                "name": "Sweeping Strike",
+                "damage": 20000,
+                "cooldown": 12,
+                "type": "aoe",
+                "cast_bar": true,
+                "cast_time": 2.5
+              }
+            ]
+          },
+          "phase_2": {
+            "name": "Phase 2: Escalation",
+            "health_percentage_start": 75,
+            "health_percentage_end": 50,
+            "abilities": [
+              {
+                "name": "Crushing Blow",
+                "damage": 20000,
+                "cooldown": 4,
+                "type": "melee"
+              },
+              {
+                "name": "Sweeping Strike",
+                "damage": 28000,
+                "cooldown": 10,
+                "type": "aoe",
+                "cast_bar": true,
+                "cast_time": 2.0
+              },
+              {
+                "name": "Titan's Wrath",
+                "damage": 40000,
+                "cooldown": 30,
+                "type": "special",
+                "cast_bar": true,
+                "cast_time": 5.0,
+                "warning": "BOSS IS CHANNELING TITAN'S WRATH! INTERRUPT OR TAKE MASSIVE DAMAGE!"
+              }
+            ]
+          },
+          "phase_3": {
+            "name": "Phase 3: Critical",
+            "health_percentage_start": 50,
+            "health_percentage_end": 25,
+            "abilities": [
+              {
+                "name": "Crushing Blow",
+                "damage": 25000,
+                "cooldown": 3,
+                "type": "melee"
+              },
+              {
+                "name": "Sweeping Strike",
+                "damage": 35000,
+                "cooldown": 8,
+                "type": "aoe",
+                "cast_bar": true,
+                "cast_time": 1.5
+              },
+              {
+                "name": "Titan's Wrath",
+                "damage": 55000,
+                "cooldown": 25,
+                "type": "special",
+                "cast_bar": true,
+                "cast_time": 4.0,
+                "warning": "TITAN'S WRATH INCOMING! INTERRUPT NOW!"
+              },
+              {
+                "name": "Meteor Strike",
+                "damage": 80000,
+                "cooldown": 60,
+                "type": "ultimate",
+                "cast_bar": true,
+                "cast_time": 8.0,
+                "warning": "EPIC MONSTER IS CALLING DOWN METEORS! GET TO COVER!"
+              }
+            ]
+          },
+          "phase_4": {
+            "name": "Phase 4: Desperation",
+            "health_percentage_start": 25,
+            "health_percentage_end": 10,
+            "abilities": [
+              {
+                "name": "Crushing Blow",
+                "damage": 35000,
+                "cooldown": 2,
+                "type": "melee"
+              },
+              {
+                "name": "Sweeping Strike",
+                "damage": 50000,
+                "cooldown": 6,
+                "type": "aoe",
+                "cast_bar": true,
+                "cast_time": 1.0
+              },
+              {
+                "name": "Titan's Wrath",
+                "damage": 75000,
+                "cooldown": 20,
+                "type": "special",
+                "cast_bar": true,
+                "cast_time": 3.5,
+                "warning": "CRITICAL: TITAN'S WRATH! INTERRUPT OR WIPE!"
+              },
+              {
+                "name": "Meteor Strike",
+                "damage": 120000,
+                "cooldown": 45,
+                "type": "ultimate",
+                "cast_bar": true,
+                "cast_time": 6.0,
+                "warning": "MASSIVE METEOR STRIKE INCOMING! THIS WILL KILL YOU!"
+              }
+            ]
+          },
+          "phase_5": {
+            "name": "Phase 5: Final Stand",
+            "health_percentage_start": 10,
+            "health_percentage_end": 0,
+            "enrage": true,
+            "enrage_damage_multiplier": 2.0,
+            "enrage_attack_speed_multiplier": 2.0,
+            "abilities": [
+              {
+                "name": "Crushing Blow",
+                "damage": 50000,
+                "cooldown": 1.5,
+                "type": "melee"
+              },
+              {
+                "name": "Sweeping Strike",
+                "damage": 75000,
+                "cooldown": 4,
+                "type": "aoe",
+                "cast_bar": true,
+                "cast_time": 0.8
+              },
+              {
+                "name": "Titan's Wrath",
+                "damage": 100000,
+                "cooldown": 15,
+                "type": "special",
+                "cast_bar": true,
+                "cast_time": 3.0,
+                "warning": "ENRAGE: TITAN'S WRATH! INTERRUPT OR WIPE!"
+              },
+              {
+                "name": "Meteor Strike",
+                "damage": 200000,
+                "cooldown": 30,
+                "type": "ultimate",
+                "cast_bar": true,
+                "cast_time": 5.0,
+                "warning": "ENRAGE MODE: CATASTROPHIC METEOR STRIKE! RUN FOR YOUR LIFE!"
+              },
+              {
+                "name": "Annihilation",
+                "damage": 500000,
+                "cooldown": 90,
+                "type": "ultimate",
+                "cast_bar": true,
+                "cast_time": 15.0,
+                "warning": "BOSS IS CASTING ANNIHILATION! THIS WILL WIPE THE ENTIRE RAID! INTERRUPT NOW OR EVERYONE DIES!"
+              }
+            ]
+          }
+        },
+        "enrage_timer": 1200,
+        "enrage_message": "BOSS HAS ENRAGED! DAMAGE AND SPEED DOUBLED! SURVIVE OR PERISH!"
+      },
+      "mythic_boss": {
+        "boss_name": "Mythic Boss",
+        "boss_id": "mythic_boss",
+        "difficulty": "Mythic",
+        "max_health": 2500000,
+        "health_percentage_phases": [100, 80, 60, 40, 20, 10, 5, 0],
+        "phases": {
+          "phase_1": {
+            "name": "Phase 1: Awakening",
+            "health_percentage_start": 100,
+            "health_percentage_end": 80,
+            "abilities": [
+              {
+                "name": "Obliterate",
+                "damage": 30000,
+                "cooldown": 4,
+                "type": "melee"
+              },
+              {
+                "name": "Cataclysm",
+                "damage": 50000,
+                "cooldown": 15,
+                "type": "aoe",
+                "cast_bar": true,
+                "cast_time": 3.0,
+                "warning": "BOSS IS CASTING CATACLYSM! MOVE AWAY!"
+              }
+            ]
+          },
+          "phase_2": {
+            "name": "Phase 2: Rampage",
+            "health_percentage_start": 80,
+            "health_percentage_end": 60,
+            "abilities": [
+              {
+                "name": "Obliterate",
+                "damage": 40000,
+                "cooldown": 3,
+                "type": "melee"
+              },
+              {
+                "name": "Cataclysm",
+                "damage": 70000,
+                "cooldown": 12,
+                "type": "aoe",
+                "cast_bar": true,
+                "cast_time": 2.5,
+                "warning": "CATACLYSM INCOMING! EVACUATE THE AREA!"
+              },
+              {
+                "name": "Oblivion",
+                "damage": 100000,
+                "cooldown": 45,
+                "type": "ultimate",
+                "cast_bar": true,
+                "cast_time": 8.0,
+                "warning": "EPIC MONSTER IS CASTING OBLIVION! THIS IS EXTREMELY DANGEROUS!"
+              }
+            ]
+          },
+          "phase_3": {
+            "name": "Phase 3: Fury",
+            "health_percentage_start": 60,
+            "health_percentage_end": 40,
+            "abilities": [
+              {
+                "name": "Obliterate",
+                "damage": 55000,
+                "cooldown": 2.5,
+                "type": "melee"
+              },
+              {
+                "name": "Cataclysm",
+                "damage": 95000,
+                "cooldown": 10,
+                "type": "aoe",
+                "cast_bar": true,
+                "cast_time": 2.0,
+                "warning": "DANGEROUS CATACLYSM! GET OUT NOW!"
+              },
+              {
+                "name": "Oblivion",
+                "damage": 150000,
+                "cooldown": 35,
+                "type": "ultimate",
+                "cast_bar": true,
+                "cast_time": 6.5,
+                "warning": "OBLIVION CAST! THIS WILL DEAL MASSIVE DAMAGE! INTERRUPT!"
+              },
+              {
+                "name": "Doom",
+                "damage": 250000,
+                "cooldown": 90,
+                "type": "ultimate",
+                "cast_bar": true,
+                "cast_time": 12.0,
+                "warning": "BOSS IS CASTING DOOM! THIS WILL WIPE THE RAID! INTERRUPT OR EVERYONE DIES!"
+              }
+            ]
+          },
+          "phase_4": {
+            "name": "Phase 4: Despair",
+            "health_percentage_start": 40,
+            "health_percentage_end": 20,
+            "abilities": [
+              {
+                "name": "Obliterate",
+                "damage": 75000,
+                "cooldown": 2,
+                "type": "melee"
+              },
+              {
+                "name": "Cataclysm",
+                "damage": 130000,
+                "cooldown": 8,
+                "type": "aoe",
+                "cast_bar": true,
+                "cast_time": 1.5,
+                "warning": "CRITICAL CATACLYSM! MOVE OR DIE!"
+              },
+              {
+                "name": "Oblivion",
+                "damage": 200000,
+                "cooldown": 28,
+                "type": "ultimate",
+                "cast_bar": true,
+                "cast_time": 5.5,
+                "warning": "OBLIVION CASTING! INTERRUPT OR WIPE!"
+              },
+              {
+                "name": "Doom",
+                "damage": 400000,
+                "cooldown": 70,
+                "type": "ultimate",
+                "cast_bar": true,
+                "cast_time": 10.0,
+                "warning": "DOOM INCOMING! THIS WILL KILL EVERYONE! INTERRUPT NOW!"
+              }
+            ]
+          },
+          "phase_5": {
+            "name": "Phase 5: Last Stand",
+            "health_percentage_start": 20,
+            "health_percentage_end": 10,
+            "abilities": [
+              {
+                "name": "Obliterate",
+                "damage": 100000,
+                "cooldown": 1.5,
+                "type": "melee"
+              },
+              {
+                "name": "Cataclysm",
+                "damage": 180000,
+                "cooldown": 6,
+                "type": "aoe",
+                "cast_bar": true,
+                "cast_time": 1.0,
+                "warning": "DEVASTATING CATACLYSM! RUN!"
+              },
+              {
+                "name": "Oblivion",
+                "damage": 300000,
+                "cooldown": 22,
+                "type": "ultimate",
+                "cast_bar": true,
+                "cast_time": 4.5,
+                "warning": "CRITICAL OBLIVION! INTERRUPT OR RAID WIPE!"
+              },
+              {
+                "name": "Doom",
+                "damage": 600000,
+                "cooldown": 55,
+                "type": "ultimate",
+                "cast_bar": true,
+                "cast_time": 8.0,
+                "warning": "CATASTROPHIC DOOM! INTERRUPT OR EVERYONE DIES!"
+              }
+            ]
+          },
+          "phase_6": {
+            "name": "Phase 6: Beyond Fury",
+            "health_percentage_start": 10,
+            "health_percentage_end": 5,
+            "abilities": [
+              {
+                "name": "Obliterate",
+                "damage": 150000,
+                "cooldown": 1,
+                "type": "melee"
+              },
+              {
+                "name": "Cataclysm",
+                "damage": 250000,
+                "cooldown": 4,
+                "type": "aoe",
+                "cast_bar": true,
+                "cast_time": 0.8,
+                "warning": "UNSTOPPABLE CATACLYSM! SURVIVE!"
+              },
+              {
+                "name": "Oblivion",
+                "damage": 450000,
+                "cooldown": 18,
+                "type": "ultimate",
+                "cast_bar": true,
+                "cast_time": 3.5,
+                "warning": "ULTIMATE OBLIVION! INTERRUPT NOW!"
+              },
+              {
+                "name": "Doom",
+                "damage": 900000,
+                "cooldown": 45,
+                "type": "ultimate",
+                "cast_bar": true,
+                "cast_time": 6.5,
+                "warning": "ANNIHILATING DOOM! INTERRUPT OR TOTAL WIPE!"
+              }
+            ]
+          },
+          "phase_7": {
+            "name": "Phase 7: Enrage - Apocalypse",
+            "health_percentage_start": 5,
+            "health_percentage_end": 0,
+            "enrage": true,
+            "enrage_damage_multiplier": 2.5,
+            "enrage_attack_speed_multiplier": 2.5,
+            "abilities": [
+              {
+                "name": "Obliterate",
+                "damage": 250000,
+                "cooldown": 0.8,
+                "type": "melee"
+              },
+              {
+                "name": "Cataclysm",
+                "damage": 400000,
+                "cooldown": 3,
+                "type": "aoe",
+                "cast_bar": true,
+                "cast_time": 0.5,
+                "warning": "ENRAGE CATACLYSM! IMPOSSIBLE TO SURVIVE!"
+              },
+              {
+                "name": "Oblivion",
+                "damage": 750000,
+                "cooldown": 12,
+                "type": "ultimate",
+                "cast_bar": true,
+                "cast_time": 2.5,
+                "warning": "ENRAGE OBLIVION! INTERRUPT OR WIPE!"
+              },
+              {
+                "name": "Doom",
+                "damage": 1500000,
+                "cooldown": 35,
+                "type": "ultimate",
+                "cast_bar": true,
+                "cast_time": 5.0,
+                "warning": "ENRAGE MODE: TOTAL ANNIHILATION DOOM! INTERRUPT NOW OR EVERYONE DIES!"
+              },
+              {
+                "name": "Ragnarok",
+                "damage": 5000000,
+                "cooldown": 120,
+                "type": "ultimate",
+                "cast_bar": true,
+                "cast_time": 20.0,
+                "warning": "BOSS IS CASTING RAGNAROK - THE END OF ALL THINGS! THIS WILL INSTANTLY KILL EVERYONE! INTERRUPT IMMEDIATELY OR THE RAID IS OVER!"
+              }
+            ]
+          }
+        },
+        "enrage_timer": 1800,
+        "enrage_message": "BOSS HAS ENRAGED BEYOND ALL REASON! DAMAGE AND SPEED INCREASED BY 250%! ONLY THE STRONGEST WILL SURVIVE!"
+      }
+    },
+    "combat_mechanics": {
+      "cast_bars": {
+        "enabled": true,
+        "show_warnings": true,
+        "warning_color": "#FF0000",
+        "cast_bar_color": "#FFFF00",
+        "cast_bar_bg_color": "#333333"
+      },
+      "phase_transitions": {
+        "enabled": true,
+        "announce_phase_change": true,
+        "phase_change_message_format": "BOSS ENTERS PHASE: {phase_name}"
+      },
+      "enrage_mechanics": {
+        "enabled": true,
+        "enrage_timer_warning_interval": 60,
+        "enrage_timer_warning_message": "BOSS WILL ENRAGE IN {seconds} SECONDS!"
+      },
+      "death_mechanics": {
+        "boss_death_message": "EPIC MONSTER DEFEATED! VICTORY ACHIEVED!",
+        "va_death_message": "YOU HAVE BEEN DEFEATED BY THE EPIC MONSTER! RETREAT AND REGROUP!"
+      }
+    }
+  }
+}

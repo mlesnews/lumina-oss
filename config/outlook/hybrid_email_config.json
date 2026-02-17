@@ -1,0 +1,112 @@
+{
+  "architecture": {
+    "description": "Hybrid Email System: Gmail + ProtonMail → NAS Mail Hub → Outlook Classic",
+    "flow": [
+      "1. Gmail emails imported to NAS Mail Hub",
+      "2. ProtonMail emails (via Bridge) imported to NAS Mail Hub",
+      "3. Outlook Classic connects to NAS Mail Hub to receive all emails"
+    ]
+  },
+  "nas_mail_hub": {
+    "server": "<NAS_PRIMARY_IP>",
+    "domain": "<LOCAL_HOSTNAME>",
+    "imap": {
+      "server": "<NAS_PRIMARY_IP>",
+      "port": 993,
+      "encryption": "SSL/TLS",
+      "ssl": true
+    },
+    "smtp": {
+      "server": "<NAS_PRIMARY_IP>",
+      "port": 587,
+      "encryption": "STARTTLS",
+      "ssl": true
+    },
+    "webmail": "https://<NAS_PRIMARY_IP>:5001/mailplus",
+    "accounts": {
+      "mlesn": {
+        "email": "mlesn@<LOCAL_HOSTNAME>",
+        "username": "mlesn",
+        "description": "Primary company email account"
+      }
+    }
+  },
+  "protonmail_bridge": {
+    "email": "mlesnews@protonmail.com",
+    "bridge_password": "${vault:proton-bridge-mlesnews-password}",
+    "imap": {
+      "server": "127.0.0.1",
+      "port": 1143,
+      "encryption": "STARTTLS",
+      "username": "mlesnews@protonmail.com",
+      "password": "${vault:proton-bridge-mlesnews-password}"
+    },
+    "smtp": {
+      "server": "127.0.0.1",
+      "port": 1025,
+      "encryption": "STARTTLS",
+      "username": "mlesnews@protonmail.com",
+      "password": "${vault:proton-bridge-mlesnews-password}"
+    },
+    "note": "Proton Bridge must be running on host PC"
+  },
+            "gmail": {
+                "imap": {
+                    "server": "imap.gmail.com",
+                    "port": 993,
+                    "encryption": "SSL",
+                    "requires_app_password": true
+                },
+                "smtp": {
+                    "server": "smtp.gmail.com",
+                    "port": 587,
+                    "encryption": "STARTTLS",
+                    "requires_app_password": true
+                },
+                "credentials": {
+                    "source": "azure_key_vault",
+                    "secret_names": {
+                        "email": "login-account-gmail-ceo-gmail-email",
+                        "app_password": "login-account-gmail-ceo-gmail-app-password"
+                    }
+                },
+                "note": "Gmail credentials stored in Azure Key Vault. IMAP connection uses app password."
+            },
+  "outlook_classic": {
+    "connection": {
+      "type": "IMAP",
+      "server": "<NAS_PRIMARY_IP>",
+      "port": 993,
+      "encryption": "SSL/TLS",
+      "username": "mlesn@<LOCAL_HOSTNAME>",
+      "description": "Connect Outlook Classic to NAS Mail Hub to receive all emails"
+    },
+    "note": "Outlook Classic connects to NAS Mail Hub, not directly to Gmail/ProtonMail"
+  },
+  "import_settings": {
+    "enabled": true,
+    "schedule": {
+      "interval_minutes": 15,
+      "run_at_startup": true
+    },
+    "sources": {
+      "gmail": {
+        "enabled": true,
+        "import_to_nas": true,
+        "days_back": 365
+      },
+      "protonmail": {
+        "enabled": true,
+        "import_to_nas": true,
+        "requires_bridge": true,
+        "days_back": 365
+      }
+    },
+    "storage": {
+      "nas_path": "/volume1/backups/MATT_Backups/company_email_hub",
+      "organize_by_date": true,
+      "organize_by_source": true
+    }
+  },
+  "generated_at": "2026-01-05T22:32:13.402738"
+}

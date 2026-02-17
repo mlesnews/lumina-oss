@@ -1,0 +1,271 @@
+{
+  "droid_actor_system": {
+    "version": "1.0.0",
+    "description": "Smart droid routing and character-based verification system",
+    "enabled": true,
+    "smart_switching": true,
+    "character_based_verification": true,
+    "hierarchy": {
+      "coordinator": "C-3PO",
+      "all_droids_work_for": "C-3PO",
+      "escalation_path": "C-3PO → JARVIS",
+      "escalation_protocol": "C-3PO escalates to JARVIS (directly or indirectly) as protocol demands"
+    }
+  },
+  "domain_routing": {
+    "technical": {
+      "primary": [
+        "r2d2",
+        "r5"
+      ],
+      "fallback": "r2d2",
+      "keywords": [
+        "technical",
+        "system",
+        "repair",
+        "diagnostic",
+        "hack",
+        "access"
+      ]
+    },
+    "security": {
+      "primary": [
+        "k2so"
+      ],
+      "fallback": "k2so",
+      "keywords": [
+        "security",
+        "threat",
+        "access",
+        "monitor"
+      ]
+    },
+    "medical": {
+      "primary": [
+        "2-1b"
+      ],
+      "fallback": "2-1b",
+      "keywords": [
+        "health",
+        "medical",
+        "recovery",
+        "prevention"
+      ]
+    },
+    "communication": {
+      "primary": [
+        "c3po"
+      ],
+      "fallback": "c3po",
+      "keywords": [
+        "communication",
+        "protocol",
+        "translation",
+        "coordination"
+      ]
+    },
+    "elimination": {
+      "primary": [
+        "ig88"
+      ],
+      "fallback": "ig88",
+      "keywords": [
+        "elimination",
+        "critical",
+        "force",
+        "escalation"
+      ]
+    },
+    "automation": {
+      "primary": [
+        "mousedroid"
+      ],
+      "fallback": "mousedroid",
+      "keywords": [
+        "automation",
+        "mouse",
+        "keyboard",
+        "screen",
+        "window"
+      ]
+    },
+    "knowledge": {
+      "primary": [
+        "r5"
+      ],
+      "fallback": "r5",
+      "keywords": [
+        "knowledge",
+        "aggregation",
+        "pattern",
+        "matrix",
+        "context"
+      ]
+    },
+    "analysis": {
+      "primary": [
+        "marvin"
+      ],
+      "fallback": "marvin",
+      "keywords": [
+        "analysis",
+        "deep",
+        "existential",
+        "philosophical"
+      ]
+    },
+    "communication_expert": {
+      "team": "hr_team",
+      "team_config": "config/helpdesk/hr_team.json",
+      "fallback": "hr_team",
+      "keywords": [
+        "psychology",
+        "linguistics",
+        "speech",
+        "rhetoric",
+        "communication_pattern",
+        "behavior",
+        "language",
+        "meaning",
+        "human_behavior",
+        "communication_breakdown"
+      ]
+    },
+    "data_lifecycle": {
+      "team": "tape_library_team",
+      "team_config": "config/helpdesk/tape_library_team.json",
+      "fallback": "tape_library_team",
+      "keywords": [
+        "tape",
+        "archive",
+        "backup",
+        "restore",
+        "retention",
+        "data_lifecycle",
+        "data_deletion",
+        "data_preservation",
+        "storage",
+        "disk_pack",
+        "reel_to_reel",
+        "8-track",
+        "nas_backup",
+        "recovery_time",
+        "rto",
+        "rpo",
+        "data_recreation",
+        "restore_time",
+        "data_migration",
+        "archival_storage"
+      ]
+    }
+  },
+  "complexity_routing": {
+    "simple": {
+      "preferred": [
+        "mousedroid",
+        "c3po"
+      ],
+      "threshold": 0.85
+    },
+    "moderate": {
+      "preferred": [
+        "r2d2",
+        "k2so",
+        "2-1b"
+      ],
+      "threshold": 0.85
+    },
+    "complex": {
+      "preferred": [
+        "r5",
+        "2-1b",
+        "k2so"
+      ],
+      "threshold": 0.85
+    },
+    "critical": {
+      "preferred": [
+        "ig88",
+        "marvin",
+        "r5"
+      ],
+      "threshold": 0.9
+    }
+  },
+  "verification_styles": {
+    "meticulous_protocol_focused": {
+      "description": "C-3PO: Meticulous, protocol-focused verification",
+      "traits": [
+        "anxious",
+        "thorough",
+        "protocol_compliant"
+      ]
+    },
+    "technical_detailed": {
+      "description": "R2-D2/R5: Technical, detailed verification",
+      "traits": [
+        "brave",
+        "resourceful",
+        "technical"
+      ]
+    },
+    "security_rigorous": {
+      "description": "K-2SO: Security-focused, rigorous verification",
+      "traits": [
+        "sarcastic",
+        "direct",
+        "security_aware"
+      ]
+    },
+    "methodical_safety_focused": {
+      "description": "2-1B: Methodical, safety-focused verification",
+      "traits": [
+        "calm",
+        "methodical",
+        "healing_focused"
+      ]
+    },
+    "ruthless_efficient": {
+      "description": "IG-88: Ruthless, efficient verification",
+      "traits": [
+        "ruthless",
+        "efficient",
+        "problem_elimination"
+      ]
+    },
+    "fast_efficient": {
+      "description": "MouseDroid: Fast, efficient verification",
+      "traits": [
+        "fast",
+        "efficient",
+        "helpful"
+      ]
+    },
+    "existential_deep": {
+      "description": "Marvin: Existential, deep verification",
+      "traits": [
+        "depressed",
+        "brilliant",
+        "philosophical"
+      ]
+    }
+  },
+  "scene_matching": {
+    "enabled": true,
+    "description": "Match droid to workflow scene/context",
+    "factors": [
+      "domain",
+      "complexity",
+      "required_expertise",
+      "workflow_type",
+      "metadata"
+    ]
+  },
+  "persona_responses": {
+    "enabled": true,
+    "description": "Generate character-based responses during verification",
+    "include_quotes": true,
+    "include_personality": true
+  },
+  "updated_at": "2025-11-24T01:00:00.000000"
+}

@@ -1,0 +1,496 @@
+{
+  "workflows": {
+    "email_send": {
+      "workflow_id": "email_send",
+      "name": "Email Send",
+      "webhook_path": "/email/send",
+      "trigger_type": "webhook",
+      "nodes": [
+        {
+          "type": "webhook",
+          "name": "Receive Email Request"
+        },
+        {
+          "type": "function",
+          "name": "Validate Email"
+        },
+        {
+          "type": "email",
+          "name": "Send Email (SMTP/Gmail/Outlook)"
+        },
+        {
+          "type": "function",
+          "name": "Track Status"
+        }
+      ],
+      "enabled": true,
+      "metadata": {}
+    },
+    "email_receive": {
+      "workflow_id": "email_receive",
+      "name": "Email Receive",
+      "webhook_path": "/email/receive",
+      "trigger_type": "schedule",
+      "nodes": [
+        {
+          "type": "schedule",
+          "name": "Check Every 5 Minutes"
+        },
+        {
+          "type": "imap",
+          "name": "Check Email (IMAP)"
+        },
+        {
+          "type": "function",
+          "name": "Process New Emails"
+        },
+        {
+          "type": "webhook",
+          "name": "@syphon Email Extraction",
+          "webhook_path": "/webhook/syphon/email",
+          "description": "Extract actionable intelligence from email"
+        },
+        {
+          "type": "webhook",
+          "name": "Notify System"
+        }
+      ],
+      "enabled": true,
+      "metadata": {
+        "syphon_enabled": true,
+        "syphon_endpoint": "/webhook/syphon/email"
+      }
+    },
+    "email_syphon": {
+      "workflow_id": "email_syphon",
+      "name": "Email @SYPHON Extraction",
+      "webhook_path": "/webhook/syphon/email",
+      "trigger_type": "webhook",
+      "nodes": [
+        {
+          "type": "webhook",
+          "name": "Receive Email for SYPHON",
+          "settings": {
+            "path": "syphon/email",
+            "httpMethod": "POST"
+          }
+        },
+        {
+          "type": "http",
+          "name": "Call SYPHON System",
+          "settings": {
+            "url": "http://localhost:8000/api/syphon/email",
+            "method": "POST"
+          }
+        },
+        {
+          "type": "function",
+          "name": "Extract Actionable Items",
+          "description": "Extract actionable items, tasks, decisions, and intelligence"
+        },
+        {
+          "type": "webhook",
+          "name": "Save to Actionable Intelligence",
+          "settings": {
+            "url": "http://localhost:8000/api/intelligence/actionable",
+            "method": "POST"
+          }
+        }
+      ],
+      "enabled": true,
+      "metadata": {
+        "syphon_system": true,
+        "extracts": ["actionable_items", "tasks", "decisions", "intelligence"]
+      }
+    },
+    "sms_send": {
+      "workflow_id": "sms_send",
+      "name": "SMS Send",
+      "webhook_path": "/sms/send",
+      "trigger_type": "webhook",
+      "nodes": [
+        {
+          "type": "webhook",
+          "name": "Receive SMS Request"
+        },
+        {
+          "type": "function",
+          "name": "Validate SMS"
+        },
+        {
+          "type": "http",
+          "name": "Send SMS (ElevenLabs/Vonage)"
+        },
+        {
+          "type": "function",
+          "name": "Track Status"
+        }
+      ],
+      "enabled": true,
+      "metadata": {}
+    },
+    "sms_receive": {
+      "workflow_id": "sms_receive",
+      "name": "SMS Receive",
+      "webhook_path": "/sms/receive",
+      "trigger_type": "webhook",
+      "nodes": [
+        {
+          "type": "webhook",
+          "name": "Receive SMS Webhook"
+        },
+        {
+          "type": "function",
+          "name": "Process SMS"
+        },
+        {
+          "type": "webhook",
+          "name": "@syphon SMS Extraction",
+          "webhook_path": "/webhook/syphon/sms",
+          "description": "Extract actionable intelligence from SMS"
+        },
+        {
+          "type": "webhook",
+          "name": "Notify System"
+        }
+      ],
+      "enabled": true,
+      "metadata": {
+        "syphon_enabled": true,
+        "syphon_endpoint": "/webhook/syphon/sms"
+      }
+    },
+    "sms_syphon": {
+      "workflow_id": "sms_syphon",
+      "name": "SMS @SYPHON Extraction",
+      "webhook_path": "/webhook/syphon/sms",
+      "trigger_type": "webhook",
+      "nodes": [
+        {
+          "type": "webhook",
+          "name": "Receive SMS for SYPHON",
+          "settings": {
+            "path": "syphon/sms",
+            "httpMethod": "POST"
+          }
+        },
+        {
+          "type": "http",
+          "name": "Call SYPHON System",
+          "settings": {
+            "url": "http://localhost:8000/api/syphon/sms",
+            "method": "POST"
+          }
+        },
+        {
+          "type": "function",
+          "name": "Extract Actionable Items",
+          "description": "Extract actionable items, tasks, decisions, and intelligence"
+        },
+        {
+          "type": "webhook",
+          "name": "Save to Actionable Intelligence",
+          "settings": {
+            "url": "http://localhost:8000/api/intelligence/actionable",
+            "method": "POST"
+          }
+        }
+      ],
+      "enabled": true,
+      "metadata": {
+        "syphon_system": true,
+        "extracts": ["actionable_items", "tasks", "decisions", "intelligence"]
+      }
+    },
+    "social_twitter_post": {
+      "workflow_id": "social_twitter_post",
+      "name": "Twitter Post",
+      "webhook_path": "/social/twitter/post",
+      "trigger_type": "webhook",
+      "nodes": [
+        {
+          "type": "webhook",
+          "name": "Receive Post Request"
+        },
+        {
+          "type": "function",
+          "name": "Validate Post"
+        },
+        {
+          "type": "http",
+          "name": "Post to Twitter"
+        },
+        {
+          "type": "function",
+          "name": "Track Status"
+        }
+      ],
+      "enabled": true,
+      "metadata": {}
+    },
+    "social_linkedin_post": {
+      "workflow_id": "social_linkedin_post",
+      "name": "Linkedin Post",
+      "webhook_path": "/social/linkedin/post",
+      "trigger_type": "webhook",
+      "nodes": [
+        {
+          "type": "webhook",
+          "name": "Receive Post Request"
+        },
+        {
+          "type": "function",
+          "name": "Validate Post"
+        },
+        {
+          "type": "http",
+          "name": "Post to Linkedin"
+        },
+        {
+          "type": "function",
+          "name": "Track Status"
+        }
+      ],
+      "enabled": true,
+      "metadata": {}
+    },
+    "social_facebook_post": {
+      "workflow_id": "social_facebook_post",
+      "name": "Facebook Post",
+      "webhook_path": "/social/facebook/post",
+      "trigger_type": "webhook",
+      "nodes": [
+        {
+          "type": "webhook",
+          "name": "Receive Post Request"
+        },
+        {
+          "type": "function",
+          "name": "Validate Post"
+        },
+        {
+          "type": "http",
+          "name": "Post to Facebook"
+        },
+        {
+          "type": "function",
+          "name": "Track Status"
+        }
+      ],
+      "enabled": true,
+      "metadata": {}
+    },
+    "social_instagram_post": {
+      "workflow_id": "social_instagram_post",
+      "name": "Instagram Post",
+      "webhook_path": "/social/instagram/post",
+      "trigger_type": "webhook",
+      "nodes": [
+        {
+          "type": "webhook",
+          "name": "Receive Post Request"
+        },
+        {
+          "type": "function",
+          "name": "Validate Post"
+        },
+        {
+          "type": "http",
+          "name": "Post to Instagram"
+        },
+        {
+          "type": "function",
+          "name": "Track Status"
+        }
+      ],
+      "enabled": true,
+      "metadata": {}
+    },
+    "social_youtube_post": {
+      "workflow_id": "social_youtube_post",
+      "name": "Youtube Post",
+      "webhook_path": "/social/youtube/post",
+      "trigger_type": "webhook",
+      "nodes": [
+        {
+          "type": "webhook",
+          "name": "Receive Post Request"
+        },
+        {
+          "type": "function",
+          "name": "Validate Post"
+        },
+        {
+          "type": "http",
+          "name": "Post to Youtube"
+        },
+        {
+          "type": "function",
+          "name": "Track Status"
+        }
+      ],
+      "enabled": true,
+      "metadata": {}
+    },
+    "social_reddit_post": {
+      "workflow_id": "social_reddit_post",
+      "name": "Reddit Post",
+      "webhook_path": "/social/reddit/post",
+      "trigger_type": "webhook",
+      "nodes": [
+        {
+          "type": "webhook",
+          "name": "Receive Post Request"
+        },
+        {
+          "type": "function",
+          "name": "Validate Post"
+        },
+        {
+          "type": "http",
+          "name": "Post to Reddit"
+        },
+        {
+          "type": "function",
+          "name": "Track Status"
+        }
+      ],
+      "enabled": true,
+      "metadata": {}
+    },
+    "social_discord_post": {
+      "workflow_id": "social_discord_post",
+      "name": "Discord Post",
+      "webhook_path": "/social/discord/post",
+      "trigger_type": "webhook",
+      "nodes": [
+        {
+          "type": "webhook",
+          "name": "Receive Post Request"
+        },
+        {
+          "type": "function",
+          "name": "Validate Post"
+        },
+        {
+          "type": "http",
+          "name": "Post to Discord"
+        },
+        {
+          "type": "function",
+          "name": "Track Status"
+        }
+      ],
+      "enabled": true,
+      "metadata": {}
+    },
+    "social_github_post": {
+      "workflow_id": "social_github_post",
+      "name": "Github Post",
+      "webhook_path": "/social/github/post",
+      "trigger_type": "webhook",
+      "nodes": [
+        {
+          "type": "webhook",
+          "name": "Receive Post Request"
+        },
+        {
+          "type": "function",
+          "name": "Validate Post"
+        },
+        {
+          "type": "http",
+          "name": "Post to Github"
+        },
+        {
+          "type": "function",
+          "name": "Track Status"
+        }
+      ],
+      "enabled": true,
+      "metadata": {}
+    },
+    "social_monitor": {
+      "workflow_id": "social_monitor",
+      "name": "Social Media Monitor",
+      "webhook_path": "/social/monitor",
+      "trigger_type": "schedule",
+      "nodes": [
+        {
+          "type": "schedule",
+          "name": "Check Every Hour"
+        },
+        {
+          "type": "http",
+          "name": "Monitor All Platforms"
+        },
+        {
+          "type": "function",
+          "name": "Process Updates"
+        },
+        {
+          "type": "webhook",
+          "name": "Notify System"
+        }
+      ],
+      "enabled": true,
+      "metadata": {}
+    },
+    "email_hub_send": {
+      "workflow_id": "email_hub_send",
+      "name": "NAS/DSM Email Hub - Send Email",
+      "webhook_path": "/email/hub/send",
+      "trigger_type": "webhook",
+      "enabled": true,
+      "metadata": {
+        "email_hub": true,
+        "nas_dsm": true,
+        "expansion": "@n8n"
+      },
+      "note": "See config/n8n/nas_dsm_email_hub_expansion.json for full configuration"
+    },
+    "email_hub_receive": {
+      "workflow_id": "email_hub_receive",
+      "name": "NAS/DSM Email Hub - Receive Email",
+      "webhook_path": "/email/hub/receive",
+      "trigger_type": "schedule",
+      "enabled": true,
+      "metadata": {
+        "email_hub": true,
+        "nas_dsm": true,
+        "expansion": "@n8n",
+        "syphon_enabled": true
+      },
+      "note": "See config/n8n/nas_dsm_email_hub_expansion.json for full configuration"
+    },
+    "email_hub_management": {
+      "workflow_id": "email_hub_management",
+      "name": "NAS/DSM Email Hub - Management Operations",
+      "webhook_path": "/email/hub/management",
+      "trigger_type": "webhook",
+      "enabled": true,
+      "metadata": {
+        "email_hub": true,
+        "nas_dsm": true,
+        "expansion": "@n8n",
+        "management": true
+      },
+      "note": "See config/n8n/nas_dsm_email_hub_expansion.json for full configuration"
+    },
+    "email_hub_monitoring": {
+      "workflow_id": "email_hub_monitoring",
+      "name": "NAS/DSM Email Hub - Monitoring",
+      "webhook_path": "/email/hub/monitoring",
+      "trigger_type": "schedule",
+      "enabled": true,
+      "metadata": {
+        "email_hub": true,
+        "nas_dsm": true,
+        "expansion": "@n8n",
+        "monitoring": true
+      },
+      "note": "See config/n8n/nas_dsm_email_hub_expansion.json for full configuration"
+    }
+  },
+  "updated_at": "2025-01-24T14:15:00.000000"
+}

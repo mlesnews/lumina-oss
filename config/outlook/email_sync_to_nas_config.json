@@ -1,0 +1,80 @@
+{
+  "email_sync_to_nas_hub": {
+    "nas_mail_hub": {
+      "server": "<NAS_PRIMARY_IP>",
+      "domain": "<LOCAL_HOSTNAME>",
+      "imap": {
+        "server": "<NAS_PRIMARY_IP>",
+        "port": 993,
+        "ssl": true
+      },
+      "smtp": {
+        "server": "<NAS_PRIMARY_IP>",
+        "port": 587,
+        "ssl": true
+      },
+      "accounts": {
+        "mlesn": {
+          "email": "mlesn@<LOCAL_HOSTNAME>",
+          "username": "mlesn"
+        }
+      }
+    },
+    "source_accounts": {
+      "gmail": {
+        "enabled": true,
+        "sync_to_nas": true,
+        "imap": {
+          "server": "imap.gmail.com",
+          "port": 993,
+          "ssl": true,
+          "username_note": "Gmail email address",
+          "password_note": "Gmail App Password (16 characters)"
+        },
+        "sync_settings": {
+          "sync_interval_minutes": 15,
+          "sync_all_folders": false,
+          "folders_to_sync": [
+            "INBOX",
+            "Sent",
+            "Important"
+          ],
+          "forward_to_nas": true,
+          "forward_address": "mlesn@<LOCAL_HOSTNAME>"
+        }
+      },
+      "protonmail": {
+        "enabled": true,
+        "sync_to_nas": true,
+        "bridge": {
+          "host": "127.0.0.1",
+          "imap_port": 1143,
+          "smtp_port": 1025,
+          "security": "STARTTLS",
+          "username": "mlesnews@protonmail.com",
+          "password": "${vault:protonmail-bridge-password}",
+          "note": "Proton Bridge must be running"
+        },
+        "sync_settings": {
+          "sync_interval_minutes": 15,
+          "sync_all_folders": false,
+          "folders_to_sync": [
+            "INBOX",
+            "Sent"
+          ],
+          "forward_to_nas": true,
+          "forward_address": "mlesn@<LOCAL_HOSTNAME>"
+        }
+      }
+    },
+    "sync_daemon": {
+      "enabled": true,
+      "script": "scripts/python/sync_emails_to_nas_hub.py",
+      "schedule": {
+        "interval_minutes": 15,
+        "run_at_startup": true
+      }
+    }
+  },
+  "generated_at": "2026-01-05T22:30:28.959161"
+}

@@ -1,0 +1,19 @@
+{
+  "fencing_enabled": true,
+  "auto_fence": true,
+  "auto_recovery": true,
+  "fence_thresholds": {
+    "consecutive_failures": 3,
+    "error_rate": 0.5,
+    "response_time_ms": 10000,
+    "health_check_failures": 5
+  },
+  "recovery_thresholds": {
+    "consecutive_successes": 3,
+    "health_check_successes": 3
+  },
+  "fence_duration_minutes": 5,
+  "aiq_decision_required": true,
+  "jedi_council_consultation": true,
+  "troubleshooting_enabled": true
+}

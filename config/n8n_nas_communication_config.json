@@ -1,0 +1,328 @@
+{
+  "version": "2.0.0",
+  "description": "NAS n8n Communication Hub - All 9 email endpoints + SMS + Messengers",
+  "last_updated": "2026-01-13",
+  
+  "nas_server": {
+    "host": "<NAS_PRIMARY_IP>",
+    "n8n_port": 5678,
+    "n8n_url": "http://<NAS_PRIMARY_IP>:5678",
+    "mailplus_domain": "<LOCAL_HOSTNAME>"
+  },
+
+  "email_endpoints": {
+    "total_count": 9,
+    "routing_mode": "nas_hub",
+    "nas_mailplus_server": "<NAS_PRIMARY_IP>",
+    
+    "accounts": {
+      "1_gmail": {
+        "id": "gmail_primary",
+        "email": "placeholder@gmail.com",
+        "provider": "Gmail",
+        "type": "oauth2",
+        "imap_server": "imap.gmail.com",
+        "imap_port": 993,
+        "smtp_server": "smtp.gmail.com",
+        "smtp_port": 587,
+        "n8n_workflow": "email_aggregator_gmail",
+        "status": "pending_oauth2_setup",
+        "routed_via_nas": false,
+        "notes": "Requires Google Cloud Console OAuth2 credentials"
+      },
+      "2_proton_mlesn": {
+        "id": "proton_mlesn",
+        "email": "mlesn@protonmail.com",
+        "provider": "ProtonMail",
+        "type": "bridge",
+        "imap_server": "127.0.0.1",
+        "imap_port": 1143,
+        "smtp_server": "127.0.0.1",
+        "smtp_port": 1025,
+        "n8n_workflow": "email_aggregator_proton_mlesn",
+        "status": "pending_bridge_config",
+        "routed_via_nas": false,
+        "notes": "Proton Bridge must run on host PC, then forward to NAS"
+      },
+      "3_proton_glesn": {
+        "id": "proton_glesn",
+        "email": "glesn@protonmail.com",
+        "provider": "ProtonMail",
+        "type": "bridge",
+        "imap_server": "127.0.0.1",
+        "imap_port": 1143,
+        "smtp_server": "127.0.0.1",
+        "smtp_port": 1025,
+        "n8n_workflow": "email_aggregator_proton_glesn",
+        "status": "pending_bridge_config",
+        "routed_via_nas": false,
+        "notes": "Shares bridge with mlesn account"
+      },
+      "4_xfinity": {
+        "id": "xfinity",
+        "email": "placeholder@comcast.net",
+        "provider": "Xfinity/Comcast",
+        "type": "imap",
+        "imap_server": "imap.comcast.net",
+        "imap_port": 993,
+        "smtp_server": "smtp.comcast.net",
+        "smtp_port": 587,
+        "n8n_workflow": "email_aggregator_xfinity",
+        "status": "pending_credentials",
+        "routed_via_nas": false,
+        "notes": "Standard IMAP/SMTP with password auth"
+      },
+      "5_apple": {
+        "id": "apple_icloud",
+        "email": "placeholder@icloud.com",
+        "provider": "Apple/iCloud",
+        "type": "imap",
+        "imap_server": "imap.mail.me.com",
+        "imap_port": 993,
+        "smtp_server": "smtp.mail.me.com",
+        "smtp_port": 587,
+        "n8n_workflow": "email_aggregator_apple",
+        "status": "pending_app_password",
+        "routed_via_nas": false,
+        "notes": "Requires App-Specific Password from Apple ID"
+      },
+      "6_yahoo": {
+        "id": "yahoo",
+        "email": "placeholder@yahoo.com",
+        "provider": "Yahoo",
+        "type": "oauth2",
+        "imap_server": "imap.mail.yahoo.com",
+        "imap_port": 993,
+        "smtp_server": "smtp.mail.yahoo.com",
+        "smtp_port": 587,
+        "n8n_workflow": "email_aggregator_yahoo",
+        "status": "pending_oauth2_setup",
+        "routed_via_nas": false,
+        "notes": "OAuth2 or App Password"
+      },
+      "7_outlook": {
+        "id": "outlook_365",
+        "email": "placeholder@outlook.com",
+        "provider": "Outlook/Microsoft 365",
+        "type": "oauth2",
+        "imap_server": "outlook.office365.com",
+        "imap_port": 993,
+        "smtp_server": "smtp.office365.com",
+        "smtp_port": 587,
+        "n8n_workflow": "email_aggregator_outlook",
+        "status": "pending_oauth2_setup",
+        "routed_via_nas": false,
+        "notes": "OAuth2 via Azure App Registration"
+      },
+      "8_company_mlesn": {
+        "id": "company_mlesn",
+        "email": "mlesn@<LOCAL_HOSTNAME>",
+        "provider": "NAS MailPlus",
+        "type": "internal",
+        "imap_server": "<NAS_PRIMARY_IP>",
+        "imap_port": 993,
+        "smtp_server": "<NAS_PRIMARY_IP>",
+        "smtp_port": 587,
+        "n8n_workflow": "email_aggregator_company_mlesn",
+        "status": "active",
+        "routed_via_nas": true,
+        "notes": "Already on NAS MailPlus - native integration"
+      },
+      "9_company_glesn": {
+        "id": "company_glesn",
+        "email": "glesn@<LOCAL_HOSTNAME>",
+        "provider": "NAS MailPlus",
+        "type": "internal",
+        "imap_server": "<NAS_PRIMARY_IP>",
+        "imap_port": 993,
+        "smtp_server": "<NAS_PRIMARY_IP>",
+        "smtp_port": 587,
+        "n8n_workflow": "email_aggregator_company_glesn",
+        "status": "active",
+        "routed_via_nas": true,
+        "notes": "Already on NAS MailPlus - native integration"
+      }
+    }
+  },
+
+  "sms_config": {
+    "status": "pending_setup",
+    "provider_options": [
+      {
+        "provider": "elevenlabs",
+        "n8n_node": "HTTP Request",
+        "setup_url": "https://elevenlabs.io",
+        "credentials_needed": ["api_key"],
+        "recommended": true,
+        "notes": "ElevenLabs native SMS with voice conversion (Twilio removed per directive)"
+      },
+      {
+        "provider": "vonage",
+        "n8n_node": "Vonage",
+        "setup_url": "https://dashboard.nexmo.com",
+        "credentials_needed": ["api_key", "api_secret", "phone_number"],
+        "recommended": false,
+        "notes": "Alternative SMS provider"
+      },
+      {
+        "provider": "android_gateway",
+        "n8n_node": "HTTP Request",
+        "setup_url": "Use old Android phone as SMS gateway",
+        "credentials_needed": ["api_endpoint"],
+        "recommended": false,
+        "notes": "Free but requires dedicated device"
+      }
+    ],
+    "n8n_workflow": "sms_gateway",
+    "route_to_nas": true
+  },
+
+  "messengers": {
+    "telegram": {
+      "status": "pending_setup",
+      "n8n_node": "Telegram",
+      "n8n_trigger": "Telegram Trigger",
+      "setup_steps": [
+        "1. Message @BotFather on Telegram",
+        "2. Create new bot with /newbot",
+        "3. Copy the bot token",
+        "4. Store token in n8n credentials",
+        "5. Create workflow with Telegram Trigger node"
+      ],
+      "n8n_workflow": "messenger_telegram",
+      "enabled": false,
+      "notes": "Free, no phone verification needed for bot"
+    },
+    "discord": {
+      "status": "pending_setup",
+      "n8n_node": "Discord",
+      "n8n_trigger": "Discord Trigger",
+      "setup_steps": [
+        "1. Go to https://discord.com/developers/applications",
+        "2. Create new application",
+        "3. Create Bot in application settings",
+        "4. Copy bot token",
+        "5. Enable Privileged Gateway Intents",
+        "6. Invite bot to server with OAuth2 URL Generator",
+        "7. Store token in n8n credentials",
+        "8. Create workflow with Discord node"
+      ],
+      "n8n_workflow": "messenger_discord",
+      "enabled": false,
+      "notes": "Requires server admin to invite bot"
+    },
+    "whatsapp": {
+      "status": "pending_setup",
+      "n8n_node": "WhatsApp Business Cloud",
+      "n8n_trigger": "WhatsApp Trigger",
+      "setup_steps": [
+        "1. Create Meta Business account",
+        "2. Go to https://developers.facebook.com",
+        "3. Create new app (Business type)",
+        "4. Add WhatsApp product to app",
+        "5. Get phone number ID and access token",
+        "6. Configure webhook for incoming messages",
+        "7. Store credentials in n8n",
+        "8. Create workflow with WhatsApp nodes"
+      ],
+      "n8n_workflow": "messenger_whatsapp",
+      "enabled": false,
+      "notes": "Business API - free tier available for testing"
+    },
+    "slack": {
+      "status": "pending_setup",
+      "n8n_node": "Slack",
+      "n8n_trigger": "Slack Trigger",
+      "setup_steps": [
+        "1. Go to https://api.slack.com/apps",
+        "2. Create new app 'From scratch'",
+        "3. Add OAuth scopes (chat:write, channels:read, etc.)",
+        "4. Install app to workspace",
+        "5. Copy Bot User OAuth Token",
+        "6. Enable Event Subscriptions for triggers",
+        "7. Store token in n8n credentials"
+      ],
+      "n8n_workflow": "messenger_slack",
+      "enabled": false,
+      "notes": "For company/team communication"
+    },
+    "signal": {
+      "status": "pending_setup",
+      "n8n_node": "HTTP Request",
+      "n8n_trigger": "Webhook",
+      "setup_steps": [
+        "1. Set up signal-cli or signal-cli-rest-api Docker container",
+        "2. Register/link phone number",
+        "3. Configure REST API endpoint",
+        "4. Create n8n workflow with HTTP Request to Signal API"
+      ],
+      "n8n_workflow": "messenger_signal",
+      "enabled": false,
+      "notes": "Requires signal-cli-rest-api container - most secure"
+    }
+  },
+
+  "n8n_master_workflows": {
+    "unified_inbox": {
+      "description": "Aggregates all 9 email endpoints into single stream",
+      "status": "pending",
+      "triggers": ["IMAP Email", "Gmail API", "Webhook"],
+      "outputs": ["Holocron", "SYPHON", "Notification"],
+      "transport": "@NDM"
+    },
+    "message_router": {
+      "description": "Routes incoming messages to appropriate handlers",
+      "status": "pending",
+      "triggers": ["Telegram Trigger", "Discord Trigger", "WhatsApp Trigger", "Webhook"],
+      "outputs": ["@JARVIS", "@TRIAGE", "@ASK"],
+      "transport": "@NDM"
+    },
+    "notification_hub": {
+      "description": "Sends notifications to multiple channels",
+      "status": "pending",
+      "triggers": ["Webhook from LUMINA"],
+      "outputs": ["Email", "SMS", "Telegram", "Discord"]
+    },
+    "ndm_secure_transport": {
+      "description": "@NDM - Secure data transport without tickets",
+      "status": "pending",
+      "philosophy": "Tickets are for humans. NDMs are for machines.",
+      "triggers": ["Webhook from UHURA/C3PO pipelines"],
+      "outputs": ["@SYPHON", "@HOLOCRON"],
+      "security": {
+        "encryption": "TLS 1.3",
+        "audit_log": "data/ndm_logs/",
+        "no_pii_in_logs": true
+      },
+      "ticket_policy": "NO TICKETS - silent operation by design"
+    }
+  },
+
+  "todolist_requirements": {
+    "description": "User requirement for dual todolist display in AI chat sessions",
+    "master_todolist": {
+      "description": "Persistent todolist across sessions",
+      "storage": "data/todolists/master_todolist.json",
+      "features": ["auto_collapse", "auto_hide", "persistent"],
+      "status": "needs_development"
+    },
+    "session_todolist": {
+      "description": "Current session todolist (existing Cursor chat behavior)",
+      "features": ["auto_collapse", "auto_hide", "session_scoped"],
+      "status": "active"
+    },
+    "display_requirement": "Both todolists visible in every AI chat session",
+    "ui_behavior": "Identical to current Cursor chat todolist - auto collapse/hide"
+  },
+
+  "ide_ui_modification": {
+    "description": "AI capability to modify IDE menus, panes, and UI/UX at operator request",
+    "current_capability": "Limited - Cursor MCP can open files but not modify UI directly",
+    "proposed_solutions": [
+      "Cursor extension development",
+      "Custom MCP server for UI control",
+      "VS Code API integration via extension"
+    ],
+    "status": "needs_research"
+  }
+}

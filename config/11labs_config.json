@@ -1,0 +1,51 @@
+{
+  "api_version": "v1",
+  "base_url": "https://api.elevenlabs.io/v1",
+  "credentials": {
+    "storage": "Azure Vault",
+    "secrets": [
+      "elevenlabs-api-key",
+      "elevenlabs-voice-id-default",
+      "elevenlabs-voice-id-sms",
+      "elevenlabs-voice-id-phone"
+    ]
+  },
+  "voices": {
+    "default": {
+      "description": "Default voice for general use",
+      "voice_id": "stored_in_azure_vault",
+      "settings": {
+        "stability": 0.5,
+        "similarity_boost": 0.75,
+        "style": 0.0,
+        "use_speaker_boost": true
+      }
+    },
+    "sms_voice": {
+      "description": "Voice for SMS reading and responses",
+      "voice_id": "stored_in_azure_vault",
+      "settings": {
+        "stability": 0.6,
+        "similarity_boost": 0.8,
+        "style": 0.2,
+        "use_speaker_boost": true
+      }
+    },
+    "phone_voice": {
+      "description": "Voice for phone call interactions",
+      "voice_id": "stored_in_azure_vault",
+      "settings": {
+        "stability": 0.7,
+        "similarity_boost": 0.85,
+        "style": 0.3,
+        "use_speaker_boost": true
+      }
+    }
+  },
+  "features": {
+    "text_to_speech": true,
+    "voice_cloning": false,
+    "conversational_ai": true,
+    "real_time_voice": true
+  }
+}

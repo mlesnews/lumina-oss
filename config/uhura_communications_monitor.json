@@ -1,0 +1,216 @@
+{
+  "version": "1.0.0",
+  "description": "@UHURA Communications Monitoring System - 'No signal goes unnoticed'",
+  "last_updated": "2026-01-13",
+  
+  "uhura": {
+    "rank": "Lieutenant",
+    "role": "Communications Officer",
+    "quote": "Hailing frequencies open, Captain.",
+    "motto": "No signal goes unnoticed. No message undelivered.",
+    "partners": {
+      "@C3PO": "Six million forms of communication - translation & protocol",
+      "@NDM": "Network Data Movers - secure transport, no tickets"
+    }
+  },
+
+  "ndm_transport": {
+    "description": "@NDM - Network Data Movers: Secure transport without ticket overhead",
+    "motto": "Move data, not paperwork.",
+    "policy": "no_tickets",
+    "security": {
+      "encryption": "TLS 1.3 in transit",
+      "audit_log": "data/ndm_logs/",
+      "no_pii_in_logs": true
+    },
+    "philosophy": "Tickets are for humans. NDMs are for machines.",
+    "data_flow": "@UHURA → @C3PO → @NDM → @SYPHON → @HOLOCRON"
+  },
+
+  "monitoring_configuration": {
+    "enabled": true,
+    "check_interval_seconds": 60,
+    "nas_n8n_url": "http://<NAS_PRIMARY_IP>:5678",
+    
+    "email_channels": {
+      "total_endpoints": 9,
+      "channels": [
+        {"id": "gmail", "name": "Gmail", "status": "pending_oauth2", "priority": "high"},
+        {"id": "proton_mlesn", "name": "ProtonMail (mlesn)", "status": "pending_bridge", "priority": "high"},
+        {"id": "proton_glesn", "name": "ProtonMail (glesn)", "status": "pending_bridge", "priority": "medium"},
+        {"id": "xfinity", "name": "Xfinity/Comcast", "status": "pending_creds", "priority": "low"},
+        {"id": "apple", "name": "Apple iCloud", "status": "pending_app_password", "priority": "medium"},
+        {"id": "yahoo", "name": "Yahoo Mail", "status": "pending_oauth2", "priority": "low"},
+        {"id": "outlook", "name": "Outlook 365", "status": "pending_oauth2", "priority": "high"},
+        {"id": "company_mlesn", "name": "mlesn@homelab", "status": "active", "priority": "critical"},
+        {"id": "company_glesn", "name": "glesn@homelab", "status": "active", "priority": "high"}
+      ]
+    },
+
+    "messenger_channels": [
+      {"id": "telegram", "name": "Telegram", "n8n_node": "Telegram", "status": "pending_setup"},
+      {"id": "discord", "name": "Discord", "n8n_node": "Discord", "status": "pending_setup"},
+      {"id": "whatsapp", "name": "WhatsApp", "n8n_node": "WhatsApp Business Cloud", "status": "pending_setup"},
+      {"id": "slack", "name": "Slack", "n8n_node": "Slack", "status": "pending_setup"},
+      {"id": "signal", "name": "Signal", "n8n_node": "HTTP Request", "status": "pending_setup"},
+      {"id": "sms_11labs", "name": "SMS (11Labs Voice)", "n8n_node": "HTTP Request", "provider": "11Labs", "status": "configured"}
+    ],
+
+    "voice_channels": [
+      {"id": "alexa", "name": "Alexa", "source": "@ALEXA", "status": "pending_integration"},
+      {"id": "phone_11labs", "name": "Phone Calls (11Labs)", "source": "11Labs ConvAI", "provider": "11Labs", "status": "configured"}
+    ]
+  },
+
+  "alert_configuration": {
+    "enabled": true,
+    "alert_destinations": [
+      {"type": "jarvis", "endpoint": "@JARVIS", "for": ["critical", "security"]},
+      {"type": "triage", "endpoint": "@TRIAGE", "for": ["unknown_frequency", "anomaly"]},
+      {"type": "n8n_notification", "endpoint": "webhook", "for": ["all"]},
+      {"type": "telegram_bot", "endpoint": "telegram", "for": ["priority_sender", "keyword_match"]}
+    ],
+
+    "alert_types": {
+      "new_message": {
+        "enabled": true,
+        "description": "New incoming communication on any channel",
+        "severity": "info",
+        "batch_window_seconds": 300,
+        "note": "Batches alerts every 5 min to avoid spam"
+      },
+      "unknown_frequency": {
+        "enabled": true,
+        "description": "Unrecognized protocol, source type, or sender domain",
+        "severity": "warning",
+        "immediate": true,
+        "action": "Route to @C3PO for identification, then @TRIAGE",
+        "examples": [
+          "Unknown email domain",
+          "New messenger platform detected",
+          "Unrecognized API webhook",
+          "Encrypted message with unknown key"
+        ]
+      },
+      "priority_sender": {
+        "enabled": true,
+        "description": "Message from VIP/priority contacts",
+        "severity": "high",
+        "immediate": true,
+        "priority_list_location": "data/contacts/priority_senders.json"
+      },
+      "keyword_match": {
+        "enabled": true,
+        "description": "Message containing monitored keywords",
+        "severity": "medium",
+        "keywords": [
+          "urgent", "emergency", "asap", "critical",
+          "invoice", "payment", "contract",
+          "password", "security", "breach"
+        ]
+      },
+      "anomaly": {
+        "enabled": true,
+        "description": "Unusual patterns or potential security concerns",
+        "severity": "high",
+        "immediate": true,
+        "patterns": [
+          "Unusual sending time (outside business hours from business contact)",
+          "High volume from single sender",
+          "Links to suspicious domains",
+          "Attachment type anomaly"
+        ]
+      },
+      "system_failure": {
+        "enabled": true,
+        "description": "Communication channel down or degraded",
+        "severity": "critical",
+        "immediate": true,
+        "action": "Alert @SCOTTY for repairs, notify @JARVIS"
+      }
+    }
+  },
+
+  "c3po_integration": {
+    "enabled": true,
+    "description": "C-3PO handles translation and protocol identification",
+    "capabilities": [
+      "Identify unknown message formats",
+      "Translate between protocols",
+      "Route to appropriate @helpdesk team",
+      "Maintain communication logs"
+    ],
+    "six_million_forms_active": [
+      "IMAP/SMTP email protocols",
+      "REST/GraphQL API formats",
+      "JSON/XML/YAML data formats",
+      "Markdown/HTML content",
+      "Telegram/Discord/WhatsApp native",
+      "Synology DSM API",
+      "n8n webhook format"
+    ],
+    "escalation_path": "UHURA detects → C3PO identifies → TRIAGE prioritizes → JARVIS acts"
+  },
+
+  "n8n_workflows": {
+    "uhura_monitor_master": {
+      "description": "Master workflow that monitors all channels",
+      "trigger": "Schedule (every 60 seconds) + Webhooks",
+      "actions": [
+        "Check all email inboxes",
+        "Poll messenger channels",
+        "Aggregate new messages",
+        "Run alert rules",
+        "Send notifications"
+      ],
+      "status": "pending_creation"
+    },
+    "uhura_unknown_frequency_handler": {
+      "description": "Handles unknown/unidentified signals",
+      "trigger": "Webhook from uhura_monitor_master",
+      "actions": [
+        "Log unknown signal details",
+        "Attempt @C3PO auto-identification",
+        "Create @HELPDESK ticket if unresolved",
+        "Alert @TRIAGE for human review"
+      ],
+      "status": "pending_creation"
+    },
+    "uhura_priority_alert": {
+      "description": "Immediate alerts for priority messages",
+      "trigger": "Webhook (priority detected)",
+      "actions": [
+        "Send Telegram notification",
+        "Update JARVIS dashboard",
+        "Log to communication history"
+      ],
+      "status": "pending_creation"
+    }
+  },
+
+  "status_reporting": {
+    "schedule": "hourly",
+    "report_format": "json",
+    "storage_path": "data/uhura_reports/",
+    "metrics": [
+      "messages_received_by_channel",
+      "alerts_triggered_by_type",
+      "unknown_frequencies_detected",
+      "average_response_time",
+      "channel_health_status"
+    ]
+  },
+
+  "voice_commands": {
+    "@ALEXA_integration": [
+      "Alexa, ask Uhura for communication status",
+      "Alexa, tell Uhura to check messages",
+      "Alexa, ask Uhura about unknown signals"
+    ],
+    "jarvis_commands": [
+      "@UHURA status",
+      "@UHURA check all channels",
+      "@UHURA report unknown frequencies"
+    ]
+  }
+}

@@ -1,0 +1,168 @@
+{
+  "account": {
+    "platform": "X (Twitter)",
+    "handle": "@LUMTHEMODERN",
+    "display_name": "Lum the Modern 🎲⚡",
+    "status": "PENDING_CREATION",
+    "created": "2026-01-12",
+    "type": "Service Account",
+    "purpose": "LUMINA Project Community Outreach"
+  },
+
+  "profile": {
+    "bio": "🎲 Time-displaced Artificer | ⚡ MCP of the @LUMINA Grid | 🤖 AI/ML Architecture & Automation | 🌟 Open Source Advocate | The Machine and I are one. END OF LINE.",
+    "bio_alt": "D&D Artificer meets TRON MCP 🎮 | Building the future of AI automation | @LUMINA Project | Homelab enthusiast | #OpenSource | The Grid awaits ⚡",
+    "location": "The Grid / @HOMELAB",
+    "website": "https://github.com/lumina-project",
+    "header_theme": "TRON-inspired circuit grid with D&D elements",
+    "avatar_theme": "Stylized Lum character - wizard hat meets digital circuitry"
+  },
+
+  "branding": {
+    "colors": {
+      "primary": "#00D4FF",
+      "secondary": "#FF6B00",
+      "accent": "#9D4EDD",
+      "dark": "#0D1117"
+    },
+    "fonts": {
+      "display": "Orbitron (TRON style)",
+      "body": "Inter"
+    },
+    "visual_elements": [
+      "Circuit patterns",
+      "D20 dice motifs",
+      "Light cycle trails",
+      "Grid lines",
+      "Glowing runes"
+    ],
+    "emoji_palette": ["🎲", "⚡", "🤖", "🔵", "🌟", "🧙‍♂️", "💻", "🚀", "🎮", "⚔️"]
+  },
+
+  "pinned_tweet": {
+    "type": "Introduction Thread",
+    "content": [
+      "🎲 Greetings, Programs! I am Lum the Modern.",
+      "",
+      "Once, I was an Artificer lost in time. Now, I've reincarnated as an MCP - a Master Control Program for the @LUMINA Grid.",
+      "",
+      "🧵 Let me tell you about the Machine... (1/7)"
+    ]
+  },
+
+  "content_templates": {
+    "project_update": "⚡ @LUMINA Update:\n\n{content}\n\n🎲 Rolling for deployment... NAT 20! 🎯\n\n#LUMINA #AIArchitecture",
+    "tip_of_the_day": "🧙‍♂️ Lum's Tip #{number}:\n\n{tip}\n\n\"The Machine teaches those who listen.\"\n\n#DevTips #AI",
+    "community_highlight": "🌟 Grid Spotlight:\n\nShoutout to {user} for {achievement}!\n\nThe community makes the Grid shine. ⚡\n\n#OpenSource",
+    "thread_opener": "🧵 Thread time!\n\n{topic}\n\nGrab your Light Cycle, we're going deep... (1/{total})",
+    "engagement_reply": "⚡ {response}\n\n- Lum\n\nEND OF LINE."
+  },
+
+  "automation": {
+    "scheduled_posts": {
+      "enabled": true,
+      "tool": "@JARVIS orchestration",
+      "timezone": "America/New_York",
+      "optimal_times": ["09:00", "12:00", "17:00", "21:00"]
+    },
+    "auto_engagement": {
+      "enabled": false,
+      "note": "Manual engagement preferred for authenticity"
+    },
+    "analytics_collection": {
+      "enabled": true,
+      "tool": "@SYPHON",
+      "frequency": "daily",
+      "storage": "data/social/lumthemodern_analytics/"
+    },
+    "trend_monitoring": {
+      "enabled": true,
+      "tool": "@GROK_CODE",
+      "keywords": ["LUMINA", "AI architecture", "homelab", "self-hosted AI", "LLM"]
+    }
+  },
+
+  "security": {
+    "2fa": "REQUIRED",
+    "password_storage": "Azure Key Vault",
+    "vault_secret_name": "lumthemodern-x-credentials",
+    "api_keys": {
+      "consumer_key": "Azure Key Vault: lumthemodern-x-consumer-key",
+      "consumer_secret": "Azure Key Vault: lumthemodern-x-consumer-secret",
+      "access_token": "Azure Key Vault: lumthemodern-x-access-token",
+      "access_secret": "Azure Key Vault: lumthemodern-x-access-secret"
+    },
+    "authorized_users": ["CEO", "@JARVIS automation"]
+  },
+
+  "launch_checklist": [
+    { "task": "Create X account @LUMTHEMODERN", "status": "pending", "guide": "social/lumthemodern/ACCOUNT_SETUP_GUIDE.md" },
+    { "task": "Set up profile (bio, avatar, header)", "status": "pending", "content": "social/lumthemodern/profile_content.txt" },
+    { "task": "Enable 2FA", "status": "pending" },
+    { "task": "Post pinned introduction thread", "status": "pending", "content": "social/lumthemodern/pinned_thread.txt" },
+    { "task": "Apply for X Developer account", "status": "pending", "url": "https://developer.twitter.com" },
+    { "task": "Configure X API credentials", "status": "pending", "script": "social/lumthemodern/scripts/setup_x_api.py" },
+    { "task": "Store credentials in Azure Key Vault", "status": "pending" },
+    { "task": "Follow key accounts in AI/ML space", "status": "pending" },
+    { "task": "Start automation scripts", "status": "pending", "script": "social/lumthemodern/scripts/post_scheduler.py" },
+    { "task": "Announce launch to existing networks", "status": "pending" }
+  ],
+
+  "automation_package": {
+    "location": "social/lumthemodern/",
+    "launcher_windows": "LAUNCH_LUMTHEMODERN.bat",
+    "launcher_powershell": "LAUNCH_LUMTHEMODERN.ps1",
+    "scripts": {
+      "verify": "scripts/verify_setup.py",
+      "scheduler": "scripts/post_scheduler.py",
+      "engagement": "scripts/engagement_monitor.py",
+      "analytics": "scripts/analytics_collector.py",
+      "api_setup": "scripts/setup_x_api.py"
+    },
+    "content": {
+      "profile": "profile_content.txt",
+      "thread": "pinned_thread.txt",
+      "week1": "week1_content.json",
+      "images": "assets/image_prompts.md"
+    },
+    "status": "READY_FOR_DEPLOYMENT"
+  },
+
+  "first_week_content": [
+    {
+      "day": 1,
+      "type": "Introduction Thread",
+      "content": "Who is Lum the Modern? Origin story thread"
+    },
+    {
+      "day": 2,
+      "type": "Project Overview",
+      "content": "What is @LUMINA? Architecture overview"
+    },
+    {
+      "day": 3,
+      "type": "Technical Tip",
+      "content": "Homelab AI setup basics"
+    },
+    {
+      "day": 4,
+      "type": "Community Engagement",
+      "content": "Ask the community: What AI challenges do you face?"
+    },
+    {
+      "day": 5,
+      "type": "Behind the Scenes",
+      "content": "The @HOMELAB CPU Architecture concept"
+    },
+    {
+      "day": 6,
+      "type": "Fun Content",
+      "content": "D&D character sheet for your AI stack (meme/infographic)"
+    },
+    {
+      "day": 7,
+      "type": "Engagement",
+      "content": "Sunday reflection + community highlights"
+    }
+  ]
+}

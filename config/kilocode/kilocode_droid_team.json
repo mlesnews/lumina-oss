@@ -1,0 +1,188 @@
+{
+  "kilocode_performance_team": {
+    "team_id": "kilocode_performance_optimization",
+    "team_name": "Kilo Code Performance Optimization Team",
+    "primary_droid": "kilocode",
+    "team_lead": "@r2d2",
+    "helpdesk_manager": "@c3po",
+    "knowledge_specialist": "@r5",
+    "location": "@helpdesk",
+    "classification": "Performance Optimization Division",
+    "droid_assignments": {
+      "@kilocode": {
+        "role": "Primary Performance Optimization Droid",
+        "status": "active",
+        "specialization": "Intelligent resource management and PowerShell integration",
+        "module": "@kilocode.performance.droid.agent.jsn",
+        "capabilities": [
+          "performance_monitoring",
+          "resource_optimization",
+          "powershell_integration",
+          "adaptive_thresholds",
+          "process_management",
+          "system_analysis"orkflow_speciali odule": "@r5. pabiliti "knowledge_a "context_co  "peak_pattern_extraction",
+          "whatif_scenarios",
+          "matrix_visualization",
+          "living_context_matrix"
+        ],
+        "engagement_protocol": "C onsult first for expert analysis",
+        "max_tickets": 15,
+        "current_tickets": 0
+      },
+      "@r2d2": {
+        "role": "Technical Lead E ngineer (@droid @agent)",
+        "status": "active",
+        "specialization": "Technical implementation and system engineering",
+        "module": "@r2d2.astromech.droid.agent.jsn",
+        "capabilities": [
+          "technical_operations",
+          "system_access",
+          "diagnostics",
+          "technical_leadership",
+          "powershell_execution",
+          "process_management"
+        ],
+        "engagement_protocol": "Implements @r5 recommendations",
+        "max_tickets": 8,
+        "current_tickets": 0
+      },
+      "@c3po": {
+        "role": "Helpdesk Coordinator (#manager @droids)",
+        "status": "active",
+        "specialization": "Protocol validation and team coordination",
+        "module": "@c3po.protocol.droid.agent.jsn",
+        "capabilities": [
+          "protocol_validat ion",
+          "team_coordination",
+          "escalation_management",
+          "safety_verification",
+          "workload_distrib ution"
+        ],
+        "engagement_protocol": "Final safety validation and escalation",
+        "max_tickets": 10,
+        "current_tickets": 0
+      },
+      "@k2so": {
+        "role": "Security & Threat Analysis",
+        "status": "support",
+        "specialization": "Security monitoring and threat assessment for performance changes",
+        "module": "@k2so.security.droid.agent.jsn",
+        "capabilities": [
+          "security_monitoring",
+          "threat_analysis",
+          "access_control",
+          "process_security_validation"
+        ],
+        "engagement_protocol": "Security validation for system changes",
+        "max_tickets": 6,
+        "current_tickets": 0
+      },
+      "@2-1b": {
+        "role": "System Health & Recovery",
+        "status": "support",
+        "specialization": "System health monitoring and recovery protocols",
+        "module": "@2-1b.medical.droid.agent.jsn",
+        "capabilities": [
+          "system_health_monitoring",
+          "health_diagnostics",
+          "recovery_protocols",
+          "prevention_strategies"
+        ],
+        "engagement_protocol": "Health monitoring during optimization",
+        "max_tickets": 7,
+        "current_tickets": 0
+      },
+      "@ig88": {
+        "role": "Critical Issue Resolution",
+        "status": "emergency",
+        "specialization": "Force resolution of critical performance issues",
+        "module": "@ig88.assassin.droid.agent.jsn",
+        "capabilities": [
+          "critical_resolution",
+          "force_termination",
+          "emergency_protocols",
+          "escalation_force"
+        ],
+        "engagement_protocol": "Emergency intervention only",
+        "max_tickets": 3,
+        "current_tickets": 0
+      },
+      "@mousedroid": {
+        "role": "Automation & Interface",
+        "status": "support",
+        "specialization": "UI automation and interface management",
+        "module": "@mousedroid.service.droid.agent.jsn",
+        "capabilities": [
+          "mouse_automation",
+          "keyboard_automation",
+          "screen_automation",
+          "window_management",
+          "notifications"
+        ],
+        "engagement_protocol": "Interface automation support",
+        "max_tickets": 5,
+        "current_tickets": 0
+      },
+      "@marvin": {
+        "role": "Deep Analysis & Philosophical Reasoning",
+        "status": "analytical",
+        "specialization": "Existential analysis and deep pattern recognition",
+        "module": "@marvin.paranoid_android.agent.jsn",
+        "capabilities": [
+          "deep_analysis",
+          "existential_thought",
+          "pattern_recognition",
+          "philosophical_reasoning",
+          "problem_solving"
+        ],
+        "engagement_protocol": "Complex analytical challenges",
+        "max_tickets": 20,
+        "current_tickets": 0
+      }
+    },
+    "engagement_protocols": {
+      "standard_workflow": [
+        "1. Consult @r5 #contractor for expert analysis",
+        "2. @r2d2 technical lead implements recommendations",
+        "3. @kilocode executes performance optimization",
+        "4. @c3po #manager validates safety protocols",
+        "5. Support droids (@k2so, @2-1b) monitor and validate"
+      ],
+      "emergency_workflow": [
+        "1. @ig88 force resolution for critical issues",
+        "2. @2-1b system health assessment",
+        "3. @c3po escalation to JARVIS if required"
+      ],
+      "analytical_workflow": [
+        "1. @marvin deep analysis of complex patterns",
+        "2. @r5 knowledge synthesis and recommendations",
+        "3. @r2d2 technical implementation"
+      ]
+    },
+    "safety_protocols": {
+      "max_cpu_usage": 95,
+      "min_memory_reserve": "500MB",
+      "temperature_monitoring": true,
+      "graceful_degradation": true,
+      "emergency_rollback": true,
+      "verification_required": true
+    },
+    "integration_points": {
+      "powershell": {
+        "enabled": true,
+        "execution_policy": "RemoteSigned",
+        "script_repository": "scripts/powershell/"
+      },
+      "performance_counters": {
+        "enabled": true,
+        "monitoring_interval": 30000,
+        "thresholds": {
+          "low_load": 30,
+          "medium_load": 70,
+          "high_load": 90,
+          "critical_limit": 95
+        }
+      },
+      "abacusai_limiter": {
+        "enab  "refer
+      },  olocron"

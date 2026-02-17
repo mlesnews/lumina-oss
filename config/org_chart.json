@@ -1,0 +1,124 @@
+{
+  "company": "<COMPANY_NAME> LLC",
+  "last_updated": "2026-01-10",
+  "hierarchy": {
+    "CEO": {
+      "name": "CEO",
+      "title": "Chief Executive Officer",
+      "level": 1,
+      "reports_to": null,
+      "direct_reports": ["CTO", "CFO", "COO"],
+      "data_sources": [
+        "email",
+        "calendar",
+        "documents",
+        "meetings",
+        "decisions",
+        "communications"
+      ],
+      "jarvis_access": {
+        "email": true,
+        "calendar": true,
+        "documents": true,
+        "meetings": true,
+        "decisions": true,
+        "communications": true
+      }
+    },
+    "CTO": {
+      "name": "CTO",
+      "title": "Chief Technology Officer",
+      "level": 2,
+      "reports_to": "CEO",
+      "direct_reports": ["Tech_Lead", "DevOps_Lead"],
+      "data_sources": [
+        "email",
+        "calendar",
+        "code_repositories",
+        "technical_documents",
+        "system_logs",
+        "infrastructure"
+      ],
+      "jarvis_access": {
+        "email": true,
+        "calendar": true,
+        "code_repositories": true,
+        "technical_documents": true,
+        "system_logs": true,
+        "infrastructure": true
+      }
+    },
+    "CFO": {
+      "name": "CFO",
+      "title": "Chief Financial Officer",
+      "level": 2,
+      "reports_to": "CEO",
+      "direct_reports": ["Finance_Manager", "Accounting_Lead"],
+      "data_sources": [
+        "email",
+        "calendar",
+        "financial_data",
+        "accounting_systems",
+        "reports",
+        "budgets"
+      ],
+      "jarvis_access": {
+        "email": true,
+        "calendar": true,
+        "financial_data": true,
+        "accounting_systems": true,
+        "reports": true,
+        "budgets": true
+      }
+    },
+    "COO": {
+      "name": "COO",
+      "title": "Chief Operating Officer",
+      "level": 2,
+      "reports_to": "CEO",
+      "direct_reports": ["Operations_Manager", "HR_Manager"],
+      "data_sources": [
+        "email",
+        "calendar",
+        "operations_data",
+        "hr_systems",
+        "workflows",
+        "processes"
+      ],
+      "jarvis_access": {
+        "email": true,
+        "calendar": true,
+        "operations_data": true,
+        "hr_systems": true,
+        "workflows": true,
+        "processes": true
+      }
+    }
+  },
+  "data_categories": {
+    "communication": {
+      "weight": 0.25,
+      "sources": ["email", "slack", "teams", "phone", "meetings"]
+    },
+    "productivity": {
+      "weight": 0.20,
+      "sources": ["calendar", "tasks", "projects", "time_tracking"]
+    },
+    "knowledge": {
+      "weight": 0.20,
+      "sources": ["documents", "wikis", "code", "documentation"]
+    },
+    "systems": {
+      "weight": 0.15,
+      "sources": ["logs", "monitoring", "infrastructure", "applications"]
+    },
+    "financial": {
+      "weight": 0.10,
+      "sources": ["accounting", "budgets", "reports", "transactions"]
+    },
+    "operations": {
+      "weight": 0.10,
+      "sources": ["workflows", "processes", "hr", "compliance"]
+    }
+  }
+}

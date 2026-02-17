@@ -1,0 +1,57 @@
+{
+  "memory_budget": {
+    "version": "1.0.0",
+    "description": "Memory budget configuration for LUMINA - Balanced footprint optimization",
+    "targets": {
+      "max_python_processes": 8,
+      "max_memory_per_process_mb": 50.0,
+      "max_total_python_mb": 400.0,
+      "warning_threshold_mb": 300.0,
+      "system_memory_target_percent": 15.0,
+      "system_memory_warning_percent": 20.0,
+      "system_memory_critical_percent": 25.0
+    },
+    "optimization_strategies": {
+      "garbage_collection_interval_seconds": 300,
+      "process_consolidation_enabled": true,
+      "lazy_loading_enabled": true,
+      "resource_pooling_enabled": true,
+      "cache_size_limit_mb": 100.0,
+      "max_concurrent_operations": 5
+    },
+    "component_limits": {
+      "monitoring": {
+        "max_processes": 2,
+        "max_memory_mb": 50.0
+      },
+      "health_checks": {
+        "max_processes": 1,
+        "max_memory_mb": 30.0
+      },
+      "ask_processing": {
+        "max_processes": 1,
+        "max_memory_mb": 100.0
+      },
+      "logging": {
+        "max_processes": 1,
+        "max_memory_mb": 40.0
+      },
+      "fixes": {
+        "max_processes": 0,
+        "max_memory_mb": 0.0,
+        "note": "Fixes should run on-demand, not as persistent processes"
+      },
+      "diagnostics": {
+        "max_processes": 0,
+        "max_memory_mb": 0.0,
+        "note": "Diagnostics should run on-demand, not as persistent processes"
+      }
+    },
+    "monitoring": {
+      "enabled": true,
+      "check_interval_seconds": 60,
+      "auto_optimize": true,
+      "auto_optimize_threshold_mb": 350.0
+    }
+  }
+}

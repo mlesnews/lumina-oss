@@ -1,0 +1,25 @@
+# Lumina Voice Actor Service dependencies
+
+# API Framework
+fastapi>=0.109.0
+uvicorn[standard]>=0.27.0
+pydantic>=2.5.0
+
+# ElevenLabs TTS
+elevenlabs>=0.2.0
+
+# Azure Speech (optional)
+azure-cognitiveservices-speech>=1.35.0
+
+# Local Whisper STT (optional - large download)
+# openai-whisper>=20231117
+
+# OpenAI API (for Whisper API)
+openai>=1.0.0
+
+# Windows TTS fallback
+pyttsx3>=2.90
+
+# Utilities
+python-dotenv>=1.0.0
+httpx>=0.26.0

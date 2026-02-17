@@ -1,0 +1,65 @@
+{
+  "timestamp": "2026-01-06T14:49:30.202240",
+  "gmail": {
+    "status": "passed",
+    "details": {
+      "credentials_source": "Azure Key Vault",
+      "connection_method": "IMAP",
+      "server": "imap.gmail.com:993",
+      "encryption": "SSL",
+      "email": "mlesnewski@gmail.com",
+      "credentials_retrieved": true,
+      "inbox_accessible": true,
+      "connection_successful": true
+    }
+  },
+  "protonmail": {
+    "status": "failed",
+    "details": {
+      "connection_method": "Proton Bridge",
+      "server": "127.0.0.1",
+      "imap_port": 1143,
+      "smtp_port": 1025,
+      "encryption": "STARTTLS",
+      "bridge_running": false,
+      "error": "Proton Bridge not running"
+    }
+  },
+  "nas_mail_hub": {
+    "status": "passed",
+    "details": {
+      "server": "<NAS_PRIMARY_IP>",
+      "domain": "<LOCAL_HOSTNAME>",
+      "account": "mlesn@<LOCAL_HOSTNAME>",
+      "imap_port": 993,
+      "smtp_port": 587,
+      "webmail": "https://<NAS_PRIMARY_IP>:5001/mailplus",
+      "network_accessible": true,
+      "imap_configured": true,
+      "smtp_configured": true,
+      "webmail_url": "https://<NAS_PRIMARY_IP>:5001/mailplus"
+    }
+  },
+  "outlook": {
+    "status": "failed",
+    "details": {
+      "connection_target": "NAS Mail Hub",
+      "account": "mlesn@<LOCAL_HOSTNAME>",
+      "server": "<NAS_PRIMARY_IP>",
+      "outlook_accessible": true,
+      "account_found": false
+    }
+  },
+  "integration_flow": {
+    "status": "failed",
+    "details": {
+      "flow": "Gmail + ProtonMail → NAS Mail Hub → Outlook Classic",
+      "components_tested": [
+        "gmail",
+        "nas_mail_hub"
+      ],
+      "integration_complete": false
+    }
+  },
+  "overall_status": "⚠️  SOME TESTS FAILED"
+}

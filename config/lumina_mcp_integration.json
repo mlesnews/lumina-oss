@@ -1,0 +1,179 @@
+{
+  "version": "2.0",
+  "name": "Lumina MCP Integration",
+  "description": "MCP servers integration with Lumina ecosystem - MANUS and ElevenLabs",
+  "last_updated": "2024-12-31",
+  "lumina": {
+    "ecosystem": true,
+    "enabled": true,
+    "required": false,
+    "integration_type": "mcp_servers",
+    "azure_key_vault_integration": true
+  },
+  "mcp_servers": {
+    "manus": {
+      "enabled": true,
+      "required": false,
+      "priority": "high",
+      "status": "active",
+      "description": "MANUS Unified Control Interface via MCP",
+      "container_name": "manus-mcp-server",
+      "docker_service": "manus-mcp-server",
+      "ports": {
+        "health_check": 8085
+      },
+      "capabilities": [
+        "ide_control",
+        "workstation_control",
+        "home_lab_infrastructure",
+        "project_lumina_management",
+        "automation_control",
+        "data_management",
+        "security_control"
+      ],
+      "tools": [
+        "manus_execute_operation",
+        "manus_get_health",
+        "manus_get_history",
+        "manus_ide_control",
+        "manus_workstation_control",
+        "manus_lumina_control"
+      ],
+      "integrations": {
+        "lumina_workflows": true,
+        "r5_system": false,
+        "droid_actor_system": false,
+        "v3_verification": false,
+        "helpdesk": false,
+        "jarvis_helpdesk_integration": true,
+        "peak_patterns": false,
+        "watcher_uatu": false
+      },
+      "azure_key_vault": {
+        "required": false,
+        "secrets": []
+      },
+      "environment": {
+        "PYTHONPATH": "/app:/app/scripts/python",
+        "MANUS_PROJECT_ROOT": "/app"
+      }
+    },
+    "elevenlabs": {
+      "enabled": true,
+      "required": false,
+      "priority": "medium",
+      "status": "active",
+      "description": "ElevenLabs Text-to-Speech and Audio Processing via MCP",
+      "container_name": "elevenlabs-mcp-server",
+      "docker_service": "elevenlabs-mcp-server",
+      "ports": {
+        "health_check": 8086
+      },
+      "capabilities": [
+        "text_to_speech",
+        "voice_cloning",
+        "audio_processing",
+        "transcription",
+        "soundscape_generation"
+      ],
+      "tools": [
+        "elevenlabs_text_to_speech",
+        "elevenlabs_voice_cloning",
+        "elevenlabs_audio_processing",
+        "elevenlabs_transcription"
+      ],
+      "integrations": {
+        "lumina_workflows": true,
+        "r5_system": false,
+        "droid_actor_system": false,
+        "v3_verification": false,
+        "helpdesk": false,
+        "jarvis_helpdesk_integration": false,
+        "peak_patterns": false,
+        "watcher_uatu": false
+      },
+      "azure_key_vault": {
+        "required": true,
+        "secrets": [
+          {
+            "name": "elevenlabs-api-key",
+            "description": "ElevenLabs API key for TTS and audio processing",
+            "environment_variable": "ELEVENLABS_API_KEY",
+            "required": true
+          }
+        ],
+        "optional_secrets": [
+          {
+            "name": "elevenlabs-api-residency",
+            "description": "Data residency region (us, eu) - Enterprise only",
+            "environment_variable": "ELEVENLABS_API_RESIDENCY",
+            "default": "us"
+          }
+        ]
+      },
+      "environment": {
+        "ELEVENLABS_MCP_BASE_PATH": "/app/output",
+        "ELEVENLABS_MCP_OUTPUT_MODE": "files"
+      }
+    }
+  },
+  "ide_integrations": {
+    "cursor": {
+      "enabled": true,
+      "config_file": ".cursor/mcp_config.json",
+      "mcp_servers": ["manus", "elevenlabs"]
+    },
+    "claude_desktop": {
+      "enabled": true,
+      "config_file": "config/claude_desktop_mcp_config.json",
+      "windows_path": "%APPDATA%\\Claude\\claude_desktop_config.json",
+      "macos_path": "~/Library/Application Support/Claude/claude_desktop_config.json",
+      "linux_path": "~/.config/Claude/claude_desktop_config.json",
+      "mcp_servers": ["manus", "elevenlabs"]
+    },
+    "windsurf": {
+      "enabled": false,
+      "config_file": ".windsurf/mcp_config.json",
+      "mcp_servers": ["manus", "elevenlabs"]
+    }
+  },
+  "docker": {
+    "compose_file": "containerization/services/mcp-servers/docker-compose.yml",
+    "network": "mcp-network",
+    "volumes": {
+      "manus_data": "manus-data",
+      "manus_logs": "manus-logs",
+      "elevenlabs_output": "elevenlabs-output",
+      "elevenlabs_data": "elevenlabs-data"
+    }
+  },
+  "azure_key_vault": {
+    "vault_url": "https://jarvis-lumina.vault.azure.net/",
+    "integration": true,
+    "required_secrets": [
+      {
+        "name": "elevenlabs-api-key",
+        "service": "elevenlabs",
+        "required": true,
+        "description": "ElevenLabs API key for TTS and audio processing"
+      }
+    ],
+    "optional_secrets": [
+      {
+        "name": "elevenlabs-api-residency",
+        "service": "elevenlabs",
+        "required": false,
+        "default": "us"
+      }
+    ]
+  },
+  "setup": {
+    "helper_script": "scripts/python/manus_mcp_config_helper.py",
+    "docker_compose_path": "containerization/services/mcp-servers",
+    "documentation": [
+      "docs/system/MCP_CONFIGURATION.md",
+      "docs/system/MCP_SETUP_QUICKSTART.md",
+      "docs/mcp/MCP_SERVERS_SETUP.md"
+    ]
+  }
+}

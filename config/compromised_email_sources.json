@@ -1,0 +1,16 @@
+{
+  "compromised_sources": [],
+  "description": "Known compromised email sources - bad actors injecting false information",
+  "note": "Emails from these sources are immediately flagged as phishing/compromised",
+  "examples": [
+    "Known phishing domains",
+    "Compromised news media sources",
+    "Bad actors injecting false intelligence",
+    "Sources known to spread misinformation"
+  ],
+  "protection": {
+    "description": "Protects intelligence gathering system from bad data sources",
+    "analogy": "Like protecting against compromised news media during information gathering",
+    "action": "All emails from compromised sources are filtered out and not used for intelligence"
+  }
+}

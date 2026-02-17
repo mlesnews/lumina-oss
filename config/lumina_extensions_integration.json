@@ -1,0 +1,258 @@
+{
+  "version": "6.0.0",
+  "updated_at": "2026-01-08T21:13:45.614938",
+  "features": {
+    "ask_transparency": {
+      "enabled": true,
+      "description": "Show each ask as it's discovered during discovery process",
+      "module": "scripts/python/jarvis_restack_all_asks.py"
+    },
+    "ask_caching": {
+      "enabled": true,
+      "description": "Cache discovered asks to avoid rediscovery (similar to todo lists)",
+      "cache_file": "data/ask_cache/discovered_asks.json",
+      "cache_ttl_seconds": 3600,
+      "module": "scripts/python/jarvis_restack_all_asks.py"
+    },
+    "active_model_status": {
+      "enabled": true,
+      "description": "Display currently active model in Cursor IDE UI",
+      "module": "scripts/python/cursor_active_model_tracker.py",
+      "extension": "vscode-extensions/cursor-active-model-status"
+    }
+  },
+  "extensions": {
+    "v3_verification": {
+      "type": "verification",
+      "name": "@v3 Verification Logic",
+      "enabled": true,
+      "verification_logic": "scripts/python/v3_verification.py",
+      "all_droids": true,
+      "class": "V3Verification",
+      "auto_verify": true,
+      "verification_required": true
+    },
+    "r5_system": {
+      "type": "knowledge_aggregation",
+      "name": "R5 Living Context Matrix",
+      "enabled": true,
+      "api_endpoint": "http://localhost:8000/r5",
+      "integrations": [
+        "n8n",
+        "jupyter"
+      ],
+      "module": "scripts/python/r5_living_context_matrix.py",
+      "api_server": "scripts/python/r5_api_server.py",
+      "config": "config/r5/r5_config.json"
+    },
+    "helpdesk": {
+      "type": "coordination",
+      "name": "@helpdesk",
+      "enabled": true,
+      "coordinator": "C-3PO",
+      "escalation_path": "C-3PO \u2192 JARVIS",
+      "location": "@helpdesk",
+      "structure_config": "config/helpdesk/helpdesk_structure.json",
+      "droids_config": "config/helpdesk/droids.json"
+    },
+    "droid_actor_system": {
+      "name": "Droid Actor System",
+      "enabled": true,
+      "location": "@helpdesk",
+      "droids": [
+        "c3po",
+        "r2d2",
+        "k2so",
+        "2-1b",
+        "ig88",
+        "mousedroid",
+        "r5",
+        "marvin"
+      ],
+      "coordinator": "C-3PO",
+      "type": "workflow_verification",
+      "module": "scripts/python/droid_actor_system.py",
+      "routing_config": "config/droid_actor_routing.json"
+    },
+    "jarvis_helpdesk_integration": {
+      "name": "JARVIS Helpdesk Integration",
+      "type": "workflow_integration",
+      "enabled": true,
+      "module": "scripts/python/jarvis_helpdesk_integration.py",
+      "class": "JARVISHelpdeskIntegration",
+      "features": [
+        "workflow_verification",
+        "droid_actor_routing",
+        "r5_ingestion",
+        "jarvis_escalation"
+      ],
+      "integration_points": {
+        "pre_execution": "droid_actor_verification",
+        "post_execution": "r5_knowledge_ingestion",
+        "escalation": "c3po_to_jarvis"
+      }
+    },
+    "syphon_system": {
+      "name": "SYPHON Intelligence Extraction System",
+      "type": "intelligence_extraction",
+      "enabled": true,
+      "module": "scripts/python/syphon",
+      "class": "SYPHONSystem",
+      "version": "1.0.0",
+      "features": [
+        "email_extraction",
+        "sms_extraction",
+        "banking_extraction",
+        "self_healing",
+        "health_monitoring",
+        "basic_budgeting",
+        "premium_analytics"
+      ],
+      "subscription_tiers": [
+        "basic",
+        "premium",
+        "enterprise"
+      ],
+      "integration_points": {
+        "n8n": "scripts/python/syphon/integration/n8n.py",
+        "email_webhook": "/webhook/syphon/email",
+        "sms_webhook": "/webhook/syphon/sms",
+        "banking_api": "scripts/python/syphon/extractors.py::BankingExtractor"
+      },
+      "config": {
+        "enable_self_healing": true,
+        "health_check_interval": 60,
+        "enable_banking": true,
+        "storage_backend": "json"
+      }
+    },
+    "icp_encryption": {
+      "name": "ICP Infrastructure Encryption",
+      "type": "security",
+      "enabled": true,
+      "module": "scripts/python/icp_infrastructure_encryption.py",
+      "class": "ICPEncryptionManager"
+    },
+    "brave_rewards": {
+      "name": "Brave Browser Rewards Token Integration",
+      "type": "business_integration",
+      "enabled": true,
+      "module": "scripts/python/brave_browser_rewards_integration.py",
+      "class": "BraveBrowserRewardsIntegration"
+    },
+    "jarvis_workflow_archive_automation": {
+      "name": "JARVIS Workflow Archive Automation",
+      "type": "automated_workflow",
+      "enabled": true,
+      "module": "scripts/python/jarvis_workflow_archive_automation.py",
+      "class": "JARVISWorkflowArchiveAutomation",
+      "features": [
+        "workflow_discovery",
+        "completion_detection",
+        "pr_backup_verification",
+        "automatic_archiving"
+      ]
+    },
+    "dropbox_nas_migration": {
+      "name": "Dropbox to NAS Migration System",
+      "type": "storage_migration",
+      "enabled": true,
+      "module": "scripts/python/dropbox_nas_migration_integration.py",
+      "class": "DropboxNASMigrationIntegration",
+      "version": "1.0.0",
+      "features": [
+        "automated_migration",
+        "path_reference_updates",
+        "cloud_sync_aggregation",
+        "health_monitoring",
+        "r5_knowledge_aggregation",
+        "jarvis_workflow_integration"
+      ],
+      "integration_points": {
+        "pre_migration": "jarvis_workflow_verification",
+        "post_migration": "r5_knowledge_ingestion",
+        "monitoring": "jarvis_health_checks",
+        "automation": "manus_control"
+      },
+      "config": {
+        "migration_script": "scripts/powershell/migrate_dropbox_to_nas.ps1",
+        "path_update_script": "scripts/powershell/update_path_references_to_nas.ps1",
+        "cloud_sync_config": "config/dsm_cloud_storage_aggregator.json",
+        "network_drives_config": "scripts/network_drives_config.json"
+      },
+      "tags": [
+        "#JARVIS",
+        "#LUMINA",
+        "#NAS",
+        "#MIGRATION",
+        "#CLOUD-STORAGE",
+        "#DSM",
+        "#NETWORK-DRIVE"
+      ]
+    }
+  },
+  "registered_systems": [
+    "r5_system",
+    "droid_actor_system",
+    "v3_verification",
+    "helpdesk",
+    "jarvis_helpdesk_integration",
+    "syphon_system"
+  ],
+  "last_updated": "2026-01-04T01:23:04.686832",
+  "models": {
+    "ultron": {
+      "name": "ULTRON",
+      "model": "qwen2.5:72b",
+      "endpoint": "http://localhost:11434",
+      "context_length": 32768,
+      "provider": "ollama",
+      "local_only": true,
+      "cluster": {
+        "type": "virtual_hybrid",
+        "nodes": [
+          {
+            "name": "ULTRON Local",
+            "endpoint": "http://localhost:11434",
+            "priority": 1
+          },
+          {
+            "name": "KAIJU",
+            "endpoint": "http://<NAS_PRIMARY_IP>:11434",
+            "priority": 2
+          }
+        ],
+        "routing": "load_balanced"
+      },
+      "status": "active",
+      "default": true
+    },
+    "kaiju": {
+      "name": "KAIJU",
+      "model": "llama3.2:3b",
+      "endpoint": "http://<NAS_PRIMARY_IP>:11434",
+      "context_length": 8192,
+      "provider": "ollama",
+      "local_only": true,
+      "status": "active"
+    }
+  },
+  "cursor": {
+    "agent": {
+      "default_model": "ULTRON",
+      "auto_selection": true,
+      "available_models": [
+        "ULTRON",
+        "KAIJU"
+      ],
+      "model_config_file": ".cursor/settings.json"
+    }
+  },
+  "deployment": {
+    "version": "6.0.0",
+    "deployed_at": "2026-01-04T01:23:04.686832",
+    "deployed_by": "JARVIS",
+    "status": "activated",
+    "activated_at": "2026-01-04T01:23:14.345440"
+  }
+}

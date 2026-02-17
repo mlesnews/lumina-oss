@@ -1,0 +1,26 @@
+{
+  "version": "1.0.0",
+  "description": "Grammarly Configuration",
+  "enabled": true,
+  "api_key": "",
+  "api_endpoint": "https://api.grammarly.com/v1",
+  "features": {
+    "grammar_check": true,
+    "spelling_check": true,
+    "style_check": true,
+    "tone_detection": true,
+    "clarity_suggestions": true,
+    "engagement_suggestions": true
+  },
+  "settings": {
+    "audience": "general",
+    "formality": "neutral",
+    "domain": "general",
+    "intent": "inform"
+  },
+  "encryption": {
+    "enabled": true,
+    "ssh_level": true,
+    "ai_enhanced": true
+  }
+}

@@ -1,0 +1,104 @@
+{
+  "company_name": "<COMPANY_NAME> LLC",
+  "org_structure": {
+    "ceo": {
+      "name": "CEO",
+      "level": 1,
+      "department": "Executive",
+      "reports_to": null,
+      "ai_overmind_score": 0,
+      "data_sources": []
+    },
+    "departments": {
+      "it": {
+        "name": "IT Department",
+        "level": 2,
+        "reports_to": "ceo",
+        "teams": {
+          "network_team": {
+            "name": "Network Team",
+            "level": 3,
+            "reports_to": "it",
+            "responsibilities": [
+              "Firewall configuration",
+              "Network infrastructure",
+              "Security policies",
+              "Connection management"
+            ],
+            "workflow_routing": {
+              "firewall": ["helpdesk", "cm", "pm"],
+              "network": ["helpdesk", "cm"],
+              "security": ["helpdesk", "cm", "pm"]
+            },
+            "members": []
+          },
+          "development_team": {
+            "name": "Development Team",
+            "level": 3,
+            "reports_to": "it",
+            "members": []
+          },
+          "support_team": {
+            "name": "Support Team",
+            "level": 3,
+            "reports_to": "it",
+            "members": []
+          }
+        }
+      },
+      "operations": {
+        "name": "Operations",
+        "level": 2,
+        "reports_to": "ceo",
+        "teams": {}
+      },
+      "finance": {
+        "name": "Finance",
+        "level": 2,
+        "reports_to": "ceo",
+        "teams": {}
+      }
+    }
+  },
+  "workflow_routing": {
+    "firewall": {
+      "primary": "helpdesk",
+      "secondary": ["cm", "pm"],
+      "team": "network_team",
+      "priority": "high"
+    },
+    "network": {
+      "primary": "helpdesk",
+      "secondary": ["cm"],
+      "team": "network_team",
+      "priority": "high"
+    },
+    "security": {
+      "primary": "helpdesk",
+      "secondary": ["cm", "pm"],
+      "team": "network_team",
+      "priority": "critical"
+    }
+  },
+  "ai_overmind_metrics": {
+    "data_sources": [
+      "system_logs",
+      "user_activity",
+      "file_access",
+      "network_traffic",
+      "application_usage",
+      "email_communications",
+      "calendar_events",
+      "task_management",
+      "code_repositories",
+      "database_access"
+    ],
+    "control_factors": {
+      "monitoring": 0.3,
+      "automation": 0.3,
+      "data_access": 0.2,
+      "decision_influence": 0.2
+    },
+    "calculation_method": "weighted_average"
+  }
+}

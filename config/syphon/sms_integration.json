@@ -1,0 +1,21 @@
+{
+  "source_type": "sms",
+  "processing": {
+    "intelligence_extraction": true,
+    "pattern_mining": true,
+    "sentiment_analysis": true,
+    "action_item_detection": true
+  },
+  "routing": {
+    "critical": "→ @JARVIS",
+    "high_priority": "→ @TRIAGE",
+    "normal": "→ @HOLOCRON",
+    "noise": "→ Archive"
+  },
+  "metadata": {
+    "phone_number": "extracted",
+    "timestamp": "extracted",
+    "sender_name": "lookup_from_contacts",
+    "message_type": "classified"
+  }
+}

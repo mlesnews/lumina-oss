@@ -1,0 +1,105 @@
+{
+  "version": "1.0.0",
+  "name": "Cursor Workspace Mode Configuration",
+  "description": "Configuration for workspace vs non-workspace mode operations",
+  "last_updated": "2025-12-27",
+  "workspace_mode": {
+    "description": "Settings for workspace mode (folder opened) - used for debugging",
+    "debug.enabled": true,
+    "debug.allowBreakpointsEverywhere": true,
+    "debug.showBreakpointsInOverviewRuler": true,
+    "debug.inlineValues": true,
+    "debug.toolBarLocation": "floating",
+    "files.watcherExclude": {
+      "**/.git/objects/**": true,
+      "**/.git/subtree-cache/**": true,
+      "**/node_modules/*/**": true,
+      "**/__pycache__/**": true,
+      "**/.pytest_cache/**": true
+    },
+    "search.exclude": {
+      "**/node_modules": true,
+      "**/bower_components": true,
+      "**/*.code-search": true,
+      "**/__pycache__": true,
+      "**/.pytest_cache": true
+    },
+    "editor.codeLens": true,
+    "editor.formatOnSave": true,
+    "editor.formatOnPaste": false,
+    "editor.rulers": [
+      80,
+      120
+    ],
+    "editor.suggestSelection": "first",
+    "editor.wordBasedSuggestions": "off",
+    "files.exclude": {
+      "**/.git": false,
+      "**/.DS_Store": true
+    },
+    "explorer.fileNesting.enabled": true,
+    "explorer.fileNesting.patterns": {
+      "*.ts": "${capture}.js",
+      "*.js": "${capture}.js.map, ${capture}.min.js, ${capture}.d.ts",
+      "*.jsx": "${capture}.js",
+      "*.tsx": "${capture}.ts"
+    }
+  },
+  "non_workspace_mode": {
+    "description": "Settings for non-workspace mode (files only) - used for normal programming",
+    "debug.enabled": true,
+    "editor.formatOnSave": true,
+    "editor.formatOnPaste": false,
+    "editor.codeLens": false,
+    "files.watcherExclude": {},
+    "search.exclude": {},
+    "editor.rulers": [
+      80,
+      120
+    ],
+    "editor.suggestSelection": "first",
+    "editor.wordBasedSuggestions": "off"
+  },
+  "sync_settings": [
+    "editor.formatOnSave",
+    "editor.formatOnPaste",
+    "editor.rulers",
+    "editor.suggestSelection",
+    "editor.wordBasedSuggestions",
+    "editor.fontSize",
+    "editor.fontFamily",
+    "editor.tabSize",
+    "editor.insertSpaces",
+    "editor.detectIndentation"
+  ],
+  "auto_sync": true,
+  "sync_interval_minutes": 60,
+  "workflow_rules": {
+    "workspace_mode_for": [
+      "debugging",
+      "full_project_context",
+      "breakpoints",
+      "code_lens",
+      "intellisense_with_project_context",
+      "multi_file_operations",
+      "refactoring"
+    ],
+    "non_workspace_mode_for": [
+      "quick_edits",
+      "single_file_operations",
+      "code_review",
+      "reading_code",
+      "lightweight_editing"
+    ],
+    "precedence": [
+      "workspace_settings",
+      "user_settings",
+      "default_settings"
+    ]
+  },
+  "integration": {
+    "cursor_agent_modes": true,
+    "auto_detect_debug_mode": true,
+    "sync_on_mode_change": true
+  }
+}

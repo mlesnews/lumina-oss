@@ -1,0 +1,25 @@
+{
+  "temperature_profiles": {
+    "factual": {
+      "temperature": 0.0,
+      "description": "For factual, verifiable information",
+      "use_case": "Code generation, data analysis, factual queries"
+    },
+    "creative": {
+      "temperature": 0.7,
+      "description": "For creative tasks where accuracy is less critical",
+      "use_case": "Story writing, brainstorming, non-critical content"
+    },
+    "critical": {
+      "temperature": 0.0,
+      "human_verification_required": true,
+      "description": "Critical decisions requiring human sign-off",
+      "use_case": "Financial decisions, medical advice, legal recommendations"
+    }
+  },
+  "default_profile": "factual",
+  "enforcement": {
+    "block_high_temperature_for_factual": true,
+    "require_verification_for_critical": true
+  }
+}

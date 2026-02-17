@@ -1,0 +1,425 @@
+{
+  "n8n_expansion": {
+    "name": "@N8N NAS/DSM Email Hub Integration",
+    "version": "1.0.0",
+    "description": "N8N expansion for integration with custom company email hub on NAS/DSM package configuration",
+    "created_at": "2025-01-24",
+    "tags": [
+      "@n8n",
+      "@nas",
+      "@dsm",
+      "@email",
+      "#email-hub",
+      "#integration"
+    ],
+    "status": "active"
+  },
+  "nas_dsm_config": {
+    "nas_ip": "<NAS_PRIMARY_IP>",
+    "dsm_version": "7.x",
+    "email_hub_package": "MailStation",
+    "package_name": "MailStation",
+    "package_status": "installed_and_running",
+    "web_portal": "https://<NAS_PRIMARY_IP>:5001",
+    "api_endpoint": "https://<NAS_PRIMARY_IP>:5001/webapi",
+    "note": "Custom company email hub running on NAS/DSM Mail Server package"
+  },
+  "email_hub_config": {
+    "smtp": {
+      "server": "<NAS_PRIMARY_IP>",
+      "port": 25,
+      "secure": false,
+      "tls": true
+    },
+    "imap": {
+      "server": "<NAS_PRIMARY_IP>",
+      "port": 993,
+      "secure": true,
+      "tls": true
+    },
+    "pop3": {
+      "server": "<NAS_PRIMARY_IP>",
+      "port": 110,
+      "secure": false,
+      "tls": true,
+      "enabled": false,
+      "note": "POP3 available but IMAP preferred"
+    },
+    "domains": {
+      "primary_domain": "<LOCAL_HOSTNAME>",
+      "additional_domains": []
+    },
+    "mailboxes": {
+      "shared_mailboxes": true,
+      "distribution_lists": true,
+      "aliases": true
+    }
+  },
+  "n8n_workflows": {
+    "email_hub_send": {
+      "workflow_id": "email_hub_send",
+      "name": "NAS/DSM Email Hub - Send Email",
+      "webhook_path": "/email/hub/send",
+      "trigger_type": "webhook",
+      "enabled": true,
+      "nodes": [
+        {
+          "type": "webhook",
+          "name": "Receive Email Request",
+          "settings": {
+            "path": "email/hub/send",
+            "httpMethod": "POST",
+            "responseMode": "responseNode"
+          }
+        },
+        {
+          "type": "function",
+          "name": "Validate Email Request",
+          "description": "Validate email format, recipients, and content"
+        },
+        {
+          "type": "http",
+          "name": "Get SMTP Credentials from Azure Key Vault",
+          "settings": {
+            "url": "{{$env.AZURE_KEY_VAULT_URL}}/secrets/nas-email-hub-smtp-password",
+            "method": "GET",
+            "authentication": "genericCredentialType",
+            "genericAuthType": "httpHeaderAuth",
+            "httpHeaderAuth": {
+              "name": "Authorization",
+              "value": "Bearer {{$env.AZURE_KEY_VAULT_TOKEN}}"
+            }
+          }
+        },
+        {
+          "type": "email",
+          "name": "Send via NAS/DSM Email Hub SMTP",
+          "settings": {
+            "host": "<NAS_PRIMARY_IP>",
+            "port": 25,
+            "secure": false,
+            "requireTLS": true,
+            "user": "={{$json.username}}",
+            "password": "={{$json.password}}",
+            "from": "={{$json.from || 'noreply@company.local'}}",
+            "to": "={{$json.to}}",
+            "cc": "={{$json.cc}}",
+            "bcc": "={{$json.bcc}}",
+            "subject": "={{$json.subject}}",
+            "text": "={{$json.text}}",
+            "html": "={{$json.html}}",
+            "attachments": "={{$json.attachments}}"
+          }
+        },
+        {
+          "type": "function",
+          "name": "Log Email Status",
+          "description": "Log email send status for audit trail"
+        },
+        {
+          "type": "webhook",
+          "name": "Notify JARVIS",
+          "settings": {
+            "url": "http://localhost:8000/api/jarvis/notify",
+            "method": "POST",
+            "body": {
+              "event": "email_sent",
+              "status": "={{$json.status}}",
+              "message_id": "={{$json.message_id}}"
+            }
+          }
+        }
+      ],
+      "metadata": {
+        "email_hub": true,
+        "nas_dsm": true,
+        "smtp": true,
+        "audit_logging": true
+      }
+    },
+    "email_hub_receive": {
+      "workflow_id": "email_hub_receive",
+      "name": "NAS/DSM Email Hub - Receive Email",
+      "webhook_path": "/email/hub/receive",
+      "trigger_type": "schedule",
+      "enabled": true,
+      "nodes": [
+        {
+          "type": "schedule",
+          "name": "Check Every 5 Minutes",
+          "settings": {
+            "rule": {
+              "interval": [
+                {
+                  "field": "minutes",
+                  "minutesInterval": 5
+                }
+              ]
+            }
+          }
+        },
+        {
+          "type": "function",
+          "name": "Get IMAP Credentials from Azure Key Vault",
+          "description": "Retrieve IMAP credentials securely"
+        },
+        {
+          "type": "imap",
+          "name": "Check NAS/DSM Email Hub IMAP",
+          "settings": {
+            "host": "<NAS_PRIMARY_IP>",
+            "port": 143,
+            "secure": false,
+            "requireTLS": true,
+            "user": "={{$json.username}}",
+            "password": "={{$json.password}}",
+            "mailbox": "INBOX",
+            "options": {
+              "seen": false,
+              "new": true
+            }
+          }
+        },
+        {
+          "type": "function",
+          "name": "Process New Emails",
+          "description": "Process and categorize incoming emails"
+        },
+        {
+          "type": "webhook",
+          "name": "@SYPHON Email Extraction",
+          "settings": {
+            "url": "http://localhost:8000/api/syphon/email",
+            "method": "POST",
+            "description": "Extract actionable intelligence from email"
+          }
+        },
+        {
+          "type": "function",
+          "name": "Route to Appropriate System",
+          "description": "Route emails to JARVIS, MARVIN, or other systems based on content"
+        },
+        {
+          "type": "webhook",
+          "name": "Save to Email Archive",
+          "settings": {
+            "url": "http://<NAS_PRIMARY_IP>:5001/webapi/email/archive",
+            "method": "POST"
+          }
+        }
+      ],
+      "metadata": {
+        "email_hub": true,
+        "nas_dsm": true,
+        "imap": true,
+        "syphon_enabled": true,
+        "auto_routing": true
+      }
+    },
+    "email_hub_management": {
+      "workflow_id": "email_hub_management",
+      "name": "NAS/DSM Email Hub - Management Operations",
+      "webhook_path": "/email/hub/management",
+      "trigger_type": "webhook",
+      "enabled": true,
+      "nodes": [
+        {
+          "type": "webhook",
+          "name": "Receive Management Request",
+          "settings": {
+            "path": "email/hub/management",
+            "httpMethod": "POST"
+          }
+        },
+        {
+          "type": "function",
+          "name": "Validate Management Request",
+          "description": "Validate management operation and permissions"
+        },
+        {
+          "type": "http",
+          "name": "Call DSM Mail Server API",
+          "settings": {
+            "url": "https://<NAS_PRIMARY_IP>:5001/webapi/entry.cgi",
+            "method": "POST",
+            "authentication": "genericCredentialType",
+            "genericAuthType": "httpHeaderAuth"
+          }
+        },
+        {
+          "type": "function",
+          "name": "Process Management Response",
+          "description": "Process API response and update status"
+        }
+      ],
+      "metadata": {
+        "email_hub": true,
+        "nas_dsm": true,
+        "management": true,
+        "operations": [
+          "create_mailbox",
+          "delete_mailbox",
+          "update_mailbox",
+          "create_alias",
+          "create_distribution_list",
+          "get_mailbox_list",
+          "get_domain_list"
+        ]
+      }
+    },
+    "email_hub_monitoring": {
+      "workflow_id": "email_hub_monitoring",
+      "name": "NAS/DSM Email Hub - Monitoring",
+      "webhook_path": "/email/hub/monitoring",
+      "trigger_type": "schedule",
+      "enabled": true,
+      "nodes": [
+        {
+          "type": "schedule",
+          "name": "Check Every Hour",
+          "settings": {
+            "rule": {
+              "interval": [
+                {
+                  "field": "hours",
+                  "hoursInterval": 1
+                }
+              ]
+            }
+          }
+        },
+        {
+          "type": "http",
+          "name": "Check Email Hub Health",
+          "settings": {
+            "url": "https://<NAS_PRIMARY_IP>:5001/webapi/entry.cgi",
+            "method": "POST",
+            "body": {
+              "api": "SYNO.MailServer.Info",
+              "method": "get",
+              "version": "1"
+            }
+          }
+        },
+        {
+          "type": "function",
+          "name": "Analyze Health Status",
+          "description": "Analyze email hub health metrics"
+        },
+        {
+          "type": "webhook",
+          "name": "Alert if Issues Detected",
+          "settings": {
+            "url": "http://localhost:8000/api/jarvis/alert",
+            "method": "POST"
+          }
+        }
+      ],
+      "metadata": {
+        "email_hub": true,
+        "nas_dsm": true,
+        "monitoring": true,
+        "health_checks": true
+      }
+    }
+  },
+  "integration_points": {
+    "jarvis": {
+      "enabled": true,
+      "webhook_url": "http://localhost:8000/api/jarvis/email",
+      "notifications": [
+        "email_received",
+        "email_sent",
+        "email_error",
+        "hub_status_change"
+      ]
+    },
+    "syphon": {
+      "enabled": true,
+      "webhook_url": "http://localhost:8000/api/syphon/email",
+      "extraction_enabled": true,
+      "extracts": [
+        "actionable_items",
+        "tasks",
+        "decisions",
+        "intelligence",
+        "contacts",
+        "appointments"
+      ]
+    },
+    "marvin": {
+      "enabled": true,
+      "webhook_url": "http://localhost:8000/api/marvin/verify",
+      "verification_enabled": true,
+      "verifies": [
+        "email_content",
+        "email_security",
+        "email_compliance"
+      ]
+    },
+    "azure_key_vault": {
+      "enabled": true,
+      "vault_url": "https://jarvis-lumina.vault.azure.net/",
+      "secrets": [
+        "nas-email-hub-smtp-username",
+        "nas-email-hub-smtp-password",
+        "nas-email-hub-imap-username",
+        "nas-email-hub-imap-password",
+        "nas-email-hub-api-key"
+      ]
+    }
+  },
+  "security": {
+    "credentials_storage": "azure_key_vault",
+    "encryption": true,
+    "tls_required": true,
+    "audit_logging": true,
+    "access_control": {
+      "api_key_required": true,
+      "api_key_secret": "nas-email-hub-api-key",
+      "ip_whitelist": [
+        "<NAS_IP>/24",
+        "127.0.0.1"
+      ]
+    }
+  },
+  "monitoring": {
+    "health_checks": {
+      "enabled": true,
+      "interval_minutes": 60,
+      "checks": [
+        "smtp_server_status",
+        "imap_server_status",
+        "mailbox_availability",
+        "disk_space",
+        "queue_status"
+      ]
+    },
+    "metrics": {
+      "emails_sent_per_hour": true,
+      "emails_received_per_hour": true,
+      "queue_size": true,
+      "error_rate": true,
+      "response_time": true
+    },
+    "alerts": {
+      "enabled": true,
+      "channels": [
+        "jarvis",
+        "email",
+        "webhook"
+      ],
+      "thresholds": {
+        "error_rate_percent": 5,
+        "queue_size": 1000,
+        "disk_space_percent": 80
+      }
+    }
+  },
+  "documentation": {
+    "setup_guide": "docs/system/N8N_NAS_DSM_EMAIL_HUB_SETUP.md",
+    "api_reference": "docs/system/NAS_DSM_EMAIL_HUB_API.md",
+    "workflow_examples": "docs/system/N8N_EMAIL_HUB_WORKFLOW_EXAMPLES.md"
+  },
+  "updated_at": "2026-01-15T23:21:02.159948"
+}

@@ -1,0 +1,186 @@
+{
+  "job_slot": {
+    "id": "admin_sme_email_management",
+    "name": "Administrative SME - Email Management",
+    "role": "Subject Matter Expert",
+    "department": "Administration",
+    "status": "active"
+  },
+  "responsibilities": {
+    "email_sending": {
+      "description": "Send emails on behalf of LUMINA system",
+      "permissions": [
+        "compose_emails",
+        "send_emails",
+        "attach_files",
+        "schedule_emails"
+      ],
+      "workflows": [
+        "standard_email_send",
+        "bulk_email_send",
+        "scheduled_email_send",
+        "template_email_send"
+      ]
+    },
+    "email_receiving": {
+      "description": "Receive and process incoming emails",
+      "permissions": [
+        "read_all_emails",
+        "process_incoming",
+        "auto_categorize",
+        "priority_assignment"
+      ],
+      "workflows": [
+        "incoming_email_processing",
+        "auto_categorization",
+        "priority_determination",
+        "action_item_extraction"
+      ]
+    },
+    "email_organization": {
+      "description": "Categorize and organize emails",
+      "permissions": [
+        "categorize_emails",
+        "tag_emails",
+        "archive_emails",
+        "organize_into_folders"
+      ],
+      "workflows": [
+        "auto_categorization",
+        "tag_assignment",
+        "folder_organization",
+        "archive_management"
+      ]
+    },
+    "jedi_archives_integration": {
+      "description": "Integrate emails with Holocron/Jedi Archives",
+      "permissions": [
+        "access_holocron",
+        "access_jedi_archives",
+        "create_archive_entries",
+        "link_emails_to_archives"
+      ],
+      "workflows": [
+        "holocron_sync",
+        "jedi_archive_creation",
+        "reference_linking",
+        "knowledge_extraction"
+      ]
+    }
+  },
+  "secretarial_workflows": {
+    "incoming_email_workflow": {
+      "steps": [
+        "1. Receive email",
+        "2. Auto-categorize (Admin SME rules)",
+        "3. Determine priority",
+        "4. Extract tags",
+        "5. Check for action items",
+        "6. Save to Holocron/Jedi Archives",
+        "7. Notify if action required"
+      ],
+      "auto_processing": true,
+      "holocron_sync": true
+    },
+    "outgoing_email_workflow": {
+      "steps": [
+        "1. Compose email",
+        "2. Validate recipient",
+        "3. Attach files if needed",
+        "4. Send email",
+        "5. Track sent email",
+        "6. Set follow-up reminder if needed",
+        "7. Archive sent email"
+      ],
+      "tracking": true,
+      "follow_up_reminders": true
+    },
+    "categorization_workflow": {
+      "categories": [
+        "administrative",
+        "financial",
+        "technical",
+        "personal",
+        "project",
+        "reference",
+        "archive",
+        "action_required",
+        "follow_up",
+        "jedi_archives"
+      ],
+      "auto_categorization_rules": {
+        "financial": ["invoice", "payment", "bill", "financial", "cost", "budget"],
+        "technical": ["technical", "code", "bug", "error", "system"],
+        "project": ["project", "task", "milestone", "deadline"],
+        "action_required": ["action required", "urgent", "please", "need", "request"],
+        "reference": ["reference", "document", "archive", "record"]
+      }
+    }
+  },
+  "holocron_integration": {
+    "enabled": true,
+    "auto_sync": true,
+    "archive_path": "data/holocron/emails",
+    "categorization": {
+      "by_category": true,
+      "by_date": true,
+      "by_priority": false
+    },
+    "metadata_inclusion": [
+      "email_id",
+      "thread_id",
+      "subject",
+      "from",
+      "to",
+      "date",
+      "category",
+      "priority",
+      "tags",
+      "action_required"
+    ]
+  },
+  "jedi_archives_integration": {
+    "enabled": true,
+    "auto_sync": true,
+    "archive_path": "data/jedi_archives/emails",
+    "organization": {
+      "by_category": true,
+      "by_date": true,
+      "by_project": true
+    },
+    "search_indexing": true,
+    "reference_linking": true
+  },
+  "search_and_filtering": {
+    "advanced_search": {
+      "enabled": true,
+      "features": [
+        "full_text_search",
+        "date_range_filtering",
+        "category_filtering",
+        "priority_filtering",
+        "tag_filtering",
+        "attachment_filtering",
+        "sender_filtering"
+      ]
+    },
+    "filter_presets": {
+      "action_required": {
+        "query": "action_required:true OR priority:critical OR priority:high",
+        "description": "Emails requiring action"
+      },
+      "financial": {
+        "query": "category:financial",
+        "description": "Financial emails"
+      },
+      "project_related": {
+        "query": "category:project OR tags:#LUMINA OR tags:#JARVIS",
+        "description": "Project-related emails"
+      },
+      "jedi_archives": {
+        "query": "category:jedi_archives OR holocron_reference:*",
+        "description": "Emails in Jedi Archives"
+      }
+    }
+  }
+}

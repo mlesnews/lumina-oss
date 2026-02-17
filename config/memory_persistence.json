@@ -1,0 +1,109 @@
+{
+  "memory_persistence": {
+    "version": "1.0.0",
+    "description": "Configuration for persistent memory system with efficiency optimization",
+    "storage_settings": {
+      "base_path": "data/memory",
+      "short_term_retention_hours": 48,
+      "long_term_retention_days": 365,
+      "context_retention_hours": 24,
+      "auto_cleanup_enabled": true,
+      "backup_enabled": true,
+      "backup_interval_hours": 24
+    },
+    "efficiency_settings": {
+      "min_efficiency_score": 0.7,
+      "max_tokens_per_session": 10000,
+      "local_hit_target": 0.8,
+      "promotion_threshold_access_count": 3,
+      "auto_optimization_enabled": true,
+      "optimization_interval_hours": 1,
+      "pattern_analysis_enabled": true,
+      "pattern_analysis_interval_days": 7
+    },
+    "performance_settings": {
+      "max_memory_entries": 10000,
+      "search_result_limit": 50,
+      "recent_memory_limit": 7,
+      "cache_size_limit": 2000,
+      "threading_enabled": 2,
+      "background_optimization": true
+    },
+    "quality_settings": {
+      "content_similarity_threshold": 0.85,
+      "tag_relevance_weight": 0.3,
+      "access_pattern_weight": 0.4,
+      "timestamp_relevance_weight": 0.3,
+      "enable_semantic_search": true,
+      "semantic_model": "basic"
+    },
+    "resource_prioritization": {
+      "local_resources_first": true,
+      "check_local_memory_before_api": true,
+      "cache_api_responses": true,
+      "reuse_similar_memories": true,
+      "deduplication_enabled": true,
+      "compression_enabled": true
+    },
+    "monitoring_settings": {
+      "efficiency_tracking": true,
+      "token_usage_tracking": true,
+      "access_pattern_tracking": true,
+      "error_logging": true,
+      "performance_metrics": true,
+      "report_interval_hours": 24
+    },
+    "security_settings": {
+      "encryption_enabled": true,
+      "sensitive_data_filtering": true,
+      "access_control": false,
+      "audit_logging": true,
+      "data_anonymization": false
+    },
+    "integration_settings": {
+      "r5_living_matrix_sync": true,
+      "session_context_integration": true,
+      "workflow_memory_integration": true,
+      "cross_session_continuity": true,
+      "external_api_integration": 0.85
+    },
+    "human_profiling": {
+      "enabled": true,
+      "profile_path": "data/profiles/user_profile.json",
+      "cognitive_profile": {
+        "working_memory_capacity": 7,
+        "attention_span_seconds": 30,
+        "consolidation_speed": "normal",
+        "retrieval_preference": "semantic",
+        "chunking_strategy": "hierarchical"
+      }
+    },
+    "short_term_memory": {
+      "capacity": 7,
+      "chunking_enabled": true,
+      "rehearsal_mechanism": true,
+      "decay_rate": 0.1,
+      "rehearsal_interval_seconds": 30,
+      "promotion_threshold": 3
+    },
+    "long_term_memory": {
+      "consolidation_enabled": true,
+      "consolidation_interval_hours": 24,
+      "spaced_repetition_enabled": true,
+      "forgetting_curve_enabled": true,
+      "semantic_graph_enabled": true,
+      "knowledge_graph_enabled": true
+    },
+    "alerts_and_notifications": {
+      "low_efficiency_alert": true,
+      "high_token_usage_alert": true,
+      "memory_overflow_alert": true,
+      "optimization_failure_alert": true,
+      "alert_thresholds": {
+        "efficiency_score": 0.5,
+        "token_usage": 8000,
+        "memory_usage": 95.0
+      }
+    }
+  }
+}

@@ -1,0 +1,326 @@
+# Service Orchestration Configuration
+# @PEAK Optimized | Centralized service management and health monitoring
+
+version: "1.0"
+description: "Lumina Service Orchestration - Manages all system services and their dependencies"
+
+# Global settings
+global:
+  health_check_interval: 30  # seconds
+  startup_timeout: 300       # seconds
+  shutdown_timeout: 60       # seconds
+  log_level: "info"
+  enable_auto_restart: true
+  enable_circuit_breaker: true
+
+# Service definitions
+services:
+
+  # Core AI Services
+  syphon:
+    name: "SYPHON Intelligence Extraction"
+    type: "ai_processing"
+    command: "python scripts/python/syphon/core.py"
+    working_directory: "."
+    dependencies: []
+    health_check:
+      endpoint: "/health"
+      interval: 30
+      timeout: 10
+      retries: 3
+    ports:
+      - "8001:8000"  # Internal API
+    environment:
+      - LOG_LEVEL=info
+      - SUBSCRIPTION_TIER=enterprise
+    resources:
+      cpu_limit: "2.0"
+      memory_limit: "4GB"
+      disk_limit: "10GB"
+    auto_start: true
+    restart_policy: "on-failure"
+
+  r5_living_context_matrix:
+    name: "R5 Living Context Matrix"
+    type: "knowledge_base"
+    command: "python scripts/python/r5_living_context_matrix.py --serve"
+    working_directory: "."
+    dependencies: ["syphon"]
+    health_check:
+      endpoint: "/health"
+      interval: 60
+      timeout: 15
+      retries: 3
+    ports:
+      - "8002:8000"
+    environment:
+      - LOG_LEVEL=info
+      - MATRIX_SIZE=large
+    resources:
+      cpu_limit: "1.5"
+      memory_limit: "8GB"
+      disk_limit: "50GB"
+    auto_start: true
+    restart_policy: "always"
+
+  marvin_verification:
+    name: "@MARVIN Verification System"
+    type: "quality_assurance"
+    command: "python scripts/python/marvin_verification_system.py --serve"
+    working_directory: "."
+    dependencies: ["r5_living_context_matrix"]
+    health_check:
+      endpoint: "/health"
+      interval: 45
+      timeout: 12
+      retries: 3
+    ports:
+      - "8003:8000"
+    environment:
+      - LOG_LEVEL=info
+      - VERIFICATION_MODE=peak_aggressive
+    resources:
+      cpu_limit: "1.0"
+      memory_limit: "2GB"
+      disk_limit: "5GB"
+    auto_start: true
+    restart_policy: "on-failure"
+
+  jarvis_helpdesk:
+    name: "JARVIS Helpdesk Integration"
+    type: "orchestration"
+    command: "python scripts/python/jarvis_helpdesk_integration.py"
+    working_directory: "."
+    dependencies: ["syphon", "r5_living_context_matrix", "marvin_verification"]
+    health_check:
+      endpoint: "/health"
+      interval: 30
+      timeout: 10
+      retries: 3
+    ports:
+      - "8004:8000"
+    environment:
+      - LOG_LEVEL=info
+      - MODE=production
+    resources:
+      cpu_limit: "1.5"
+      memory_limit: "3GB"
+      disk_limit: "10GB"
+    auto_start: true
+    restart_policy: "always"
+
+  # Monitoring & Proactive Services
+  proactive_monitor:
+    name: "JARVIS Proactive Monitor"
+    type: "monitoring"
+    command: "python scripts/python/jarvis_proactive_monitor.py --monitor"
+    working_directory: "."
+    dependencies: []
+    health_check:
+      type: "process"
+      interval: 60
+    environment:
+      - LOG_LEVEL=info
+      - MONITOR_MODE=continuous
+    resources:
+      cpu_limit: "0.5"
+      memory_limit: "512MB"
+      disk_limit: "1GB"
+    auto_start: true
+    restart_policy: "always"
+
+  gap_analysis:
+    name: "Gap Analysis System"
+    type: "analysis"
+    command: "python scripts/python/simple_gap_scanner.py"
+    working_directory: "."
+    dependencies: []
+    health_check:
+      type: "scheduled"
+      schedule: "0 */4 * * *"  # Every 4 hours
+    environment:
+      - LOG_LEVEL=info
+    resources:
+      cpu_limit: "0.8"
+      memory_limit: "1GB"
+      disk_limit: "2GB"
+    auto_start: false  # Run on-demand
+    restart_policy: "never"
+
+  # External Integrations
+  mcp_toolkit:
+    name: "MCP Toolkit Server"
+    type: "external_integration"
+    command: "docker-compose -f containerization/docker-compose.yml up mcp-toolkit"
+    working_directory: "."
+    dependencies: []
+    health_check:
+      endpoint: "http://localhost:8081/health"
+      interval: 60
+      timeout: 15
+      retries: 3
+    ports:
+      - "8081:8080"
+    environment:
+      - LOG_LEVEL=info
+      - HOST_NAME=nas
+    resources:
+      cpu_limit: "0.5"
+      memory_limit: "256MB"
+      disk_limit: "1GB"
+    auto_start: false  # Started via Docker
+    restart_policy: "unless-stopped"
+
+  # Data Processing Services
+  agent_history_processor:
+    name: "Agent History Processor"
+    type: "data_processing"
+    command: "python scripts/python/syphon_agent_history_all_envs.py"
+    working_directory: "."
+    dependencies: ["syphon", "r5_living_context_matrix"]
+    health_check:
+      type: "scheduled"
+      schedule: "0 */6 * * *"  # Every 6 hours
+    environment:
+      - LOG_LEVEL=info
+      - PROCESS_MODE=batch
+    resources:
+      cpu_limit: "1.0"
+      memory_limit: "2GB"
+      disk_limit: "5GB"
+    auto_start: false  # Run on schedule
+    restart_policy: "on-failure"
+
+  youtube_processor:
+    name: "YouTube Content Processor"
+    type: "data_processing"
+    command: "python scripts/python/ingest_youtube_r5_syphon.py"
+    working_directory: "."
+    dependencies: ["syphon", "r5_living_context_matrix"]
+    health_check:
+      type: "scheduled"
+      schedule: "0 */12 * * *"  # Every 12 hours
+    environment:
+      - LOG_LEVEL=info
+    resources:
+      cpu_limit: "0.8"
+      memory_limit: "1GB"
+      disk_limit: "3GB"
+    auto_start: false  # Run on schedule
+    restart_policy: "on-failure"
+
+  # Development & IDE Services
+  cursor_chat_extractor:
+    name: "Cursor Chat History Extractor"
+    type: "ide_integration"
+    command: "python scripts/python/extract_cursor_chat_history.py"
+    working_directory: "."
+    dependencies: ["syphon"]
+    health_check:
+      type: "scheduled"
+      schedule: "0 */2 * * *"  # Every 2 hours
+    environment:
+      - LOG_LEVEL=info
+    resources:
+      cpu_limit: "0.5"
+      memory_limit: "512MB"
+      disk_limit: "1GB"
+    auto_start: false  # Run on schedule
+    restart_policy: "on-failure"
+
+# Service groups for coordinated startup/shutdown
+service_groups:
+  core_ai:
+    name: "Core AI Services"
+    services: ["syphon", "r5_living_context_matrix", "marvin_verification", "jarvis_helpdesk"]
+    startup_order: ["syphon", "r5_living_context_matrix", "marvin_verification", "jarvis_helpdesk"]
+    shutdown_order: ["jarvis_helpdesk", "marvin_verification", "r5_living_context_matrix", "syphon"]
+
+  monitoring:
+    name: "Monitoring Services"
+    services: ["proactive_monitor"]
+    startup_order: ["proactive_monitor"]
+    shutdown_order: ["proactive_monitor"]
+
+  data_processing:
+    name: "Data Processing Services"
+    services: ["agent_history_processor", "youtube_processor", "cursor_chat_extractor"]
+    startup_order: ["agent_history_processor", "youtube_processor", "cursor_chat_extractor"]
+    shutdown_order: ["cursor_chat_extractor", "youtube_processor", "agent_history_processor"]
+
+# Health monitoring configuration
+health_monitoring:
+  enabled: true
+  alert_thresholds:
+    cpu_usage: 80.0
+    memory_usage: 85.0
+    disk_usage: 90.0
+    response_time: 5000  # milliseconds
+  escalation_levels:
+    warning: ["log"]
+    critical: ["log", "email", "restart_service"]
+  notification_channels:
+    email:
+      enabled: false  # Configure SMTP settings to enable
+      recipients: ["admin@lumina.system"]
+    log:
+      enabled: true
+      level: "WARNING"
+    slack:
+      enabled: false  # Configure webhook to enable
+      webhook_url: ""
+
+# Auto-scaling configuration (for future expansion)
+auto_scaling:
+  enabled: false
+  cpu_threshold: 70.0
+  memory_threshold: 75.0
+  cooldown_period: 300  # seconds
+  max_instances: 3
+
+# Backup and recovery
+backup_recovery:
+  enabled: true
+  backup_schedule: "0 2 * * *"  # Daily at 2 AM
+  retention_days: 30
+  backup_paths:
+    - "data/"
+    - "config/"
+    - "logs/"
+  recovery_test_schedule: "0 3 1 * *"  # First day of month at 3 AM
+
+# Performance monitoring
+performance_monitoring:
+  enabled: true
+  metrics_collection_interval: 60  # seconds
+  metrics_retention_days: 7
+  alert_on_performance_degradation: true
+  performance_baselines:
+    response_time_target: 1000  # milliseconds
+    throughput_target: 100      # requests per second
+    error_rate_threshold: 1.0   # percentage
+
+# Security configuration
+security:
+  enable_service_authentication: true
+  enable_encryption_in_transit: true
+  enable_audit_logging: true
+  session_timeout: 3600  # seconds
+  max_concurrent_connections: 100
+  rate_limiting:
+    enabled: true
+    requests_per_minute: 60
+    burst_limit: 10
+
+# Logging configuration
+logging:
+  central_log_aggregation: true
+  log_rotation: "daily"
+  max_log_files: 30
+  compress_rotated_logs: true
+  log_levels:
+    default: "INFO"
+    services:
+      syphon: "DEBUG"
+      jarvis_helpdesk: "INFO"
+      marvin_verification: "WARNING"

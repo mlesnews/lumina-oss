@@ -1,0 +1,14 @@
+{
+  "cluster_name": "ULTRON",
+  "routing_strategy": "load_balanced",
+  "preferred_model": "qwen2.5:72b",
+  "timeout": 30,
+  "max_retries": 3,
+  "health_check_interval": 60,
+  "failover_enabled": true,
+  "load_balancing": {
+    "enabled": true,
+    "weight_ultron_local": 1.0,
+    "weight_kaiju": 1.0
+  }
+}

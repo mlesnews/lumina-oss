@@ -1,0 +1,103 @@
+{
+  "version": "1.0.0",
+  "name": "Lumina pfSense SSH and Web Portal Configuration",
+  "description": "SSH access and web portal integration for pfSense with Lumina",
+  "last_updated": "2025-01-27",
+  "ssot": true,
+  "ssot_location": "config/lumina_pfsense_ssh_config.json",
+  "pfsense": {
+    "host": "<NAS_IP>",
+    "hostname": "<NAS_IP>",
+    "web_port": 443,
+    "web_url": "https://<NAS_IP>",
+    "ssh_port": 22,
+    "username": "admin",
+    "password_source": "azure_key_vault",
+    "key_vault_name": "jarvis-lumina",
+    "password_secret_name": "pfsense-password",
+    "ssh_key_path": null,
+    "preferred_auth": "password",
+    "timeout": 300,
+    "verify_ssl": false
+  },
+  "ssh_config": {
+    "strict_host_key_checking": false,
+    "user_known_hosts_file": "~/.ssh/known_hosts",
+    "identity_file": null,
+    "compression": true,
+    "server_alive_interval": 60,
+    "server_alive_count_max": 3
+  },
+  "web_portal": {
+    "enabled": true,
+    "url": "https://<NAS_IP>",
+    "login_endpoint": "/",
+    "session_timeout": 3600,
+    "verify_ssl": false
+  },
+  "api_integration": {
+    "enabled": true,
+    "api_key": null,
+    "api_secret": null,
+    "notes": "pfSense API not currently enabled - using web portal and SSH"
+  },
+  "lumina_integration": {
+    "r5_system": {
+      "enabled": true,
+      "publish_pfsense_operations": true,
+      "aggregate_pfsense_data": true
+    },
+    "memory_manager": {
+      "enabled": true,
+      "store_pfsense_operations": true,
+      "cache_pfsense_metadata": true
+    },
+    "holocron_query": {
+      "enabled": true,
+      "index_pfsense_content": false,
+      "notes": "pfSense operations can be queried via Holocron"
+    },
+    "droid_actor_system": {
+      "enabled": true,
+      "pfsense_operations_as_droids": true,
+      "workflow_integration": true
+    }
+  },
+  "operations": {
+    "ssh_commands": {
+      "enabled": true,
+      "allowed_commands": [
+        "pfctl",
+        "ifconfig",
+        "netstat",
+        "top",
+        "uptime",
+        "df",
+        "ps"
+      ],
+      "restricted_commands": [
+        "rm",
+        "dd",
+        "format"
+      ]
+    },
+    "web_portal": {
+      "enabled": true,
+      "monitoring": true,
+      "configuration": true,
+      "firewall_rules": true,
+      "traffic_analysis": true
+    }
+  },
+  "_metadata": {
+    "documentation": "docs/system/LUMINA_PFSENSE_SSH_WEB_PORTAL.md",
+    "script": "scripts/python/pfsense_azure_vault_integration.py",
+    "consumers": [
+      "scripts/python/pfsense_azure_vault_integration.py",
+      "Lumina API Server",
+      "R5 System",
+      "Memory Manager"
+    ],
+    "notes": "pfSense web portal and SSH access for network management and monitoring"
+  }
+}

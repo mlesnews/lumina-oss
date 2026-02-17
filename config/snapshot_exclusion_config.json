@@ -1,0 +1,27 @@
+{
+  "timestamp": "2025-12-28T13:29:04.695367",
+  "purpose": "Prevent recursive snapshot creation",
+  "exclusions": {
+    "time_travel_snapshots": {
+      "pattern": "data/time_travel/snapshots/**",
+      "description": "Exclude snapshot output directory from all backup/snapshot operations",
+      "reason": "Prevents recursive snapshot creation"
+    },
+    "snapshot_directory": {
+      "pattern": "**/time_travel/snapshots/**",
+      "description": "Wildcard exclusion for snapshot directories",
+      "reason": "Prevents recursion at any level"
+    }
+  },
+  "backup_scripts_to_update": [
+    "scripts/nas_backup_syphon.ps1",
+    "scripts/python/data_lifecycle_manager.py",
+    "scripts/python/validate_and_mirror.py",
+    "Any script using Copy-Item, robocopy, or shutil.copytree on data directory"
+  ],
+  "instructions": {
+    "powershell": "Use -Exclude parameter or robocopy /XD to exclude directories",
+    "python": "Use shutil.copytree with ignore parameter or manually exclude paths",
+    "validation": "Always verify snapshot directory is excluded before running backup operations"
+  }
+}

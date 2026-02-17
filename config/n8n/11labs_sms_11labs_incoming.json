@@ -1,0 +1,81 @@
+{
+  "name": "SMS → 11Labs Voice → Notification",
+  "description": "Convert incoming SMS to voice using 11Labs",
+  "trigger": {
+    "type": "webhook",
+    "url": "http://<NAS_PRIMARY_IP>:5678/webhook/sms/11labs",
+    "method": "POST"
+  },
+  "nodes": [
+    {
+      "name": "Webhook",
+      "type": "n8n-nodes-base.webhook",
+      "parameters": {
+        "path": "sms/11labs",
+        "httpMethod": "POST"
+      }
+    },
+    {
+      "name": "Parse SMS",
+      "type": "n8n-nodes-base.function",
+      "parameters": {
+        "functionCode": "const sms = $input.item.json;\nreturn [{\n  json: {\n    from: sms.from || sms.phone_number,\n    message: sms.body || sms.message,\n    timestamp: sms.timestamp || new Date().toISOString()\n  }\n}];"
+      }
+    },
+    {
+      "name": "11Labs TTS",
+      "type": "n8n-nodes-base.httpRequest",
+      "parameters": {
+        "url": "https://api.elevenlabs.io/v1/text-to-speech/{{ $env.ELEVENLABS_VOICE_ID_SMS }}",
+        "method": "POST",
+        "authentication": "genericCredentialType",
+        "genericAuthType": "httpHeaderAuth",
+        "sendHeaders": true,
+        "headerParameters": {
+          "xi-api-key": "={{ $env.ELEVENLABS_API_KEY }}"
+        },
+        "sendBody": true,
+        "bodyParameters": {
+          "text": "={{ 'New message from ' + $json.from + '. ' + $json.message }}",
+          "model_id": "eleven_multilingual_v2",
+          "voice_settings": {
+            "stability": 0.6,
+            "similarity_boost": 0.8
+          }
+        },
+        "options": {
+          "response": {
+            "response": {
+              "responseFormat": "file"
+            }
+          }
+        }
+      }
+    },
+    {
+      "name": "Play Audio",
+      "type": "n8n-nodes-base.httpRequest",
+      "parameters": {
+        "url": "http://localhost:8000/api/audio/play",
+        "method": "POST",
+        "sendBody": true,
+        "bodyParameters": {
+          "audio": "={{ $binary.data }}"
+        }
+      }
+    },
+    {
+      "name": "SYPHON Process",
+      "type": "n8n-nodes-base.httpRequest",
+      "parameters": {
+        "url": "http://localhost:8000/api/syphon/process",
+        "method": "POST",
+        "bodyParameters": {
+          "content": "={{ $('Parse SMS').item.json.message }}",
+          "source_type": "sms",
+          "has_voice": true
+        }
+      }
+    }
+  ]
+}

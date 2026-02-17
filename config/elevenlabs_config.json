@@ -1,0 +1,33 @@
+{
+  "version": "1.0.0",
+  "description": "ElevenLabs Configuration",
+  "enabled": true,
+  "api_key": "",
+  "api_endpoint": "https://api.elevenlabs.io/v1",
+  "voice_id": "default",
+  "model_id": "eleven_multilingual_v2",
+  "data_directory": "elevenlabs.data",
+  "data_path": "data/elevenlabs",
+  "features": {
+    "text_to_speech": true,
+    "voice_cloning": true,
+    "voice_library": true,
+    "pronunciation_dictionary": true
+  },
+  "settings": {
+    "stability": 0.5,
+    "similarity_boost": 0.75,
+    "style": 0.0,
+    "use_speaker_boost": true
+  },
+  "encryption": {
+    "enabled": true,
+    "ssh_level": true,
+    "ai_enhanced": true
+  },
+  "storage": {
+    "audio_files": "data/elevenlabs/audio",
+    "cache_directory": "data/elevenlabs_cache",
+    "docker_volume": "elevenlabs.data"
+  }
+}

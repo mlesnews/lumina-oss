@@ -1,0 +1,100 @@
+{
+  "armoury_crate_manager": {
+    "name": "Armoury Crate Manager",
+    "type": "system_management",
+    "status": "operational",
+    "version": "1.0.0",
+    "module": "scripts.python.armoury_crate_manager",
+    "class": "ArmouryCrateManager",
+    "description": "Complete management and control system for ASUS Armoury Crate and AURA lighting. Full administrative control integrated with Jarvis framework.",
+    "features": [
+      "service_management",
+      "lighting_control",
+      "theme_management",
+      "health_monitoring",
+      "auto_fix",
+      "diagnostic_tools",
+      "theme_creation",
+      "lighting_synchronization"
+    ],
+    "capabilities": {
+      "service_control": {
+        "enabled": true,
+        "services": [
+          "LightingService",
+          "ArmouryCrateService",
+          "ArmouryCrateControlInterface",
+          "AsusPTPService",
+          "AsusCertService"
+        ],
+        "auto_fix": true,
+        "health_check_interval": 300
+      },
+      "lighting_control": {
+        "enabled": true,
+        "predefined_themes": [
+          "JarvisBlue",
+          "MatrixGreen",
+          "Cyberpunk",
+          "Fire",
+          "Ocean",
+          "StaticWhite",
+          "Rainbow"
+        ],
+        "custom_themes": true,
+        "theme_storage": "data/armoury_crate/themes",
+        "auto_apply_on_start": false
+      },
+      "diagnostics": {
+        "enabled": true,
+        "comprehensive_check": true,
+        "report_storage": "data/armoury_crate",
+        "auto_diagnose_on_issue": true
+      }
+    },
+    "integration_points": {
+      "jarvis_framework": {
+        "health_check": "armoury_crate_manager.health_check",
+        "diagnostic": "armoury_crate_manager.diagnose",
+        "fix": "armoury_crate_manager.fix",
+        "apply_theme": "armoury_crate_manager.apply_theme",
+        "get_status": "armoury_crate_manager.get_status"
+      },
+      "power_management": {
+        "related": "configure_power_settings.ps1",
+        "note": "Ensures system stays active for lighting control"
+      },
+      "system_monitoring": {
+        "health_checks": "integrated",
+        "logging": "integrated",
+        "reporting": "integrated"
+      }
+    },
+    "scripts": {
+      "diagnostic": "scripts/armoury_crate_diagnostic.ps1",
+      "fix": "scripts/armoury_crate_fix.ps1",
+      "lighting_manager": "scripts/armoury_crate_lighting_manager.ps1",
+      "python_module": "scripts/python/armoury_crate_manager.py"
+    },
+    "configuration": {
+      "auto_fix_enabled": true,
+      "health_check_interval": 300,
+      "themes_directory": "data/armoury_crate/themes",
+      "preferred_theme": "JarvisBlue",
+      "auto_apply_theme_on_start": false,
+      "log_level": "INFO"
+    },
+    "documentation": {
+      "readme": "scripts/ARMOURY_CRATE_README.md",
+      "usage": "See armoury_crate_manager.py for Python API",
+      "powershell": "See individual .ps1 scripts for PowerShell usage"
+    },
+    "maintenance": {
+      "managed_by": "Jarvis",
+      "update_frequency": "on_demand",
+      "backup_themes": true,
+      "health_monitoring": true
+    }
+  }
+}
+

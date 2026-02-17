@@ -1,0 +1,96 @@
+{
+  "version": "1.0.0",
+  "name": "Cursor IDE UI Auto-Hide Configuration",
+  "description": "Auto-hide UI sections to reduce visual clutter - show on hover",
+  "last_updated": "2026-01-04",
+  "tags": ["#CURSOR", "#UI", "#AUTO_HIDE", "#QUALITY_OF_LIFE", "@JARVIS", "@LUMINA"],
+  
+  "auto_hide_sections": {
+    "top_header_bar": {
+      "enabled": true,
+      "description": "Top header bar (File, Edit, Selection, View, etc.)",
+      "hide_delay_ms": 2000,
+      "show_on_hover": true,
+      "always_visible_when_active": true
+    },
+    "chat_pane_details": {
+      "enabled": true,
+      "description": "Chat pane details (lines added/removed, model selection)",
+      "hide_delay_ms": 3000,
+      "show_on_hover": true,
+      "sections": {
+        "diff_viewer": {
+          "enabled": true,
+          "description": "Lines added (green) / removed (red) box"
+        },
+        "model_selector": {
+          "enabled": true,
+          "description": "Model mode selection (e.g., 'Lava')"
+        }
+      }
+    },
+    "bird_static_text": {
+      "enabled": true,
+      "description": "Original ask/AI token request/task description static text",
+      "collapse_to_one_line": true,
+      "preview_text": "Original task: ...",
+      "expand_on_hover": true,
+      "hide_delay_ms": 5000
+    },
+    "bottom_transcription": {
+      "enabled": false,
+      "description": "Bottom transcription area - stays visible for active use",
+      "note": "Disabled by default - transcription area should remain visible"
+    }
+  },
+  
+  "transcription_improvements": {
+    "pause_resume": {
+      "enabled": true,
+      "description": "Pause/resume transcription without losing text",
+      "preserve_text_on_pause": true,
+      "resume_from_pause": true
+    },
+    "auto_send": {
+      "enabled": true,
+      "description": "Auto-send after silence period",
+      "silence_duration_ms": 2000,
+      "min_transcription_length": 10
+    },
+    "button_controls": {
+      "enabled": true,
+      "description": "Expanded button controls (wider, more options)",
+      "button_set": [
+        "pause",
+        "resume",
+        "stop",
+        "send",
+        "clear",
+        "save_draft"
+      ],
+      "button_width": "expanded",
+      "layout": "horizontal"
+    }
+  },
+  
+  "quality_of_life": {
+    "expanded_controls": {
+      "enabled": true,
+      "description": "Wider/better control methods for buttons",
+      "button_size": "large",
+      "spacing": "comfortable"
+    },
+    "keyboard_shortcuts": {
+      "pause_resume": "Ctrl+Space",
+      "auto_send_toggle": "Ctrl+Shift+S",
+      "clear_transcription": "Ctrl+K"
+    }
+  },
+  
+  "implementation_notes": [
+    "Requires Cursor IDE extension or settings modification",
+    "Auto-hide uses CSS/JavaScript for UI manipulation",
+    "Transcription improvements require Cursor API access",
+    "Button controls need UI component updates"
+  ]
+}

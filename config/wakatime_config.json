@@ -1,0 +1,47 @@
+{
+  "_public_marker": "PUBLIC - WakaTime Configuration Template",
+  "project_name": "LUMINA",
+  "badges": {
+    "enabled": true,
+    "repo_badge": true,
+    "project_badge": true,
+    "note": "Replace {user_id} and @username with your actual WakaTime username"
+  },
+  "charts": {
+    "enabled": true,
+    "embed_in_docs": true,
+    "chart_types": [
+      "coding_activity",
+      "languages",
+      "projects",
+      "editors",
+      "operating_systems"
+    ]
+  },
+  "goals": {
+    "enabled": true,
+    "weekly_hours": 20,
+    "daily_consistency": true,
+    "project_focus_percentage": 80
+  },
+  "email_reports": {
+    "enabled": false,
+    "recipients": [],
+    "frequency": "weekly"
+  },
+  "api": {
+    "enabled": false,
+    "api_key_storage": "azure_key_vault",
+    "note": "API key should be stored in Azure Key Vault, not in this file"
+  },
+  "insights": {
+    "enabled": true,
+    "auto_share": false,
+    "platforms": []
+  },
+  "animated_gifs": {
+    "enabled": true,
+    "update_frequency": "weekly",
+    "time_range": "last_30_days"
+  }
+}

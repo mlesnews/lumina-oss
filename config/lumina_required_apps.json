@@ -1,0 +1,143 @@
+{
+  "version": "1.0.0",
+  "name": "Lumina Required Applications",
+  "description": "Single Source of Truth (SSoT) for required applications to install on D drive",
+  "last_updated": "2025-01-24",
+  "ssot": true,
+  "ssot_location": "config/lumina_required_apps.json",
+  "install_path": "D:\\Program Files",
+  "applications": [
+    {
+      "name": "MS Office 365",
+      "patterns": [
+        "*office*365*.exe",
+        "*office*setup*.exe",
+        "*officetool*.exe"
+      ],
+      "download_url": "https://aka.ms/office-installer",
+      "install_args": "/configure",
+      "install_path": "D:\\Program Files\\Microsoft Office",
+      "serial_key_vault_name": "Office365-ProductKey",
+      "notes": "Office 365 installation. Product key may need manual activation after installation."
+    },
+    {
+      "name": "Copilot",
+      "patterns": [
+        "*copilot*.exe",
+        "*github*copilot*.exe"
+      ],
+      "download_url": "https://github.com/github/copilot/releases/latest",
+      "install_path": "D:\\Program Files\\GitHub Copilot",
+      "notes": "GitHub Copilot installation"
+    },
+    {
+      "name": "Copilot 365",
+      "patterns": [
+        "*copilot*365*.exe",
+        "*microsoft*copilot*.exe"
+      ],
+      "download_url": "https://aka.ms/copilot-installer",
+      "install_path": "D:\\Program Files\\Microsoft Copilot",
+      "notes": "Microsoft Copilot 365 installation"
+    },
+    {
+      "name": "Process Lasso",
+      "patterns": [
+        "*process*lasso*.exe",
+        "*bitsum*.exe"
+      ],
+      "download_url": "https://bitsum.com/files/processlassosetup64.exe",
+      "install_path": "D:\\Program Files\\Process Lasso",
+      "serial_key_vault_name": "ProcessLasso-LicenseKey",
+      "serial_key_install_param": "/KEY=",
+      "notes": "Process Lasso for CPU optimization. License key can be loaded from Azure Key Vault."
+    },
+    {
+      "name": "Park Control",
+      "patterns": [
+        "*park*control*.exe",
+        "*bitsum*park*.exe"
+      ],
+      "download_url": "https://bitsum.com/files/parkcontrolsetup.exe",
+      "install_path": "D:\\Program Files\\Park Control",
+      "serial_key_vault_name": "ParkControl-LicenseKey",
+      "serial_key_install_param": "/KEY=",
+      "notes": "Park Control for CPU core parking management"
+    },
+    {
+      "name": "Perfect Disk",
+      "patterns": [
+        "*perfect*disk*.exe",
+        "*raxco*.exe"
+      ],
+      "download_url": "https://www.raxco.com/downloads",
+      "install_path": "D:\\Program Files\\Perfect Disk",
+      "serial_key_vault_name": "PerfectDisk14-Pro-Key",
+      "serial_key_install_param": "/KEY=",
+      "notes": "Perfect Disk for disk optimization"
+    },
+    {
+      "name": "CfosSpeed",
+      "patterns": [
+        "*cfos*.exe",
+        "*cfosspeed*.exe"
+      ],
+      "download_url": "https://www.cfos.de/en/download/download.htm",
+      "install_path": "D:\\Program Files\\CfosSpeed",
+      "notes": "CfosSpeed for network traffic shaping"
+    },
+    {
+      "name": "Internet Download Manager",
+      "patterns": [
+        "*idm*.exe",
+        "*internet*download*manager*.exe",
+        "*IDM*.exe"
+      ],
+      "download_url": "https://www.internetdownloadmanager.com/download.html",
+      "install_path": "D:\\Program Files\\Internet Download Manager",
+      "install_args": "/S /D=\"D:\\Program Files\\Internet Download Manager\"",
+      "priority": 1,
+      "notes": "IDM must be installed FIRST before other applications. Required for all downloads with resume capability. Installation directory on D drive."
+    },
+    {
+      "name": "Docker Desktop",
+      "patterns": [
+        "*docker*desktop*.exe",
+        "*Docker Desktop*.exe"
+      ],
+      "download_url": "https://desktop.docker.com/win/main/amd64/Docker%20Desktop%20Installer.exe",
+      "install_path": "D:\\Program Files\\Docker",
+      "data_path": "D:\\Docker",
+      "install_args": "install --quiet --accept-license --installation-dir=\"D:\\Program Files\\Docker\"",
+      "notes": "Docker Desktop for Windows. Installation directory and data storage will be configured on D drive. Requires WSL 2."
+    },
+    {
+      "name": "Ollama",
+      "patterns": [
+        "*ollama*.exe",
+        "*OllamaSetup*.exe"
+      ],
+      "download_url": "https://github.com/ollama/ollama/releases/latest/download/OllamaSetup.exe",
+      "install_path": "D:\\Program Files\\Ollama",
+      "data_path": "D:\\Ollama",
+      "install_args": "/S /D=\"D:\\Program Files\\Ollama\"",
+      "notes": "Ollama LLM runtime. Installation directory and models storage on D drive. NEVER install on C drive."
+    }
+  ],
+  "download_locations": {
+    "nas": "Z:\\downloads",
+    "local": "$env:USERPROFILE\\Downloads"
+  },
+  "azure_key_vault": {
+    "name": "jarvis-lumina",
+    "enabled": true,
+    "notes": "Set -UseAzureVault switch to load serial keys from Azure Key Vault"
+  },
+  "_metadata": {
+    "documentation": "docs/system/LUMINA_REQUIRED_APPS.md",
+    "script": "scripts/install_required_apps_d_drive.ps1",
+    "consumers": [
+      "scripts/install_required_apps_d_drive.ps1"
+    ]
+  }
+}

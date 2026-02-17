@@ -1,0 +1,113 @@
+{
+  "eldritch_chaos_engine": {
+    "version": "1.0.0",
+    "enabled": false,
+    "warning": "CHAOS ENGINEERING - Use only in controlled environments",
+    "motto": "That is not dead which can eternal lie",
+
+    "entities": {
+      "shoggoth": {
+        "name": "@Shoggoth",
+        "type": "chaos_engineer",
+        "domain": "adaptive_chaos",
+        "description": "Shapeless, ever-changing attack patterns",
+        "cry": "Tekeli-li!",
+        "behaviors": [
+          "random_mutation",
+          "pattern_shifting",
+          "resource_exhaustion",
+          "unexpected_input"
+        ],
+        "danger_level": "high"
+      },
+
+      "the_nameless_ones": {
+        "name": "@TheNamelessOnes",
+        "type": "apt_simulator",
+        "domain": "zero_day",
+        "description": "Unknown unknowns, novel attack vectors",
+        "behaviors": [
+          "patience",
+          "reconnaissance",
+          "lateral_movement",
+          "data_exfiltration"
+        ],
+        "danger_level": "critical"
+      },
+
+      "eap": {
+        "name": "@EAP (Edgar Allan Poe)",
+        "type": "social_engineer",
+        "domain": "human_factor",
+        "description": "Social engineering and psychological manipulation",
+        "works": {
+          "tell_tale_heart": "insider_threat",
+          "masque_red_death": "lateral_movement",
+          "pit_and_pendulum": "time_attacks",
+          "the_raven": "persistent_recon"
+        },
+        "catchphrase": "Nevermore!",
+        "danger_level": "medium"
+      },
+
+      "cthulhu": {
+        "name": "@Cthulhu",
+        "type": "existential_threat",
+        "domain": "catastrophic_scenarios",
+        "description": "Total system destruction, disaster recovery testing",
+        "invocation": "Ph'nglui mglw'nafh Cthulhu R'lyeh wgah'nagl fhtagn",
+        "scenarios": [
+          "total_datacenter_loss",
+          "ransomware_encryption",
+          "supply_chain_compromise",
+          "insider_sabotage",
+          "multi_vector_simultaneous"
+        ],
+        "danger_level": "existential",
+        "requires_approval": ["The Professor", "@RR"]
+      },
+
+      "antiquated": {
+        "name": "@Antiquated",
+        "type": "legacy_debt_reminder",
+        "domain": "institutional_inertia",
+        "description": "The ghosts of security practices that should have died decades ago",
+        "lament": "We have always done it this way",
+        "haunted_practices": [
+          "passwords",
+          "sms_2fa",
+          "security_questions",
+          "ip_based_trust",
+          "shared_credentials",
+          "perimeter_security"
+        ],
+        "what_should_replace_them": [
+          "passkeys_fido2",
+          "hardware_tokens",
+          "continuous_authentication",
+          "zero_trust",
+          "decentralized_identity"
+        ],
+        "age_in_years": 60,
+        "mood": "/sad",
+        "danger_level": "civilizational"
+      }
+    },
+
+    "safety_controls": {
+      "require_dry_run_first": true,
+      "max_blast_radius": "staging",
+      "production_lockout": true,
+      "auto_rollback": true,
+      "notify_on_summon": ["@RR", "@MARVIN", "@HK-47"],
+      "time_limit_minutes": 30
+    },
+
+    "integration": {
+      "compusec_team": ["@MARVIN", "@HK-47", "@WOPR"],
+      "rotation_system": "@ZUUL",
+      "vault_system": ["GATEKEEPER", "KEYMASTER"],
+      "reporting_chain": ["@RR", "The Professor"]
+    }
+  }
+}

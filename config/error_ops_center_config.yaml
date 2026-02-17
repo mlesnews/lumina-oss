@@ -1,0 +1,56 @@
+# Enterprise Error Operations Center Configuration
+# <COMPANY_NAME> LLC
+
+# Monitoring Settings
+monitoring:
+  enabled: true
+  check_interval_seconds: 1
+  report_interval_seconds: 300  # 5 minutes
+  
+# Log Discovery
+log_discovery:
+  enabled: true
+  search_paths:
+    - "logs"
+    - "data/logs"
+    - "data/**/*.log"
+    - "scripts/**/*.log"
+  patterns:
+    - "*.log"
+    - "*.log.txt"
+    - "*.err"
+    - "*.error"
+    - "*.out"
+  exclude_dirs:
+    - ".git"
+    - "node_modules"
+    - "__pycache__"
+    - ".venv"
+    - "venv"
+
+# Auto-Fix Settings
+auto_fix:
+  enabled: true
+  attempt_fixes: true
+  max_fix_attempts: 3
+  fix_cooldown_seconds: 60
+  
+# Alerting
+alerting:
+  critical_errors: true
+  email_alerts: false
+  slack_alerts: false
+  
+# Error Retention
+retention:
+  keep_errors_days: 30
+  archive_resolved_days: 7
+  max_errors_in_memory: 10000
+  
+# SLA Settings
+sla:
+  critical_resolution_hours: 1
+  high_resolution_hours: 4
+  medium_resolution_hours: 24
+  low_resolution_hours: 72
+

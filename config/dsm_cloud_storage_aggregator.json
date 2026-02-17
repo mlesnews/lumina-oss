@@ -1,0 +1,271 @@
+{
+  "dsm_cloud_storage_aggregator": {
+    "name": "DSM Cloud Storage Aggregator Configuration",
+    "version": "1.0.0",
+    "description": "Synology DSM Cloud Sync package configuration for aggregating multiple cloud storage providers",
+    "created_at": "2026-01-05",
+    "tags": ["@dsm", "@nas", "@cloud-storage", "#dropbox", "#onedrive", "#protondrive"],
+    "status": "active",
+    "nas": {
+      "ip": "<NAS_PRIMARY_IP>",
+      "dsm_version": "7.x",
+      "package_name": "Cloud Sync",
+      "package_status": "installed",
+      "web_portal": "https://<NAS_PRIMARY_IP>:5001",
+      "api_endpoint": "https://<NAS_PRIMARY_IP>:5001/webapi",
+      "sync_destination": "N:\\cloud_storage_aggregated",
+      "network_drive": "N:",
+      "network_path": "\\\\<NAS_PRIMARY_IP>\\backups\\MATT_Backups\\cloud_storage_aggregated"
+    },
+    "cloud_providers": {
+      "dropbox": {
+        "enabled": true,
+        "provider": "dropbox",
+        "sync_direction": "bidirectional",
+        "local_path": "N:\\cloud_storage_aggregated\\dropbox",
+        "remote_path": "/",
+        "sync_mode": "selective",
+        "sync_schedule": "real-time",
+        "conflict_resolution": "local_wins",
+        "exclude_patterns": [
+          ".git",
+          "node_modules",
+          "__pycache__",
+          "*.tmp",
+          "*.log"
+        ],
+        "include_patterns": [
+          "**/*"
+        ],
+        "authentication": {
+          "method": "oauth2",
+          "client_id_secret": "dropbox-client-id",
+          "client_secret_secret": "dropbox-client-secret",
+          "access_token_secret": "dropbox-access-token",
+          "refresh_token_secret": "dropbox-refresh-token",
+          "secret_storage": "azure_key_vault"
+        },
+        "sync_settings": {
+          "sync_subfolders": true,
+          "sync_deleted_files": true,
+          "sync_hidden_files": false,
+          "preserve_permissions": true,
+          "bandwidth_limit": null,
+          "schedule_enabled": false
+        },
+        "notes": "Primary cloud storage - migrating from local D:\\Dropbox to NAS N: drive"
+      },
+      "onedrive": {
+        "enabled": true,
+        "provider": "onedrive",
+        "sync_direction": "bidirectional",
+        "local_path": "N:\\cloud_storage_aggregated\\onedrive",
+        "remote_path": "/",
+        "sync_mode": "selective",
+        "sync_schedule": "real-time",
+        "conflict_resolution": "local_wins",
+        "exclude_patterns": [
+          ".git",
+          "node_modules",
+          "__pycache__",
+          "*.tmp",
+          "*.log"
+        ],
+        "authentication": {
+          "method": "oauth2",
+          "client_id_secret": "onedrive-client-id",
+          "client_secret_secret": "onedrive-client-secret",
+          "access_token_secret": "onedrive-access-token",
+          "refresh_token_secret": "onedrive-refresh-token",
+          "secret_storage": "azure_key_vault"
+        },
+        "sync_settings": {
+          "sync_subfolders": true,
+          "sync_deleted_files": true,
+          "sync_hidden_files": false,
+          "preserve_permissions": true,
+          "bandwidth_limit": null,
+          "schedule_enabled": false
+        },
+        "notes": "Microsoft OneDrive integration for Office 365 documents"
+      },
+      "protondrive": {
+        "enabled": true,
+        "provider": "protondrive",
+        "sync_direction": "bidirectional",
+        "local_path": "N:\\cloud_storage_aggregated\\protondrive",
+        "remote_path": "/",
+        "sync_mode": "selective",
+        "sync_schedule": "real-time",
+        "conflict_resolution": "local_wins",
+        "exclude_patterns": [
+          ".git",
+          "node_modules",
+          "__pycache__",
+          "*.tmp",
+          "*.log",
+          "**/data/large/**",
+          "**/secrets/**"
+        ],
+        "include_patterns": [
+          "my_projects/**",
+          "Documents/**",
+          "config/**",
+          "scripts/**"
+        ],
+        "authentication": {
+          "method": "oauth2",
+          "client_id_secret": "protondrive-client-id",
+          "client_secret_secret": "protondrive-client-secret",
+          "access_token_secret": "protondrive-access-token",
+          "refresh_token_secret": "protondrive-refresh-token",
+          "secret_storage": "azure_key_vault"
+        },
+        "sync_settings": {
+          "sync_subfolders": true,
+          "sync_deleted_files": true,
+          "sync_hidden_files": false,
+          "preserve_permissions": true,
+          "bandwidth_limit": null,
+          "schedule_enabled": false,
+          "encryption": true,
+          "end_to_end_encryption": true
+        },
+        "notes": "ProtonDrive integration for encrypted cloud storage - Primary provider for remote work with VPN",
+        "priority": 1,
+        "remote_work_primary": true
+      },
+      "homelab_custom": {
+        "enabled": false,
+        "provider": "custom",
+        "sync_direction": "bidirectional",
+        "local_path": "N:\\cloud_storage_aggregated\\homelab",
+        "remote_path": "/",
+        "sync_mode": "selective",
+        "sync_schedule": "real-time",
+        "conflict_resolution": "local_wins",
+        "notes": "Placeholder for additional homelab-specific cloud storage providers"
+      }
+    },
+    "aggregation_settings": {
+      "aggregated_root": "N:\\cloud_storage_aggregated",
+      "unified_view": true,
+      "deduplication": true,
+      "indexing": true,
+      "search_enabled": true,
+      "version_control": true,
+      "backup_strategy": "incremental",
+      "retention_policy": {
+        "deleted_files_days": 30,
+        "version_history_days": 90,
+        "archive_after_days": 365
+      }
+    },
+    "sync_policies": {
+      "default_sync_direction": "bidirectional",
+      "default_conflict_resolution": "local_wins",
+      "sync_priority": [
+        "dropbox",
+        "onedrive",
+        "protondrive"
+      ],
+      "bandwidth_management": {
+        "enabled": false,
+        "max_bandwidth_mbps": null,
+        "schedule": null
+      },
+      "sync_filters": {
+        "min_file_size_bytes": 0,
+        "max_file_size_bytes": null,
+        "excluded_extensions": [
+          ".tmp",
+          ".log",
+          ".cache"
+        ]
+      }
+    },
+    "monitoring": {
+      "health_checks": {
+        "enabled": true,
+        "interval_minutes": 15,
+        "checks": [
+          "sync_status",
+          "connection_status",
+          "disk_space",
+          "sync_errors",
+          "bandwidth_usage"
+        ]
+      },
+      "alerts": {
+        "enabled": true,
+        "channels": [
+          "jarvis",
+          "email",
+          "webhook"
+        ],
+        "thresholds": {
+          "sync_error_count": 10,
+          "disk_space_percent": 85,
+          "connection_failures": 3
+        }
+      },
+      "metrics": {
+        "sync_speed_mbps": true,
+        "files_synced_per_hour": true,
+        "sync_errors_per_hour": true,
+        "bandwidth_usage_mbps": true
+      }
+    },
+    "integration_points": {
+      "jarvis": {
+        "enabled": true,
+        "webhook_url": "http://localhost:8000/api/jarvis/cloud-sync",
+        "notifications": [
+          "sync_started",
+          "sync_completed",
+          "sync_error",
+          "disk_space_warning",
+          "connection_failure"
+        ]
+      },
+      "azure_key_vault": {
+        "enabled": true,
+        "vault_url": "https://jarvis-lumina.vault.azure.net/",
+        "secrets": [
+          "dropbox-client-id",
+          "dropbox-client-secret",
+          "dropbox-access-token",
+          "dropbox-refresh-token",
+          "onedrive-client-id",
+          "onedrive-client-secret",
+          "onedrive-access-token",
+          "onedrive-refresh-token",
+          "protondrive-client-id",
+          "protondrive-client-secret",
+          "protondrive-access-token",
+          "protondrive-refresh-token"
+        ]
+      }
+    },
+    "security": {
+      "credentials_storage": "azure_key_vault",
+      "encryption": true,
+      "tls_required": true,
+      "audit_logging": true,
+      "access_control": {
+        "api_key_required": true,
+        "api_key_secret": "dsm-cloud-sync-api-key",
+        "ip_whitelist": [
+          "<NAS_IP>/24",
+          "127.0.0.1"
+        ]
+      }
+    },
+    "documentation": {
+      "setup_guide": "docs/system/DSM_CLOUD_STORAGE_AGGREGATOR_SETUP.md",
+      "migration_guide": "docs/system/DROPBOX_TO_NAS_MIGRATION.md",
+      "api_reference": "docs/system/DSM_CLOUD_SYNC_API.md"
+    },
+    "updated_at": "2026-01-05T00:00:00.000000"
+  }
+}

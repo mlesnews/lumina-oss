@@ -1,0 +1,133 @@
+{
+  "name": "HVAC Bid Gmail Search",
+  "nodes": [
+    {
+      "parameters": {
+        "httpMethod": "POST",
+        "path": "hvac-bid-search",
+        "responseMode": "responseNode",
+        "options": {}
+      },
+      "id": "webhook-trigger",
+      "name": "Webhook - Search Request",
+      "type": "n8n-nodes-base.webhook",
+      "typeVersion": 1,
+      "position": [250, 300],
+      "webhookId": "hvac-bid-search"
+    },
+    {
+      "parameters": {
+        "authentication": "oAuth2",
+        "resource": "message",
+        "operation": "search",
+        "returnAll": false,
+        "limit": 50,
+        "simple": false,
+        "options": {
+          "q": "={{$json.query || '(from:brian.fletcher OR from:fletcher OR from:carl OR from:king OR from:griffet) AND (subject:\"HVAC Company Bids for Furnace/AC replacement\" OR subject:\"Furnace/AC replacement\" OR \"c1fa7198-7bf3-46ae-8865-2a67f0085988\") has:attachment'}}"
+        }
+      },
+      "id": "gmail-search",
+      "name": "Gmail - Search Messages",
+      "type": "n8n-nodes-base.gmail",
+      "typeVersion": 1,
+      "position": [450, 300],
+      "credentials": {
+        "gmailOAuth2": {
+          "id": "1",
+          "name": "Gmail OAuth2"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "operation": "get",
+        "messageId": "={{$json.id}}",
+        "options": {
+          "format": "full"
+        }
+      },
+      "id": "gmail-get",
+      "name": "Gmail - Get Message",
+      "type": "n8n-nodes-base.gmail",
+      "typeVersion": 1,
+      "position": [650, 300],
+      "credentials": {
+        "gmailOAuth2": {
+          "id": "1",
+          "name": "Gmail OAuth2"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "operation": "download",
+        "messageId": "={{$json.id}}",
+        "attachmentId": "={{$json.attachmentId}}"
+      },
+      "id": "gmail-attachment",
+      "name": "Gmail - Download Attachment",
+      "type": "n8n-nodes-base.gmail",
+      "typeVersion": 1,
+      "position": [850, 300],
+      "credentials": {
+        "gmailOAuth2": {
+          "id": "1",
+          "name": "Gmail OAuth2"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "operation": "write",
+        "fileName": "={{$json.filename}}",
+        "dataPropertyName": "data",
+        "options": {
+          "filePath": "/volume1/docker/n8n/data/hvac_bids/attachments/"
+        }
+      },
+      "id": "write-file",
+      "name": "Write Binary File",
+      "type": "n8n-nodes-base.writeBinaryFile",
+      "typeVersion": 1,
+      "position": [1050, 300]
+    },
+    {
+      "parameters": {
+        "respondWith": "json",
+        "responseBody": "={{ { \"success\": true, \"emails_found\": $input.all().length, \"attachments_downloaded\": $json.filename } }}"
+      },
+      "id": "respond",
+      "name": "Respond to Webhook",
+      "type": "n8n-nodes-base.respondToWebhook",
+      "typeVersion": 1,
+      "position": [1250, 300]
+    }
+  ],
+  "connections": {
+    "Webhook - Search Request": {
+      "main": [[{"node": "Gmail - Search Messages", "type": "main", "index": 0}]]
+    },
+    "Gmail - Search Messages": {
+      "main": [[{"node": "Gmail - Get Message", "type": "main", "index": 0}]]
+    },
+    "Gmail - Get Message": {
+      "main": [[{"node": "Gmail - Download Attachment", "type": "main", "index": 0}]]
+    },
+    "Gmail - Download Attachment": {
+      "main": [[{"node": "Write Binary File", "type": "main", "index": 0}]]
+    },
+    "Write Binary File": {
+      "main": [[{"node": "Respond to Webhook", "type": "main", "index": 0}]]
+    }
+  },
+  "pinData": {},
+  "settings": {
+    "executionOrder": "v1"
+  },
+  "staticData": null,
+  "tags": [],
+  "triggerCount": 0,
+  "updatedAt": "2026-01-02T00:00:00.000Z",
+  "versionId": "1"
+}

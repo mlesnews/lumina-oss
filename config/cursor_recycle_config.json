@@ -1,0 +1,7 @@
+{
+  "memory_threshold_mb": 2048,
+  "cpu_threshold_percent": 80.0,
+  "proactive_interval": 14400,
+  "last_recycle": "2025-12-31T19:00:45.121938",
+  "recycle_count": 1
+}

@@ -1,0 +1,140 @@
+{
+  "_meta": {
+    "description": "JARVIS Voice Command Configuration - Dragon NaturallySpeaking inspired",
+    "version": "1.0.0",
+    "created": "2026-01-13",
+    "reference": "https://www.nuance.com/dragon/support/dragon-naturallyspeaking.html"
+  },
+  
+  "trigger_phrases": {
+    "_comment": "Phrases that trigger specific actions. Case-insensitive.",
+    
+    "send_commands": {
+      "jarvis do it": "send",
+      "jarvis send": "send", 
+      "jarvis send it": "send",
+      "do it": "send",
+      "send it": "send",
+      "send message": "send",
+      "execute": "send",
+      "go ahead": "send"
+    },
+    
+    "correction_commands": {
+      "_comment": "These CANCEL pending auto-send before executing",
+      
+      "scratch that": "undo",
+      "undo that": "undo",
+      "delete that": "undo",
+      "take that back": "undo",
+      
+      "scratch word": "undo_word",
+      "delete word": "undo_word",
+      
+      "scratch line": "undo_line",
+      "delete line": "undo_line"
+    },
+    
+    "navigation_commands": {
+      "go back": "backspace",
+      "backspace": "backspace",
+      "delete": "backspace",
+      
+      "new line": "newline",
+      "next line": "newline",
+      "press enter": "newline",
+      
+      "new paragraph": "paragraph"
+    },
+    
+    "selection_commands": {
+      "select all": "select_all",
+      "select word": "select_word",
+      "select line": "select_line"
+    },
+    
+    "formatting_commands": {
+      "bold that": "bold",
+      "italicize that": "italic",
+      "code that": "code_format"
+    },
+    
+    "control_commands": {
+      "stop listening": "pause",
+      "pause": "pause",
+      "go to sleep": "pause",
+      
+      "wake up": "resume",
+      "resume": "resume",
+      "start listening": "resume"
+    },
+    
+    "clear_commands": {
+      "clear all": "clear",
+      "clear everything": "clear",
+      "start over": "clear",
+      "erase all": "clear"
+    }
+  },
+  
+  "dragon_reference": {
+    "_comment": "Common Dragon NaturallySpeaking commands for reference",
+    "url": "https://www.nuance.com/dragon/support/dragon-naturallyspeaking.html",
+    
+    "basic_commands": [
+      "scratch that - deletes last utterance",
+      "scratch word - deletes last word",
+      "scratch <n> words - deletes last n words",
+      "resume with <word> - continues from specific word",
+      "select <word> - selects specific word",
+      "correct <word> - opens correction dialog",
+      "spell that - spells the selected text",
+      "cap that - capitalizes",
+      "all caps that - ALL CAPS",
+      "no caps that - lowercase",
+      "delete that - deletes selection"
+    ],
+    
+    "navigation": [
+      "go to beginning",
+      "go to end",
+      "go back <n> words",
+      "go forward <n> words",
+      "move up <n> lines",
+      "move down <n> lines"
+    ]
+  },
+  
+  "integration": {
+    "auto_send_monitor": {
+      "cancel_on_correction": true,
+      "resume_after_correction": true,
+      "immediate_send_on_trigger": true
+    },
+    
+    "cursor_ide": {
+      "chat_focus_key": "ctrl+l",
+      "voice_input_key": "ctrl+shift+space",
+      "new_chat_key": "ctrl+r"
+    }
+  },
+  
+  "audio_settings": {
+    "_comment": "Higher energy_threshold = only captures loud/close speech (prevents background bleed)",
+    "energy_threshold": 4000,
+    "dynamic_energy_threshold": true,
+    "adjust_for_ambient_noise": true,
+    "ambient_noise_duration_seconds": 1.0,
+    "pause_threshold_seconds": 0.8,
+    "phrase_time_limit_seconds": 10,
+    "sample_rate": 16000,
+    "reject_quiet_audio": true
+  },
+  
+  "quick_mute": {
+    "_comment": "Emergency mute hotkey to stop voice transcription immediately",
+    "hotkey": "Ctrl+RAlt",
+    "action": "Toggles Cursor voice input off/on",
+    "use_case": "When background conversation is being transcribed"
+  }
+}

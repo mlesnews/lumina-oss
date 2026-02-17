@@ -1,0 +1,149 @@
+{
+  "timestamp": "2026-01-09T18:44:42.187706",
+  "description": "Cursor IDE Footer Configuration",
+  "items": [
+    {
+      "id": "cursor_model",
+      "name": "Cursor Model",
+      "priority": "critical",
+      "category": "ai",
+      "visible": true,
+      "position": 0,
+      "group": null,
+      "tooltip": null,
+      "metadata": null
+    },
+    {
+      "id": "branch",
+      "name": "Git Branch",
+      "priority": "critical",
+      "category": "git",
+      "visible": true,
+      "position": 1,
+      "group": null,
+      "tooltip": null,
+      "metadata": null
+    },
+    {
+      "id": "errors",
+      "name": "Errors",
+      "priority": "critical",
+      "category": "problems",
+      "visible": true,
+      "position": 2,
+      "group": null,
+      "tooltip": null,
+      "metadata": null
+    },
+    {
+      "id": "warnings",
+      "name": "Warnings",
+      "priority": "critical",
+      "category": "problems",
+      "visible": true,
+      "position": 3,
+      "group": null,
+      "tooltip": null,
+      "metadata": null
+    },
+    {
+      "id": "language",
+      "name": "Language",
+      "priority": "high",
+      "category": "editor",
+      "visible": true,
+      "position": 4,
+      "group": null,
+      "tooltip": null,
+      "metadata": null
+    },
+    {
+      "id": "encoding",
+      "name": "Encoding",
+      "priority": "high",
+      "category": "editor",
+      "visible": true,
+      "position": 5,
+      "group": null,
+      "tooltip": null,
+      "metadata": null
+    },
+    {
+      "id": "line_endings",
+      "name": "Line Endings",
+      "priority": "high",
+      "category": "editor",
+      "visible": true,
+      "position": 6,
+      "group": null,
+      "tooltip": null,
+      "metadata": null
+    },
+    {
+      "id": "cursor_position",
+      "name": "Cursor Position",
+      "priority": "medium",
+      "category": "editor",
+      "visible": true,
+      "position": 7,
+      "group": null,
+      "tooltip": null,
+      "metadata": null
+    },
+    {
+      "id": "selection",
+      "name": "Selection",
+      "priority": "medium",
+      "category": "editor",
+      "visible": true,
+      "position": 8,
+      "group": null,
+      "tooltip": null,
+      "metadata": null
+    },
+    {
+      "id": "indent_size",
+      "name": "Indent Size",
+      "priority": "medium",
+      "category": "editor",
+      "visible": true,
+      "position": 9,
+      "group": null,
+      "tooltip": null,
+      "metadata": null
+    },
+    {
+      "id": "file_size",
+      "name": "File Size",
+      "priority": "low",
+      "category": "editor",
+      "visible": false,
+      "position": 10,
+      "group": null,
+      "tooltip": null,
+      "metadata": null
+    },
+    {
+      "id": "line_count",
+      "name": "Line Count",
+      "priority": "low",
+      "category": "editor",
+      "visible": false,
+      "position": 11,
+      "group": null,
+      "tooltip": null,
+      "metadata": null
+    },
+    {
+      "id": "spaces_tabs",
+      "name": "Spaces/Tabs",
+      "priority": "low",
+      "category": "editor",
+      "visible": false,
+      "position": 12,
+      "group": null,
+      "tooltip": null,
+      "metadata": null
+    }
+  ]
+}

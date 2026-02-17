@@ -1,0 +1,37 @@
+{
+  "version": "1.0.0",
+  "api_key": null,
+  "api_endpoint": "https://api.grammarly.com",
+  "enabled": false,
+  "auto_check": true,
+  "integration_mode": "full",
+  "jarvis_integration": {
+    "enabled": true,
+    "auto_edit_mode": true,
+    "editor_hat": true,
+    "description": "JARVIS automatically channels his inner 'Editor' and dons the @HAT for grammar and style checking"
+  },
+  "cli_config": {
+    "cli_installed": false,
+    "cli_path": "grammarly",
+    "install_command": "npm install -g @grammarly/cli",
+    "check_command": "grammarly --version"
+  },
+  "usage": {
+    "check_text": "Use --check 'text to check'",
+    "check_file": "Use --file path/to/file",
+    "status": "Use --status to check integration status",
+    "who_am_i": "Use --who-am-i for AI identity breakdown"
+  },
+  "notes": [
+    "API key should be set via environment variable GRAMMARLY_API_KEY or in this config",
+    "JARVIS can automatically use this for editing tasks when enabled",
+    "Integration script: scripts/python/jarvis_grammarly_cli_integration.py"
+  ],
+  "_metadata": {
+    "created": "2026-01-08",
+    "purpose": "Grammarly CLI API configuration for JARVIS editor integration",
+    "script": "scripts/python/jarvis_grammarly_cli_integration.py",
+    "tags": ["#GRAMMARLY", "#CLI_API", "#INTEGRATION", "#AI_IDENTITY", "#EDITOR"]
+  }
+}

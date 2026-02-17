@@ -1,0 +1,39 @@
+{
+  "workflow_archive_automation": {
+    "name": "JARVIS Workflow Archive Automation",
+    "type": "automated_workflow",
+    "enabled": true,
+    "module": "scripts/python/jarvis_workflow_archive_automation.py",
+    "class": "JARVISWorkflowArchiveAutomation",
+    "description": "Automatically archives AI agent history workflows that are finished and backed up to GitLens with PR",
+    "features": [
+      "workflow_discovery",
+      "completion_detection",
+      "pr_backup_verification",
+      "automatic_archiving",
+      "archive_review_integration"
+    ],
+    "schedule": {
+      "type": "continuous",
+      "interval_seconds": 3600,
+      "enabled": true
+    },
+    "fullauto": true,
+    "integration_points": {
+      "gitlens": "jarvis_gitlens_automation",
+      "workflow_manager": "cursor_chat_session_workflow_manager",
+      "archive_review": "archive_review_system"
+    },
+    "data_directory": "data/jarvis_workflow_archive",
+    "tags": [
+      "#WORKFLOW",
+      "#ARCHIVE",
+      "#AUTOMATION",
+      "#GITLENS",
+      "#PR",
+      "#FULLAUTO",
+      "@JARVIS",
+      "@DOIT"
+    ]
+  }
+}

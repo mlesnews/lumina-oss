@@ -1,0 +1,312 @@
+{
+  "azure_services_config": {
+    "version": "2.0.0",
+    "description": "Comprehensive Azure services configuration for JARVIS/LUMINA ecosystem",
+    "last_updated": "2026-01-08",
+    "enabled": true,
+    "subscription_id": "${AZURE_SUBSCRIPTION_ID}",
+    "resource_group": "jarvis-lumina-rg",
+    "location": "eastus",
+    "service_bus": {
+      "enabled": true,
+      "namespace": "jarvis-lumina-sb",
+      "connection_string_secret": "azure-service-bus-connection-string",
+      "topics": {
+        "jarvis_commands": {
+          "name": "jarvis-commands",
+          "subscriptions": [
+            "jarvis-commands-default",
+            "jarvis-commands-priority"
+          ],
+          "description": "JARVIS command queue for autonomous operations"
+        },
+        "work_shift_events": {
+          "name": "work-shift-events",
+          "subscriptions": [
+            "work-shift-monitor",
+            "work-shift-logger"
+          ],
+          "description": "Work shift events and status updates"
+        },
+        "operator_activity": {
+          "name": "operator-activity",
+          "subscriptions": [
+            "operator-activity-monitor",
+            "operator-activity-analytics"
+          ],
+          "description": "Operator activity events for idle detection"
+        },
+        "ai_coordination": {
+          "name": "ai-coordination",
+          "subscriptions": [
+            "ai-coordination-sync",
+            "ai-coordination-broadcast"
+          ],
+          "description": "AI-to-AI coordination messages"
+        },
+        "system_events": {
+          "name": "system-events",
+          "subscriptions": [
+            "system-events-monitor",
+            "system-events-alerts"
+          ],
+          "description": "System-wide events and notifications"
+        }
+      },
+      "queues": {
+        "task_queue": {
+          "name": "task-queue",
+          "description": "General task processing queue"
+        },
+        "email_syphon": {
+          "name": "email-syphon-queue",
+          "description": "Email syphon processing queue"
+        },
+        "grammarly_processing": {
+          "name": "grammarly-processing-queue",
+          "description": "Grammarly text processing queue"
+        }
+      }
+    },
+    "azure_functions": {
+      "enabled": true,
+      "function_app_name": "jarvis-lumina-functions",
+      "storage_account": "jarvisluminastorage",
+      "functions": {
+        "work_shift_processor": {
+          "name": "WorkShiftProcessor",
+          "trigger": "servicebus",
+          "queue": "task-queue",
+          "description": "Process work shift tasks"
+        },
+        "idle_operator_detector": {
+          "name": "IdleOperatorDetector",
+          "trigger": "timer",
+          "schedule": "0 */5 * * * *",
+          "description": "Detect operator idle state every 5 minutes"
+        },
+        "email_syphon_processor": {
+          "name": "EmailSyphonProcessor",
+          "trigger": "servicebus",
+          "queue": "email-syphon-queue",
+          "description": "Process email syphon tasks"
+        },
+        "grammarly_processor": {
+          "name": "GrammarlyProcessor",
+          "trigger": "servicebus",
+          "queue": "grammarly-processing-queue",
+          "description": "Process Grammarly text checks"
+        },
+        "rear_view_mirror": {
+          "name": "RearViewMirror",
+          "trigger": "timer",
+          "schedule": "0 0 * * * *",
+          "description": "Run rear view mirror daily"
+        }
+      }
+    },
+    "logic_apps": {
+      "enabled": true,
+      "workflows": {
+        "post_startup_checklist": {
+          "name": "PostStartupChecklist",
+          "trigger": "http",
+          "description": "Execute post-startup checklist workflow"
+        },
+        "autonomous_work_shift": {
+          "name": "AutonomousWorkShift",
+          "trigger": "recurrence",
+          "frequency": "Hour",
+          "description": "Manage autonomous work shifts"
+        },
+        "operator_idle_handler": {
+          "name": "OperatorIdleHandler",
+          "trigger": "eventgrid",
+          "topic": "operator-activity",
+          "description": "Handle operator idle events"
+        }
+      }
+    },
+    "event_grid": {
+      "enabled": true,
+      "topics": {
+        "system_events": {
+          "name": "jarvis-system-events",
+          "description": "System-wide events"
+        },
+        "operator_activity": {
+          "name": "jarvis-operator-activity",
+          "description": "Operator activity events"
+        },
+        "ai_coordination": {
+          "name": "jarvis-ai-coordination",
+          "description": "AI coordination events"
+        }
+      }
+    },
+    "storage": {
+      "enabled": true,
+      "accounts": {
+        "primary": {
+          "name": "jarvisluminastorage",
+          "type": "StorageV2",
+          "containers": {
+            "work_logs": {
+              "name": "work-logs",
+              "access": "private"
+            },
+            "session_data": {
+              "name": "session-data",
+              "access": "private"
+            },
+            "reports": {
+              "name": "reports",
+              "access": "private"
+            },
+            "backups": {
+              "name": "backups",
+              "access": "private"
+            }
+          }
+        }
+      }
+    },
+    "monitor": {
+      "enabled": true,
+      "application_insights": {
+        "name": "jarvis-lumina-insights",
+        "instrumentation_key_secret": "app-insights-instrumentation-key"
+      },
+      "log_analytics": {
+        "workspace_name": "jarvis-lumina-logs",
+        "workspace_id_secret": "log-analytics-workspace-id"
+      },
+      "alerts": {
+        "work_shift_failure": {
+          "enabled": true,
+          "condition": "work_shift_failed > 3",
+          "action_group": "jarvis-alerts"
+        },
+        "operator_idle_detected": {
+          "enabled": true,
+          "condition": "operator_idle == true",
+          "action_group": "jarvis-alerts"
+        }
+      }
+    },
+    "key_vault": {
+      "enabled": true,
+      "vault_name": "jarvis-lumina",
+      "vault_url": "https://jarvis-lumina.vault.azure.net/",
+      "secrets": {
+        "service_bus_connection": "azure-service-bus-connection-string",
+        "storage_connection": "azure-storage-connection-string",
+        "function_app_key": "azure-function-app-key",
+        "app_insights_key": "app-insights-instrumentation-key"
+      }
+    },
+    "container_instances": {
+      "enabled": true,
+      "containers": {
+        "jarvis_autonomous": {
+          "name": "jarvis-autonomous-worker",
+          "image": "jarvis-lumina/autonomous-worker:latest",
+          "cpu": 1,
+          "memory": 2,
+          "description": "Autonomous work shift container"
+        }
+      }
+    },
+    "cognitive_services": {
+      "enabled": true,
+      "services": {
+        "speech": {
+          "name": "jarvis-lumina-speech",
+          "key_secret": "cognitive-speech-key",
+          "description": "Azure Speech Services for voice"
+        },
+        "text_analytics": {
+          "name": "jarvis-lumina-text-analytics",
+          "key_secret": "cognitive-text-analytics-key",
+          "description": "Text analytics for content processing"
+        },
+        "vision": {
+          "name": "jarvis-lumina-vision",
+          "key_secret": "cognitive-vision-key",
+          "description": "Computer Vision for screenshot analysis"
+        }
+      }
+    },
+    "cosmos_db": {
+      "enabled": true,
+      "account": "jarvis-lumina-cosmos",
+      "database": "lumina",
+      "endpoint_secret": "cosmos-db-endpoint",
+      "key_secret": "cosmos-db-key",
+      "containers": {
+        "holocron": {
+          "name": "holocron",
+          "partition_key": "/id",
+          "description": "Holocron entries and knowledge base"
+        },
+        "agent_sessions": {
+          "name": "agent_sessions",
+          "partition_key": "/session_id",
+          "description": "Agent session data and history"
+        },
+        "workflow_data": {
+          "name": "workflow_data",
+          "partition_key": "/workflow_id",
+          "description": "Workflow execution data"
+        },
+        "terminal_logs": {
+          "name": "terminal_logs",
+          "partition_key": "/timestamp",
+          "description": "Terminal log entries for search and analytics"
+        }
+      }
+    },
+    "integration_points": {
+      "service_bus_to_functions": {
+        "enabled": true,
+        "description": "Service Bus triggers Azure Functions"
+      },
+      "event_grid_to_logic_apps": {
+        "enabled": true,
+        "description": "Event Grid triggers Logic Apps"
+      },
+      "functions_to_storage": {
+        "enabled": true,
+        "description": "Functions write to Storage"
+      },
+      "monitor_to_alerts": {
+        "enabled": true,
+        "description": "Monitor triggers alerts"
+      }
+    },
+    "authentication": {
+      "method": "managed_identity",
+      "fallback": "service_principal",
+      "tenant_id": "${AZURE_TENANT_ID}",
+      "client_id_secret": "azure-service-principal-client-id",
+      "client_secret_secret": "azure-service-principal-client-secret"
+    },
+    "documentation": {
+      "service_bus": "https://learn.microsoft.com/azure/service-bus/",
+      "azure_functions": "https://learn.microsoft.com/azure/azure-functions/",
+      "logic_apps": "https://learn.microsoft.com/azure/logic-apps/",
+      "event_grid": "https://learn.microsoft.com/azure/event-grid/",
+      "storage": "https://learn.microsoft.com/azure/storage/",
+      "monitor": "https://learn.microsoft.com/azure/azure-monitor/"
+    },
+    "remote_compute": {
+      "enabled": true,
+      "render_endpoint": "https://jarvis-lumina-functions.azurewebsites.net/api/renderironlegion",
+      "vlm_endpoint": "https://jarvis-lumina-vision.cognitiveservices.azure.com/vision/v3.2/analyze",
+      "compute_endpoint": "https://jarvis-lumina-functions.azurewebsites.net/api/renderironlegion",
+      "fallback_to_local": true,
+      "cache_enabled": true,
+      "function_key_secret": "azure-function-app-key"
+    }
+  }
+}

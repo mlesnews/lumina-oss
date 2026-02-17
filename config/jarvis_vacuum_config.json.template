@@ -1,0 +1,42 @@
+{
+  "monitoring_enabled": true,
+  "status_update_interval": 30,
+  "auto_connect": true,
+  "intelligent_scheduling": true,
+  "default_cleaning_mode": "standard",
+  "discovery": {
+    "enabled": true,
+    "timeout": 5.0,
+    "scan_interfaces": true
+  },
+  "protocols": {
+    "miio": {
+      "port": 54321,
+      "timeout": 5.0
+    },
+    "mqtt": {
+      "port": 8883,
+      "timeout": 10.0
+    },
+    "tuya": {
+      "port": 6666,
+      "timeout": 5.0
+    }
+  },
+  "scheduling": {
+    "enabled": true,
+    "check_interval": 60,
+    "smart_scheduling": {
+      "enabled": false,
+      "occupancy_detection": false,
+      "pattern_learning": false
+    }
+  },
+  "notifications": {
+    "enabled": false,
+    "on_cleaning_start": false,
+    "on_cleaning_complete": false,
+    "on_error": true,
+    "on_low_battery": true
+  }
+}

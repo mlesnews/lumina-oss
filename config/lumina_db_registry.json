@@ -1,0 +1,60 @@
+{
+  "timestamp": "2026-01-09T16:31:37.058823",
+  "description": "LUMINA Database Registry - @DB[#DATABASE] OEM Standard",
+  "databases": {
+    "helpdesk": {
+      "system": "helpdesk",
+      "name": "helpdesk",
+      "path": "C:\\Users\\mlesn\\Dropbox\\my_projects\\.lumina\\data\\databases\\helpdesk.db",
+      "description": "Helpdesk ticket system database",
+      "metadata": {
+        "tables": [
+          "tickets",
+          "users",
+          "status_history"
+        ]
+      },
+      "linked_notebooks": null
+    },
+    "hologram": {
+      "system": "hologram",
+      "name": "hologram",
+      "path": "C:\\Users\\mlesn\\Dropbox\\my_projects\\.lumina\\data\\databases\\hologram.db",
+      "description": "Metadata database linking to Jupyter Notebooks",
+      "metadata": {
+        "tables": [
+          "notebooks",
+          "metadata",
+          "links"
+        ]
+      },
+      "linked_notebooks": []
+    },
+    "holocron": {
+      "system": "holocron",
+      "name": "holocron",
+      "path": "C:\\Users\\mlesn\\Dropbox\\my_projects\\.lumina\\data\\databases\\holocron.db",
+      "description": "Holocron system database",
+      "metadata": {
+        "tables": [
+          "master_todos",
+          "intelligence",
+          "contexts"
+        ]
+      },
+      "linked_notebooks": null
+    },
+    "master_todo": {
+      "system": "master_todo",
+      "name": "master_todo",
+      "path": "C:\\Users\\mlesn\\Dropbox\\my_projects\\.lumina\\data\\databases\\master_todo.db",
+      "description": "Master TODO list database (One Ring Blueprint)",
+      "metadata": {
+        "tables": [
+          "master_todos"
+        ]
+      },
+      "linked_notebooks": null
+    }
+  }
+}

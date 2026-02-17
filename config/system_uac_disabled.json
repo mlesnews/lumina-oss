@@ -1,0 +1,29 @@
+{
+  "system_configuration": {
+    "uac_enabled": false,
+    "note": "User Account Control (UAC) is disabled on this system. Task Scheduler operations and other administrative tasks can be performed without UAC elevation prompts.",
+    "updated_at": "2026-01-08T13:38:00Z",
+    "updated_by": "JARVIS Auto-Configuration",
+    "confirmed_by_user": true
+  },
+  "task_scheduler_behavior": {
+    "requires_admin_for_system_tasks": true,
+    "note": "Even with UAC disabled, creating system-level scheduled tasks (ONSTART trigger) still requires administrator privileges. This is a Windows security restriction.",
+    "workaround_implemented": "Startup folder shortcut created as alternative method",
+    "startup_method": "Windows Startup Folder",
+    "startup_shortcut_path": "%APPDATA%\\Microsoft\\Windows\\Start Menu\\Programs\\Startup\\DEFCON Streetlight Poller.lnk",
+    "startup_script": "scripts\\nas\\start_defcon_streetlight_poller_at_startup.ps1"
+  },
+  "automation_notes": {
+    "task_installation": "When UAC is disabled, task installation scripts should attempt direct installation without elevation prompts",
+    "error_handling": "If access denied errors occur for Task Scheduler, use Startup folder method as alternative",
+    "current_solution": "Startup folder shortcut - no admin privileges required, runs at user login"
+  },
+  "defcon_streetlight_poller": {
+    "startup_method": "Windows Startup Folder",
+    "status": "configured",
+    "shortcut_created": true,
+    "script_path": "scripts\\nas\\start_defcon_streetlight_poller_at_startup.ps1",
+    "poller_script": "scripts\\python\\jarvis_defcon_streetlight_poller.py"
+  }
+}

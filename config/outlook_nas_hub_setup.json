@@ -1,0 +1,128 @@
+{
+  "outlook_configuration": {
+    "description": "Outlook configuration for connecting to NAS Company Mail Hub",
+    "company_domain": "<LOCAL_HOSTNAME>",
+    "mail_server": {
+      "server": "<NAS_PRIMARY_IP>",
+      "imap": {
+        "server": "<NAS_PRIMARY_IP>",
+        "port": 993,
+        "encryption": "SSL/TLS",
+        "authentication": "Normal password"
+      },
+      "smtp": {
+        "server": "<NAS_PRIMARY_IP>",
+        "port": 587,
+        "encryption": "STARTTLS",
+        "authentication": "Normal password"
+      },
+      "webmail": "https://<NAS_PRIMARY_IP>:5001/mailplus"
+    },
+    "accounts": {
+      "mlesn": {
+        "email": "mlesn@<LOCAL_HOSTNAME>",
+        "username": "mlesn",
+        "display_name": "mlesn",
+        "description": "Primary company email account - receives all aggregated emails"
+      },
+      "glesn": {
+        "email": "glesn@<LOCAL_HOSTNAME>",
+        "username": "glesn",
+        "display_name": "glesn",
+        "description": "Company email account - receives all aggregated emails"
+      }
+    },
+    "aggregated_providers": {
+      "description": "All emails from these providers are automatically aggregated into NAS Mail Hub",
+      "providers": [
+        {
+          "name": "Gmail",
+          "type": "gmail.com",
+          "aggregated": true,
+          "note": "All Gmail emails imported to NAS Hub"
+        },
+        {
+          "name": "Apple Mail",
+          "type": "iCloud/Apple Mail",
+          "aggregated": true,
+          "note": "All Apple Mail emails imported to NAS Hub"
+        },
+        {
+          "name": "ProtonMail",
+          "type": "ProtonMail",
+          "aggregated": true,
+          "note": "All ProtonMail emails imported via Proton Bridge to NAS Hub"
+        },
+        {
+          "name": "Outlook/Microsoft 365",
+          "type": "outlook.com/office365.com",
+          "aggregated": true,
+          "note": "All Outlook emails imported to NAS Hub"
+        },
+        {
+          "name": "Xfinity",
+          "type": "comcast.net",
+          "aggregated": true,
+          "note": "All Xfinity emails imported to NAS Hub"
+        },
+        {
+          "name": "Yahoo",
+          "type": "yahoo.com",
+          "aggregated": true,
+          "note": "All Yahoo emails imported to NAS Hub"
+        }
+      ]
+    },
+    "setup_instructions": {
+      "outlook_desktop": {
+        "steps": [
+          "1. Open Outlook",
+          "2. Go to File > Add Account",
+          "3. Select 'Manual setup or additional server types'",
+          "4. Choose 'POP or IMAP'",
+          "5. Enter account details:",
+          "   - Your Name: [Your Name]",
+          "   - Email Address: mlesn@<LOCAL_HOSTNAME> (or glesn@<LOCAL_HOSTNAME>)",
+          "   - Account Type: IMAP",
+          "   - Incoming Mail Server: <NAS_PRIMARY_IP>",
+          "   - Outgoing Mail Server (SMTP): <NAS_PRIMARY_IP>",
+          "   - User Name: mlesn (or glesn)",
+          "   - Password: [Your NAS Mail Hub password]",
+          "6. Click 'More Settings' > 'Advanced' tab:",
+          "   - Incoming server (IMAP): 993",
+          "   - Use encrypted connection: SSL/TLS",
+          "   - Outgoing server (SMTP): 587",
+          "   - Use encrypted connection: STARTTLS",
+          "7. Click 'OK' and 'Next' to test connection",
+          "8. All aggregated emails from all providers will appear in Outlook"
+        ]
+      },
+      "outlook_mobile": {
+        "steps": [
+          "1. Open Outlook mobile app",
+          "2. Tap 'Add Account'",
+          "3. Select 'Add Account' > 'Advanced Setup'",
+          "4. Choose 'IMAP'",
+          "5. Enter:",
+          "   - Email: mlesn@<LOCAL_HOSTNAME>",
+          "   - Password: [Your NAS Mail Hub password]",
+          "   - IMAP Server: <NAS_PRIMARY_IP>",
+          "   - Port: 993",
+          "   - Security: SSL/TLS",
+          "   - SMTP Server: <NAS_PRIMARY_IP>",
+          "   - Port: 587",
+          "   - Security: STARTTLS",
+          "6. Save and sync"
+        ]
+      }
+    },
+    "benefits": {
+      "unified_inbox": "All emails from all providers in one Outlook inbox",
+      "seamless_send_receive": "Send and receive through Outlook as normal company email",
+      "no_provider_switching": "No need to check multiple email accounts",
+      "company_email": "Appears as professional company email (<LOCAL_HOSTNAME>)",
+      "centralized_management": "All emails managed through NAS Mail Hub",
+      "backup_and_archive": "All emails backed up and archived on NAS"
+    }
+  }
+}

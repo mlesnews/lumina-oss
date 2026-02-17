@@ -1,0 +1,76 @@
+{
+  "name": "lumina-unified-queue",
+  "displayName": "LUMINA Unified Queue Status",
+  "description": "Displays unified queue (sources, problems, tasks) status in IDE footer - LUMINA Core",
+  "version": "1.0.0",
+  "publisher": "lumina",
+  "engines": {
+    "vscode": "^1.80.0"
+  },
+  "categories": [
+    "Other"
+  ],
+  "activationEvents": [
+    "onStartupFinished"
+  ],
+  "main": "./out/extension.js",
+  "contributes": {
+    "configuration": {
+      "title": "LUMINA Unified Queue",
+      "properties": {
+        "lumina.unifiedQueue.showInStatusBar": {
+          "type": "boolean",
+          "default": true,
+          "description": "Show unified queue status in status bar"
+        },
+        "lumina.unifiedQueue.updateInterval": {
+          "type": "number",
+          "default": 2000,
+          "description": "Update interval in milliseconds"
+        },
+        "lumina.unifiedQueue.showDetails": {
+          "type": "boolean",
+          "default": true,
+          "description": "Show details on click"
+        }
+      }
+    },
+    "commands": {
+      "lumina.unifiedQueue.showDetails": {
+        "command": "lumina.unifiedQueue.showDetails",
+        "title": "Show Queue Details",
+        "category": "LUMINA"
+      },
+      "lumina.unifiedQueue.openViewer": {
+        "command": "lumina.unifiedQueue.openViewer",
+        "title": "Open Queue Viewer",
+        "category": "LUMINA"
+      },
+      "lumina.unifiedQueue.refresh": {
+        "command": "lumina.unifiedQueue.refresh",
+        "title": "Refresh Queue Status",
+        "category": "LUMINA"
+      }
+    }
+  },
+  "scripts": {
+    "vscode:prepublish": "npm run compile",
+    "compile": "tsc -p ./",
+    "watch": "tsc -watch -p ./"
+  },
+  "devDependencies": {
+    "@types/vscode": "^1.80.0",
+    "@types/node": "^18.0.0",
+    "typescript": "^5.0.0"
+  },
+  "tags": [
+    "lumina",
+    "queue",
+    "unified",
+    "footer",
+    "status-bar",
+    "sources",
+    "problems",
+    "tasks"
+  ]
+}
