@@ -1,7 +1,0 @@
-{
-  "domain": "matthewlesnewski.onmicrosoft.com",
-  "base_dn": "DC=matthewlesnewski,DC=onmicrosoft,DC=com",
-  "server": "ldaps://matthewlesnewski.onmicrosoft.com:636",
-  "bind_dn": "CN=admin,CN=Users,DC=matthewlesnewski,DC=onmicrosoft,DC=com",
-  "password_source": "Key Vault or manual entry"
-}

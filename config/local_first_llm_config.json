@@ -1,7 +1,0 @@
-{
-  "cloud_fallback_enabled": false,
-  "require_approval_for_cloud": true,
-  "preferred_model": "qwen2.5:72b",
-  "timeout": 30,
-  "max_retries": 3
-}

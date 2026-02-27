@@ -1,0 +1,42 @@
+[build-system]
+requires = ["setuptools>=68.0", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "lumina-aios"
+version = "0.1.0"
+description = "AI-native workflow primitives for any platform"
+readme = "README.md"
+license = {text = "MIT"}
+requires-python = ">=3.10"
+authors = [
+    {name = "Cedarbrook Financial Services LLC"},
+    {name = "Matt Lesnews", email = "mlesnews@users.noreply.github.com"},
+]
+keywords = ["ai", "workflow", "automation", "circuit-breaker", "health-monitoring"]
+classifiers = [
+    "Development Status :: 3 - Alpha",
+    "Intended Audience :: Developers",
+    "License :: OSI Approved :: MIT License",
+    "Programming Language :: Python :: 3",
+    "Programming Language :: Python :: 3.10",
+    "Programming Language :: Python :: 3.11",
+    "Programming Language :: Python :: 3.12",
+    "Programming Language :: Python :: 3.13",
+    "Topic :: Software Development :: Libraries :: Application Frameworks",
+    "Topic :: System :: Monitoring",
+]
+
+[project.urls]
+Homepage = "https://github.com/mlesnews/lumina-oss"
+Repository = "https://github.com/mlesnews/lumina-oss"
+Issues = "https://github.com/mlesnews/lumina-oss/issues"
+
+[project.optional-dependencies]
+dev = ["pytest>=7.0"]
+
+[tool.setuptools.packages.find]
+include = ["lumina*"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]

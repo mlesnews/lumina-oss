@@ -1,8 +1,0 @@
-{
-  "port": 8888,
-  "host": "127.0.0.1",
-  "secure": true,
-  "cors_enabled": true,
-  "token_expiry_hours": 24,
-  "max_requests_per_minute": 60
-}

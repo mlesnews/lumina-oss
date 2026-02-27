@@ -1,8 +1,0 @@
-{
-  "remapShortcuts": [
-    {
-      "originalKeys": "Right Alt",
-      "newRemapKeys": "Ctrl+Shift+Space"
-    }
-  ]
-}
