@@ -1,0 +1,64 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "_comment": "Copy relevant sections into ~/.claude/settings.json",
+
+  "hooks": {
+    "PreToolUse": [
+      {
+        "_comment": "Block commands that leak secrets",
+        "matcher": "Bash|Edit|Write",
+        "command": "python3 ~/.claude/hooks/compusec_guard.py"
+      },
+      {
+        "_comment": "Enforce MEMORY.md rules as guardrails",
+        "matcher": "Bash|Edit|Write",
+        "command": "python3 ~/.claude/hooks/trace_track.py"
+      }
+    ],
+    "PostToolUse": [
+      {
+        "_comment": "Log token usage and costs to JSONL",
+        "command": "python3 ~/.claude/hooks/cost_tracker.py"
+      },
+      {
+        "_comment": "Scan output for leaked secrets (last line of defense)",
+        "matcher": "Bash|Read|Grep|WebFetch|WebSearch",
+        "command": "python3 ~/.claude/hooks/secrets_redactor.py"
+      },
+      {
+        "_comment": "Send WakaTime coding heartbeats",
+        "matcher": "Read|Edit|Write|Bash|Grep|Glob",
+        "command": "python3 ~/.claude/hooks/wakatime_heartbeat.py"
+      }
+    ],
+    "UserPromptSubmit": [
+      {
+        "_comment": "Track /fast mode state and recommend boost",
+        "command": "python3 ~/.claude/hooks/fast_mode_tracker.py"
+      }
+    ],
+    "PreCompact": [
+      {
+        "_comment": "Save session snapshot before context compaction",
+        "command": "python3 ~/.claude/hooks/precompact_snapshot.py"
+      }
+    ],
+    "Stop": [
+      {
+        "_comment": "Detect API errors and classify crash types",
+        "command": "python3 ~/.claude/hooks/api_watchdog.py"
+      },
+      {
+        "_comment": "Compile session memory into recovery baton",
+        "command": "python3 ~/.claude/hooks/session_compiler.py"
+      }
+    ]
+  },
+
+  "statusLine": {
+    "_comment": "Dynamic status bar — create your own with StatusLineBuilder",
+    "type": "command",
+    "command": "python3 ~/.claude/hooks/my_statusline.py",
+    "padding": 3
+  }
+}
