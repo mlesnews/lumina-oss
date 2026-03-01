@@ -19,25 +19,57 @@ Lumina AIOS ships four production-tested hooks:
 # Copy hooks
 mkdir -p ~/.claude/hooks
 cp claude_code_hooks/*.py ~/.claude/hooks/
+```
 
-# Add to settings
-cat >> ~/.claude/settings.json << 'EOF'
+Add to your `~/.claude/settings.json` (merge into existing `hooks` section):
+
+```json
 {
   "hooks": {
     "PreToolUse": [
-      {"command": "python3 ~/.claude/hooks/compusec_guard.py"},
-      {"command": "python3 ~/.claude/hooks/trace_track.py"}
+      {
+        "matcher": "Bash|Edit|Write",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "python3 ~/.claude/hooks/compusec_guard.py",
+            "timeout": 10
+          },
+          {
+            "type": "command",
+            "command": "python3 ~/.claude/hooks/trace_track.py",
+            "timeout": 10
+          }
+        ]
+      }
     ],
     "PostToolUse": [
-      {"command": "python3 ~/.claude/hooks/cost_tracker.py"}
+      {
+        "hooks": [
+          {
+            "type": "command",
+            "command": "python3 ~/.claude/hooks/cost_tracker.py",
+            "timeout": 10
+          }
+        ]
+      }
     ],
     "Stop": [
-      {"command": "python3 ~/.claude/hooks/api_watchdog.py"}
+      {
+        "hooks": [
+          {
+            "type": "command",
+            "command": "python3 ~/.claude/hooks/api_watchdog.py",
+            "timeout": 15
+          }
+        ]
+      }
     ]
   }
 }
-EOF
 ```
+
+See `settings_template.json` for the full configuration with all hooks.
 
 ## Hook Details
 

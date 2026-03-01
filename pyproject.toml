@@ -11,7 +11,7 @@ license = {text = "MIT"}
 requires-python = ">=3.10"
 authors = [
     {name = "Cedarbrook Financial Services LLC"},
-    {name = "Matt Lesnews", email = "mlesnews@users.noreply.github.com"},
+    {name = "Matt Lesnewski", email = "mlesnews@users.noreply.github.com"},
 ]
 keywords = ["ai", "workflow", "automation", "circuit-breaker", "health-monitoring"]
 classifiers = [

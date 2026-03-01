@@ -94,24 +94,43 @@ if findings:
 Copy hooks to your Claude Code installation:
 
 ```bash
+mkdir -p ~/.claude/hooks
 cp claude_code_hooks/compusec_guard.py ~/.claude/hooks/
 cp claude_code_hooks/cost_tracker.py ~/.claude/hooks/
 ```
 
-Add to `~/.claude/settings.json`:
+Add to `~/.claude/settings.json` (merge into existing `hooks` section):
 
 ```json
 {
   "hooks": {
     "PreToolUse": [
-      {"command": "python3 ~/.claude/hooks/compusec_guard.py"}
+      {
+        "hooks": [
+          {
+            "type": "command",
+            "command": "python3 ~/.claude/hooks/compusec_guard.py",
+            "timeout": 10
+          }
+        ]
+      }
     ],
     "PostToolUse": [
-      {"command": "python3 ~/.claude/hooks/cost_tracker.py"}
+      {
+        "hooks": [
+          {
+            "type": "command",
+            "command": "python3 ~/.claude/hooks/cost_tracker.py",
+            "timeout": 10
+          }
+        ]
+      }
     ]
   }
 }
 ```
+
+See `claude_code_hooks/settings_template.json` for the full configuration with all hooks.
 
 ## Next Steps
 

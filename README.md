@@ -47,6 +47,13 @@ pip install lumina-aios
 | `wakatime` | WakaTime API client for coding statistics |
 | `ticket_system` | JSON-backed ticket lifecycle management |
 
+### Powertools (`lumina.powertools`)
+| Module | What it does |
+|--------|-------------|
+| `statusline` | HUD status rendering — build compact, color-coded status bars |
+| `hook_protocol` | Hook I/O parsing — stdin/stdout protocol for Claude Code hooks |
+| `cost_analyzer` | Token usage analysis — parse JSONL cost logs, breakdown by model |
+
 ### Claude Code Hooks (`claude_code_hooks/`)
 Drop-in hooks for [Claude Code](https://docs.anthropic.com/en/docs/claude-code):
 | Hook | Type | What it does |
@@ -157,17 +164,6 @@ Like Docker gave us containers on any OS, Lumina gives AI workflows on any OS. L
 
 Every module is extracted from a production system that's been running 24/7. The trading system is the reference implementation; the framework is the product.
 
-## VSCode Extensions
-
-| Extension | What it does |
-|-----------|-------------|
-| `lumina-core` | Core Lumina integration for VSCode |
-| `cursor-active-model-status` | Shows active AI model in status bar |
-| `cursor-voice-controls` | Voice commands for Cursor IDE |
-| `file-auto-close` | Auto-close inactive editor tabs |
-| `lumina-footer-ticker` | Status ticker in editor footer |
-| `lumina-unified-queue` | Unified task queue across tools |
-
 ## Development
 
 ```bash
@@ -177,7 +173,7 @@ pip install -e ".[dev]"
 pytest tests/ -v
 ```
 
-**50 tests, 0 dependencies, Python 3.10+.**
+**67 tests, 0 dependencies, Python 3.10+.**
 
 ## Project Structure
 
@@ -188,9 +184,9 @@ lumina-oss/
 │   ├── safety/              # Circuit breaker, budget guard, secret scanner
 │   ├── workflow/            # Decisioning, troubleshooting, gatekeeper, verifier
 │   ├── intel/               # Context matrix, pattern DB
-│   └── integrations/        # WakaTime, ticket system
+│   ├── integrations/        # WakaTime, ticket system
+│   └── powertools/          # Statusline, hook protocol, cost analyzer
 ├── claude_code_hooks/       # Drop-in hooks for Claude Code
-├── vscode-extensions/       # IDE extensions
 ├── examples/                # Runnable demos
 ├── docs/                    # Architecture and guides
 └── tests/                   # Test suite

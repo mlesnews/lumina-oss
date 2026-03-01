@@ -14,7 +14,7 @@ pytest tests/ -v
 ## Making Changes
 
 1. Fork the repo and create a branch: `git checkout -b feat/your-feature`
-2. Write code + tests (maintain 50+ tests passing)
+2. Write code + tests (maintain 67+ tests passing)
 3. Run tests: `pytest tests/ -v`
 4. Commit with conventional format: `feat: Add X` / `fix: Fix Y`
 5. Open a PR
