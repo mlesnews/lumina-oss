@@ -1,5 +1,10 @@
 # Lumina AIOS
 
+[![CI](https://github.com/mlesnews/lumina-oss/actions/workflows/ci.yml/badge.svg)](https://github.com/mlesnews/lumina-oss/actions/workflows/ci.yml)
+[![Python 3.10+](https://img.shields.io/badge/python-3.10%2B-blue.svg)](https://www.python.org/downloads/)
+[![License: MIT](https://img.shields.io/badge/license-MIT-green.svg)](LICENSE)
+[![Zero Dependencies](https://img.shields.io/badge/dependencies-0-brightgreen.svg)](#)
+
 **AI-native workflow primitives for any platform.**
 
 Lumina AIOS is a Python framework that gives developers production-tested building blocks for AI-powered automation: circuit breakers, health monitoring, multi-tier memory, quality gates, cost tracking, and secret detection. Zero dependencies. Runs anywhere Python runs.
@@ -62,6 +67,15 @@ Drop-in hooks for [Claude Code](https://docs.anthropic.com/en/docs/claude-code):
 | `cost_tracker.py` | PostToolUse | Logs token usage and USD cost to JSONL |
 | `trace_track.py` | PreToolUse | Enforces MEMORY.md rules as active guardrails |
 | `api_watchdog.py` | Stop | Detects API crashes, classifies errors, alerts on threshold |
+
+### Claude Code Commands (`claude_code_commands/`)
+Portable slash commands — copy to `~/.claude/commands/` and restart:
+| Command | What it does |
+|---------|-------------|
+| `/brainstorm` | Multi-perspective ideation — Optimist, Critic, Analyst dialectic |
+| `/redact` | Toggle sensitive data masking in all output |
+| `/snapshot` | Git checkpoint bracketing — save/restore before risky ops |
+| `/save` | Auto-commit with conventional message and push |
 
 ## Quick Start
 
@@ -187,10 +201,19 @@ lumina-oss/
 │   ├── integrations/        # WakaTime, ticket system
 │   └── powertools/          # Statusline, hook protocol, cost analyzer
 ├── claude_code_hooks/       # Drop-in hooks for Claude Code
+├── claude_code_commands/    # Portable slash command templates
 ├── examples/                # Runnable demos
 ├── docs/                    # Architecture and guides
 └── tests/                   # Test suite
 ```
+
+## Stack
+
+See [STACK.md](STACK.md) for the full bill-of-materials — every tool, service, and hardware component needed to build a system like this. Organized by function with cost profiles and open-source alternatives for everything.
+
+## Security
+
+See [SECURITY.md](SECURITY.md) for our security policy and responsible disclosure process.
 
 ## License
 
