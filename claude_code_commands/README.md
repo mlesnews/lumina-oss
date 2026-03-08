@@ -10,6 +10,8 @@ cp *.md ~/.claude/commands/   # ← don't copy this README
 
 # Or cherry-pick individual commands
 cp brainstorm.md ~/.claude/commands/
+cp braintrust.md ~/.claude/commands/
+cp convergence.md ~/.claude/commands/
 cp redact.md ~/.claude/commands/
 cp snapshot.md ~/.claude/commands/
 cp save.md ~/.claude/commands/
@@ -22,6 +24,8 @@ After copying, restart Claude Code. Commands appear as `/brainstorm`, `/redact`,
 | Command | What it does |
 |---------|-------------|
 | `/brainstorm` | Multi-perspective ideation — 3 viewpoints (Optimist, Critic, Analyst) + synthesis + recommendation |
+| `/braintrust` | Polymath lifeline panel — 5 historical thinkers (Einstein, Sun Tzu, Buffett, Feynman, Da Vinci) stress-test high-stakes decisions |
+| `/convergence` | AI capability measurement — track boons/banes, calculate hit rate, identify OEM ceiling. See [framework](../docs/AI_CONVERGENCE_MEASUREMENT.md) |
 | `/redact` | Toggle sensitive data masking — masks dollar amounts, IPs, account IDs in output |
 | `/snapshot` | Git checkpoint bracketing — save/restore points before risky operations |
 | `/save` | Auto-commit and push — stage, commit with conventional message, push |
