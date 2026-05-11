@@ -33,7 +33,7 @@ Repository = "https://github.com/mlesnews/lumina-oss"
 Issues = "https://github.com/mlesnews/lumina-oss/issues"
 
 [project.optional-dependencies]
-dev = ["pytest>=7.0"]
+dev = ["pytest>=9.0.3"]
 
 [tool.setuptools.packages.find]
 include = ["lumina*"]
