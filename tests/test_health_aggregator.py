@@ -1,6 +1,11 @@
 """Tests for the health aggregator."""
 
+import subprocess
+from pathlib import Path
+
 import pytest
+
+_REPO_ROOT = Path(__file__).parent.parent
 
 from lumina.aios.health import HealthAggregator, HealthReport
 
@@ -91,11 +96,10 @@ def test_recommendation_mentions_weak():
 
 def test_runnable_module():
     """Verify the __main__ block runs without error."""
-    import subprocess
     result = subprocess.run(
-        ["python3", "-m", "lumina.aios.health"],
+        ["python", "-m", "lumina.aios.health"],
         capture_output=True, text=True, timeout=10,
-        cwd="/home/mlesn/lumina-oss",
+        cwd=_REPO_ROOT,
     )
     assert result.returncode == 0
     assert "Health:" in result.stdout

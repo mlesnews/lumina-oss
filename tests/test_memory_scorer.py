@@ -1,10 +1,13 @@
 """Tests for the Memory Quality Scorer."""
 import json
 import os
+import subprocess
 import tempfile
 from pathlib import Path
 
 import pytest
+
+_REPO_ROOT = Path(__file__).parent.parent
 
 from lumina.memory_score import (
     MemoryFileMetrics,
@@ -324,26 +327,26 @@ class TestScorer:
 class TestCLI:
     def test_module_runnable(self, rich_memory):
         """python -m lumina.memory_score should work."""
-        exit_code = os.system(
-            f"cd /home/mlesn/lumina-oss && "
-            f"python -m lumina.memory_score {rich_memory} > /dev/null 2>&1"
+        result = subprocess.run(
+            ["python", "-m", "lumina.memory_score", str(rich_memory)],
+            capture_output=True, cwd=_REPO_ROOT,
         )
-        assert exit_code == 0
+        assert result.returncode == 0
 
     def test_json_output(self, rich_memory):
         """--format json should produce valid JSON."""
         import subprocess
         result = subprocess.run(
             ["python", "-m", "lumina.memory_score", str(rich_memory), "--format", "json"],
-            capture_output=True, text=True, cwd="/home/mlesn/lumina-oss"
+            capture_output=True, text=True, cwd=_REPO_ROOT,
         )
         assert result.returncode == 0
         data = json.loads(result.stdout)
         assert "grade" in data
 
     def test_directory_scoring(self, memory_directory):
-        exit_code = os.system(
-            f"cd /home/mlesn/lumina-oss && "
-            f"python -m lumina.memory_score {memory_directory} > /dev/null 2>&1"
+        result = subprocess.run(
+            ["python", "-m", "lumina.memory_score", str(memory_directory)],
+            capture_output=True, cwd=_REPO_ROOT,
         )
-        assert exit_code == 0
+        assert result.returncode == 0
