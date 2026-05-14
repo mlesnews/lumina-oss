@@ -187,7 +187,7 @@ pip install -e ".[dev]"
 pytest tests/ -v
 ```
 
-**67 tests, 0 dependencies, Python 3.10+.**
+**100 tests, 0 dependencies, Python 3.10+.**
 
 ## Project Structure
 
