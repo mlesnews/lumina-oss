@@ -19,7 +19,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - **CI** — Dependabot bumps: `pytest >=9.0.3`, `actions/checkout@v6`, `actions/setup-python@v6`.
 
 ### Fixed
-- **CI portability** (#7) — removed hardcoded `/home/mlesn/lumina-oss` test cwd so the suite runs in any CI runner / contributor environment.
+- **CI portability** (#7) — removed a hardcoded developer cwd from the test suite so it runs in any CI runner / contributor environment.
 
 ## [0.1.0] - 2026-03-01
 
