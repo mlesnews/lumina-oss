@@ -7,19 +7,25 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [0.2.0] - 2026-05-14
+
 ### Added
-- **`lumina.memory_score`** — 10-dimension MEMORY.md grader built on this framework's own `HealthAggregator` (eats its own cooking). CLI entrypoint, parser, scorer, dimension definitions, constants.
+- **`lumina.memory_score`** — 10-dimension MEMORY.md grader built on this framework's own `HealthAggregator` (eats its own cooking). Public API: `score_memory_file`, `score_memory_directory`, `MemoryScorer`. CLI entrypoint via `python -m lumina.memory_score`. Renders text, Markdown, or JSON. Dimensions: structure, completeness, conciseness, freshness, modularity, cross_referencing, actionability, coverage, platform_compliance, meta_awareness.
+- **`docs/MEMORY_SCORE.md`** — full documentation of the scorer (CLI, programmatic API, the 10 dimensions, grading scale, architecture).
+- **`examples/memory_scorer/demo.py`** — runnable programmatic example covering single-file, directory, custom weights, and all three output formats.
 - **`/braintrust`** Claude Code command — polymath lifeline panel for cross-domain advisory.
 - **`/convergence`** Claude Code command — AI measurement / distance-from-buzzwords assessment.
 - **AI Convergence Measurement** essay in `docs/`.
 - **SECURITY.md** — vulnerability disclosure policy.
+- **`STATUS.md`** — current-state snapshot and v0.2.0 roadmap.
 
 ### Changed
-- **README** — test count updated from "67+" to "100" (current actual).
+- **README / STATUS / CONTRIBUTING** — test count updated from "67+" to reflect the current 100 tests.
 - **CI** — Dependabot bumps: `pytest >=9.0.3`, `actions/checkout@v6`, `actions/setup-python@v6`.
 
 ### Fixed
 - **CI portability** (#7) — removed a hardcoded developer cwd from the test suite so it runs in any CI runner / contributor environment.
+- **Iron Curtain self-scan** — excluded `test_secret_scanner.py` (which intentionally contains synthetic secret patterns) from the pre-commit scanner.
 
 ## [0.1.0] - 2026-03-01
 
@@ -50,4 +56,5 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - SECURITY.md, CONTRIBUTING.md
 - 67+ tests, zero dependencies
 
+[0.2.0]: https://github.com/mlesnews/lumina-oss/releases/tag/v0.2.0
 [0.1.0]: https://github.com/mlesnews/lumina-oss/releases/tag/v0.1.0

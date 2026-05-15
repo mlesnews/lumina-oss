@@ -4,7 +4,7 @@ build-backend = "setuptools.build_meta"
 
 [project]
 name = "lumina-aios"
-version = "0.1.0"
+version = "0.2.0"
 description = "AI-native workflow primitives for any platform"
 readme = "README.md"
 license = {text = "MIT"}
