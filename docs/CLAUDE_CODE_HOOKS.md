@@ -4,14 +4,20 @@
 
 Claude Code hooks are scripts that run automatically before or after tool calls. They intercept tool inputs/outputs and can approve (exit 0) or block (exit 2) actions.
 
-Lumina AIOS ships four production-tested hooks:
+Lumina AIOS ships 10 production-tested hooks:
 
 | Hook | Type | Purpose |
 |------|------|---------|
 | `compusec_guard.py` | PreToolUse | Block secret exposure |
-| `cost_tracker.py` | PostToolUse | Track token usage and cost |
 | `trace_track.py` | PreToolUse | Enforce rules from MEMORY.md |
+| `cost_tracker.py` | PostToolUse | Track token usage and cost |
+| `secrets_redactor.py` | PostToolUse | Scan tool output for leaked secrets |
+| `wakatime_heartbeat.py` | PostToolUse | Send WakaTime coding heartbeats |
+| `fast_mode_tracker.py` | UserPromptSubmit | Track `/fast` state, recommend boost |
+| `precompact_snapshot.py` | PreCompact | Snapshot git + session before compaction |
 | `api_watchdog.py` | Stop | Detect API crashes and alert |
+| `session_compiler.py` | Stop | Compile memory into recovery batons |
+| `autoboost.sh` | Daemon | Auto-toggle `/fast` mode by throughput |
 
 ## Installation
 

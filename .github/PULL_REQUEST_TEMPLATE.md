@@ -8,7 +8,7 @@ What does this PR do?
 
 ## Testing
 
-- [ ] All 67+ tests pass (`pytest tests/ -v`)
+- [ ] All 100 tests pass (`pytest tests/ -v`)
 - [ ] New tests added for new functionality
 - [ ] No new dependencies added to core `lumina/` package
 
