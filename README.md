@@ -63,10 +63,16 @@ pip install lumina-aios
 Drop-in hooks for [Claude Code](https://docs.anthropic.com/en/docs/claude-code):
 | Hook | Type | What it does |
 |------|------|-------------|
-| `compusec_guard.py` | PreToolUse | Blocks secret exposure in CLI args and tool output |
-| `cost_tracker.py` | PostToolUse | Logs token usage and USD cost to JSONL |
-| `trace_track.py` | PreToolUse | Enforces MEMORY.md rules as active guardrails |
-| `api_watchdog.py` | Stop | Detects API crashes, classifies errors, alerts on threshold |
+| `compusec_guard.py` | PreToolUse | Block secret exposure in CLI args and tool output |
+| `trace_track.py` | PreToolUse | Enforce rules from MEMORY.md |
+| `cost_tracker.py` | PostToolUse | Track token usage and cost |
+| `secrets_redactor.py` | PostToolUse | Scan tool output for leaked secrets |
+| `wakatime_heartbeat.py` | PostToolUse | Send WakaTime coding heartbeats |
+| `fast_mode_tracker.py` | UserPromptSubmit | Track `/fast` state, recommend boost |
+| `precompact_snapshot.py` | PreCompact | Snapshot git + session before compaction |
+| `api_watchdog.py` | Stop | Detect API crashes and alert |
+| `session_compiler.py` | Stop | Compile memory into recovery batons |
+| `autoboost.sh` | Daemon | Auto-toggle `/fast` mode by throughput |
 
 ### Claude Code Commands (`claude_code_commands/`)
 Portable slash commands — copy to `~/.claude/commands/` and restart:

@@ -1,7 +1,7 @@
 # STATUS
 
-**Last updated:** 2026-05-13
-**Current version:** v0.1.0 (Mar 2026) + unreleased changes pending v0.2.0
+**Last updated:** 2026-05-25
+**Current version:** v0.2.0 (2026-05-14)
 **Status:** Active development
 
 ## What's actually in the public repo today
@@ -57,7 +57,11 @@ README · CHANGELOG · CONTRIBUTING · SECURITY · CODE_OF_CONDUCT · STACK · L
 - Secret scanning in CI (TruffleHog + Iron Curtain custom patterns)
 - Dependabot for actions + pip dev-deps
 
-## Unreleased — pending next tag (v0.2.0 candidate)
+## Unreleased
+
+_No changes yet._
+
+## v0.2.0 — 2026-05-14
 
 Since v0.1.0:
 - `lumina.memory_score` module + CLI
@@ -70,7 +74,7 @@ Since v0.1.0:
 
 ## Cadence + provenance
 
-This project is the curated public extract of an internal Lumina workspace at `mlesnews/lumina`. Public commits batch every 2–6 weeks when an internal piece reaches generic + reusable + dependency-free shape. Silent periods in the public commit log reflect upstream consolidation cycles, not abandonment.
+This project is the curated public extract of an internal Lumina workspace at `mlesnews/lumina-premium`. Public commits batch every 2–6 weeks when an internal piece reaches generic + reusable + dependency-free shape. Silent periods in the public commit log reflect upstream consolidation cycles, not abandonment.
 
 ## What is NOT in this public repo
 

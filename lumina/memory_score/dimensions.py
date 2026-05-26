@@ -8,6 +8,7 @@ Zero external dependencies.
 """
 
 import re
+from datetime import date
 from typing import List, Tuple
 
 from .constants import (
@@ -145,12 +146,8 @@ def score_freshness(m: MemoryFileMetrics) -> Tuple[float, str]:
     try:
         parts = m.most_recent_date.split("-")
         year, month, day = int(parts[0]), int(parts[1]), int(parts[2])
-
-        # Simple age calculation (days since 2026-03-14)
-        # This is approximate but good enough without datetime
-        ref_days = 2026 * 365 + 3 * 30 + 14
-        file_days = year * 365 + month * 30 + day
-        age_days = ref_days - file_days
+        file_date = date(year, month, day)
+        age_days = (date.today() - file_date).days
 
         if age_days <= 1:
             score = 1.0

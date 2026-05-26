@@ -1,4 +1,5 @@
 """Tests for the Memory Quality Scorer."""
+import datetime
 import json
 import os
 import subprocess
@@ -226,10 +227,19 @@ class TestDimensions:
         assert 0.0 <= score <= 1.0
         assert "words/line" in detail
 
-    def test_freshness_current(self, rich_memory):
+    def test_freshness_current(self, rich_memory, monkeypatch):
         m = parse_file(str(rich_memory))
+        # Pin "today" to the fixture's most_recent_date so this stays a
+        # "fresh content scores high" test instead of a time-bomb.
+        from lumina.memory_score import dimensions
+
+        class _FixedDate(datetime.date):
+            @classmethod
+            def today(cls):
+                return cls(2026, 3, 14)
+
+        monkeypatch.setattr(dimensions, "date", _FixedDate)
         score, detail = score_freshness(m)
-        # 2026-03-14 should be very recent
         assert score >= 0.8
 
     def test_freshness_no_dates(self, minimal_memory):
@@ -237,6 +247,40 @@ class TestDimensions:
         score, detail = score_freshness(m)
         assert score == 0.3
         assert "no dates" in detail
+
+    def test_freshness_uses_date_today_not_hardcoded(self, tmp_dir, monkeypatch):
+        """Regression: score_freshness must anchor on date.today(), not a literal.
+
+        Earlier versions used a hardcoded reference date (2026-03-14) plus
+        approximate 30-day-month math, so every score after March drifted.
+        This test pins "today" twice and asserts the freshness of the SAME
+        file changes — proving the function reads today() dynamically.
+        """
+        from lumina.memory_score import dimensions
+
+        f = tmp_dir / "dated.md"
+        f.write_text("# Notes\n\nLast updated: 2026-05-01\n")
+        m = parse_file(str(f))
+
+        class _Today20260502(datetime.date):
+            @classmethod
+            def today(cls):
+                return cls(2026, 5, 2)
+
+        class _Today20261101(datetime.date):
+            @classmethod
+            def today(cls):
+                return cls(2026, 11, 1)
+
+        monkeypatch.setattr(dimensions, "date", _Today20260502)
+        fresh_score, fresh_detail = score_freshness(m)
+        assert fresh_score == 1.0  # 1 day old
+        assert "1d ago" in fresh_detail
+
+        monkeypatch.setattr(dimensions, "date", _Today20261101)
+        stale_score, stale_detail = score_freshness(m)
+        assert stale_score == 0.2  # ~184 days old, beyond 90-day bucket
+        assert "184d ago" in stale_detail
 
     def test_actionability_rules_heavy(self, rich_memory):
         m = parse_file(str(rich_memory))

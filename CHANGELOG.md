@@ -7,6 +7,12 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+### Fixed
+- **`lumina.memory_score.score_freshness`** — replaced a hardcoded reference date (`2026-03-14`) and 30-day-month approximation with `datetime.date.today()` and real calendar arithmetic, so freshness scores reflect actual age instead of drifting after the reference date. Regression test added.
+- **STATUS.md** — refreshed header (date + current version), cut the unreleased queue into a shipped v0.2.0 section, and corrected the upstream workspace reference (`mlesnews/lumina` → `mlesnews/lumina-premium`) to match `README.md` and `SECURITY.md`.
+- **SECURITY.md** — added `0.2.x` to the Supported Versions table (was still listing only `0.1.x`).
+- **Doc drift** (1ebbb50): `lumina/__init__.py` `__version__` bumped 0.1.0 → 0.2.0 to match `pyproject.toml`; PR template test count 67+ → 100; `docs/CLAUDE_CODE_HOOKS.md` hook count 4 → 10 with all 10 hooks listed.
+
 ## [0.2.0] - 2026-05-14
 
 ### Added
