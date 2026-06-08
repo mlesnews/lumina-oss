@@ -93,6 +93,32 @@ breakdown, lifecycle stage, and recommendation.
 Actionability is the heaviest dimension by design: a memory file that doesn't
 tell the AI *what to do* is decoration, not memory.
 
+### Freshness Scoring
+
+The `freshness` dimension is intentionally runtime-relative. `parser.py`
+extracts unique `20xx-xx-xx` date strings, picks the most recent date, and
+`score_freshness` compares it with `datetime.date.today()` using real calendar
+days.
+
+| Most recent date age | Freshness score |
+|---------------------:|----------------:|
+| 0-1 days | 1.00 |
+| 2-7 days | 0.90 |
+| 8-14 days | 0.75 |
+| 15-30 days | 0.60 |
+| 31-90 days | 0.40 |
+| 91+ days | 0.20 |
+| No dates or invalid selected date | 0.30 |
+
+Operational constraints:
+
+- Dates must be present as valid `YYYY-MM-DD` strings beginning with `20`; the
+  parser does not read natural-language dates or file modification times.
+- Directory scoring uses the primary `MEMORY.md` or `CLAUDE.md` file for the
+  freshness dimension, even though other dimensions can inspect satellite files.
+- Freshness naturally decays as time passes. If a memory file is still accurate,
+  update its visible "Last updated" marker rather than changing scorer weights.
+
 ## Grading
 
 The aggregator maps the weighted score (0–100) to one of five labels and an

@@ -8,6 +8,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ## [Unreleased]
 
 ### Fixed
+- **Memory Score docs** — documented runtime-relative freshness buckets, parser date constraints, and the contributor test-count expectation so future docs updates can verify freshness changes against source and `pytest --collect-only`.
 - **Doc drift** — test count references updated 100 → 101 across STATUS, README, PR template, and CONTRIBUTING to match `pytest --collect-only` after the `score_freshness` regression test (039f21d).
 - **`lumina.memory_score.score_freshness`** — replaced a hardcoded reference date (`2026-03-14`) and 30-day-month approximation with `datetime.date.today()` and real calendar arithmetic, so freshness scores reflect actual age instead of drifting after the reference date. Regression test added.
 - **STATUS.md** — refreshed header (date + current version), cut the unreleased queue into a shipped v0.2.0 section, and corrected the upstream workspace reference (`mlesnews/lumina` → `mlesnews/lumina-premium`) to match `README.md` and `SECURITY.md`.
