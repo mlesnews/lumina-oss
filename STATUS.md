@@ -1,6 +1,6 @@
 # STATUS
 
-**Last updated:** 2026-05-25
+**Last updated:** 2026-06-08
 **Current version:** v0.2.0 (2026-05-14)
 **Status:** Active development
 
@@ -51,7 +51,7 @@ README · CHANGELOG · CONTRIBUTING · SECURITY · CODE_OF_CONDUCT · STACK · L
 
 ## Tests + quality
 
-- **100 tests** (pytest, Python 3.10–3.13 matrix)
+- **101 tests** (pytest, Python 3.10–3.13 matrix)
 - Zero runtime dependencies (stdlib + dev tools only)
 - CI: GitHub Actions matrix on push/PR
 - Secret scanning in CI (TruffleHog + Iron Curtain custom patterns)
