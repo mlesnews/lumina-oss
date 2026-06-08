@@ -14,10 +14,16 @@ pytest tests/ -v
 ## Making Changes
 
 1. Fork the repo and create a branch: `git checkout -b feat/your-feature`
-2. Write code + tests (maintain 101+ tests passing)
-3. Run tests: `pytest tests/ -v`
+2. Write code + tests (maintain the current 101-test baseline)
+3. Run tests: `python -m pytest tests/ -v`
 4. Commit with conventional format: `feat: Add X` / `fix: Fix Y`
 5. Open a PR
+
+## Testing Expectations
+
+- The current suite collects 101 tests. Verify the count with `python -m pytest --collect-only -q tests/`.
+- CI runs `pytest tests/ -v` on Python 3.10, 3.11, 3.12, and 3.13 for every PR.
+- When intentionally adding or removing tests, update the visible test-count references in `README.md`, `STATUS.md`, `.github/PULL_REQUEST_TEMPLATE.md`, and this file.
 
 ## Code Style
 
