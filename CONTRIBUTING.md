@@ -24,6 +24,7 @@ python3 -m pytest tests/ -v
 - The current suite collects 101 tests. Verify the count with `python3 -m pytest --collect-only -q tests/`.
 - CI runs `pytest tests/ -v` on Python 3.10, 3.11, 3.12, and 3.13 for every PR.
 - The examples use `python3 -m` so the installed test runner is found even when user-local scripts are not on `PATH`.
+- Some subprocess tests invoke `python -m ...`; if your environment only provides `python3`, activate a virtualenv or add a local `python` shim before running the full suite.
 - When intentionally adding or removing tests, update the visible test-count references in `README.md`, `STATUS.md`, `.github/PULL_REQUEST_TEMPLATE.md`, and this file.
 
 ## Code Style
