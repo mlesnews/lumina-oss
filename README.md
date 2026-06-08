@@ -59,14 +59,6 @@ pip install lumina-aios
 | `hook_protocol` | Hook I/O parsing — stdin/stdout protocol for Claude Code hooks |
 | `cost_analyzer` | Token usage analysis — parse JSONL cost logs, breakdown by model |
 
-### Memory Score (`lumina.memory_score`)
-| Module | What it does |
-|--------|-------------|
-| `memory_score` | 10-dimension AI memory grader — score `MEMORY.md`, `CLAUDE.md`, and related memory files |
-
-See [`docs/MEMORY_SCORE.md`](docs/MEMORY_SCORE.md) for CLI usage,
-programmatic examples, dimension weights, freshness buckets, and grading.
-
 ### Claude Code Hooks (`claude_code_hooks/`)
 Drop-in hooks for [Claude Code](https://docs.anthropic.com/en/docs/claude-code):
 | Hook | Type | What it does |
@@ -213,7 +205,6 @@ lumina-oss/
 │   ├── workflow/            # Decisioning, troubleshooting, gatekeeper, verifier
 │   ├── intel/               # Context matrix, pattern DB
 │   ├── integrations/        # WakaTime, ticket system
-│   ├── memory_score/        # 10-dimension memory quality scorer and CLI
 │   └── powertools/          # Statusline, hook protocol, cost analyzer
 ├── claude_code_hooks/       # Drop-in hooks for Claude Code
 ├── claude_code_commands/    # Portable slash command templates
